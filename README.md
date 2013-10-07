@@ -19,17 +19,17 @@ V vsako od omenjenih platform je možno vklučiti C++ knjižnico na različne na
   2. Funkcije medplatformne knjižnice
 2. Pregled metod medplaformnega razvoja
   1. Celovit
-    1. Qt
-    2. Xamarin
-    3. Adobe AIR
+      1. Qt
+      2. Xamarin
+      3. Adobe AIR
   2. Hibriden
-    1. PhoneGap
-    2. Appcelerator Titanium
+      1. PhoneGap
+      2. Appcelerator Titanium
   3. Deljen
-    1. Lua
-    2. Haxe
-    3. XMLVM
-    4. C++ in emscripten
+      1. Lua
+      2. Haxe
+      3. XMLVM
+      4. C++ in emscripten
 3. Razvoj knjižnice
   1. C++
   2. Emscripten
