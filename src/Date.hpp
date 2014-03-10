@@ -2,92 +2,127 @@
  * Date.hpp
  *
  * @author Miha Hribar
- * @package Thesis
+ * @package thesis
+ * @version 1.0
  */
 
 #include <string>
 using namespace std;
 
-#ifndef DATE_HPP
-#define DATE_HPP
+#ifndef DATE_HPP_
+#define DATE_HPP_
 
-class Date {
-    // Date data
-    int day, month, year;
-public:
-    /**
-     * Constructor
-     */
-    Date(int y, int m, int d);
-    ~Date();
+namespace Thesis {
 
-    /**
-     * Set date year, month and day
-     */
-    void setDate(int y, int m, int d);
+    enum Weekday {
+        Sunday = 0,
+        Monday,
+        Tuesday,
+        Wednesday,
+        Thursday,
+        Friday,
+        Saturday
+    };
 
-    /**
-     * Set year. If month and day are already set the day is
-     * check for validity and updated if days in that month
-     * does not exist.
-     */
-    void setYear(int y);
+    class Date {
+        // Date data
+        int day, month, year;
+    public:
+        /**
+         * Constructor
+         */
+        Date();
+        Date(int y, int m, int d);
+        ~Date();
 
-    /**
-     * Set month. If day is already set it is checked for
-     * validity and updated if day in that month does not exist.
-     */
-    void setMonth(int m);
+        /**
+         * Set date year, month and day
+         */
+        void setDate(int y, int m, int d);
 
-    /**
-     * Set day. If day in the month is not set an error is thrown.
-     */
-    void setDay(int d);
+        /**
+         * Set year. If month and day are already set the day is
+         * check for validity and updated if days in that month
+         * does not exist.
+         */
+        void setYear(int y);
 
-    /**
-     * Get year.
-     */
-    int getYear() const { return year; }
+        /**
+         * Set month. If day is already set it is checked for
+         * validity and updated if day in that month does not exist.
+         */
+        void setMonth(int m);
 
-    /**
-     * Get month.
-     */
-    int getMonth() const { return month; }
+        /**
+         * Set day. If day in the month is not set an error is thrown.
+         */
+        void setDay(int d);
 
-    /**
-     * Get day
-     */
-    int getDay() const { return day; }
+        /**
+         * Get year.
+         */
+        int getYear() const { return year; }
 
-    /**
-     * Add days to date. Days can be negative.
-     */
-    void addDays(int days);
+        /**
+         * Get month.
+         */
+        int getMonth() const { return month; }
 
-    /**
-     * Add months to date. Months can be negative.
-     */
-    void addMonths(int months);
+        /**
+         * Get day
+         */
+        int getDay() const { return day; }
 
-    /**
-     * Add years to date. Years can be negative.
-     */
-    void addYears(int years);
+        /**
+         * Add days to date. Days can be negative.
+         */
+        void addDays(int days);
 
-    /**
-     * Format date in YYYY-MM-DD format.
-     */
-    string toString();
+        /**
+         * Add months to date. Months can be negative.
+         */
+        void addMonths(int months);
 
-    /**
-     * Calculate date timestamp
-     */
-    int timestamp();
+        /**
+         * Add years to date. Years can be negative.
+         */
+        void addYears(int years);
 
-private:
-    int  daysInMonth(int m, int y);
-    bool isLeapYear(int y);
-    int  intRepresentation(Date date);
-};
+        /**
+         * Format date in YYYY-MM-DD format.
+         */
+        string toString();
 
-#endif /* DATE_HPP */
+        /**
+         * Is date before date
+         */
+        bool isBefore(Date date);
+
+        /**
+         * Is date after date
+         */
+        bool isAfter(Date date);
+
+        /**
+         * Are two dates equal?
+         */
+        bool isEqual(Date date);
+
+        /**
+         * Get weekday
+         */
+        Weekday getWeekday();
+
+        /**
+         * Is last day in month
+         */
+        bool isLastDay();
+
+    private:
+        int  daysInMonth(int m, int y);
+        bool isLeapYear(int y);
+        int  timestamp();
+    };
+}
+
+#endif /* DATE_HPP_ */
