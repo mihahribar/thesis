@@ -10,6 +10,8 @@ EMFLAGS_BIND = $(EMFLAGS) -O2 --closure 1 --js-transform "python js/bundle.py" -
 
 S = src
 T = test
+L = lib
+J = js
 
 TESTS = \
 $(T)/DateTest.o \
@@ -19,6 +21,10 @@ $(T)/main.o
 OBJECTS = \
 $(S)/Date.o \
 $(S)/Recurrence.o
+
+GTEST = \
+$(L)/libgtest.a \
+$(L)/libgmock.a
 
 EM_OBJECTS = $(OBJECTS:.o=.bc) js/bindings.bc
 
@@ -34,13 +40,32 @@ lib.a: $(OBJECTS)
 	$(AR) rcu $@ $(OBJECTS);
 	$(RANLIB) $@
 
-js/bindings.bc : js/bindings.cpp
+$(J)/bindings.bc : $(J)/bindings.cpp
 	$(EM) $(EMFLAGS_BIND) $< -o $@
 
-js/lib.js: $(EM_OBJECTS)
-	$(EM) js/bindings.bc $(EM_OBJECTS) -o $@ $(EMFLAGS_BIND)
+$(J)/lib.js: $(EM_OBJECTS)
+	$(EM) $(J)/bindings.bc $(EM_OBJECTS) -o $@ $(EMFLAGS_BIND)
 
-tests: $(OBJECTS) $(TESTS)
+$(L)/libgtest.a:
+	wget https://googletest.googlecode.com/files/gtest-1.7.0.zip
+	unzip gtest-1.7.0.zip
+	cd gtest-1.7.0; \
+	g++ -isystem include -I. -pthread -c src/gtest-all.cc; \
+	ar -rv libgtest.a gtest-all.o; \
+	mv libgtest.a ../$(L)
+
+$(L)/libgmock.a: $(L)/libgtest.a
+	wget https://googlemock.googlecode.com/files/gmock-1.7.0.zip
+	unzip gmock-1.7.0.zip
+	cd gmock-1.7.0; \
+	g++ -isystem ../gtest-1.7.0/include -I../gtest-1.7.0 -isystem include -I. -pthread -c ../gtest-1.7.0/src/gtest-all.cc; \
+	g++ -isystem ../gtest-1.7.0/include -I../gtest-1.7.0 -isystem include -I. -pthread -c src/gmock-all.cc; \
+	ar -rv libgmock.a gtest-all.o gmock-all.o; \
+	mv libgmock.a ../$(L)
+	rm -rf gmock*
+	rm -rf gtest*
+
+tests: $(GTEST) $(OBJECTS) $(TESTS)
 	$(CC) $(OBJECTS) $(TESTS) -o $@ $(CFLAGS_TEST)
 	./$@
 
