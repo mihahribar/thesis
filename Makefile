@@ -43,7 +43,7 @@ lib.a: $(OBJECTS)
 $(J)/bindings.bc : $(J)/bindings.cpp
 	$(EM) $(EMFLAGS_BIND) $< -o $@
 
-$(J)/lib.js: $(EM_OBJECTS)
+$(J)/lib.js: emsdk_portable $(EM_OBJECTS)
 	$(EM) $(J)/bindings.bc $(EM_OBJECTS) -o $@ $(EMFLAGS_BIND)
 
 $(L)/libgtest.a:
@@ -71,6 +71,15 @@ tests: $(GTEST) $(OBJECTS) $(TESTS)
 
 doc:
 	doxygen Doxyfile
+
+emsdk_portable:
+	wget https://s3.amazonaws.com/mozilla-games/emscripten/releases/emsdk-portable.tar.gz
+	tar -xzf emsdk-portable.tar.gz
+	emsdk_portable/emsdk update
+	emsdk_portable/emsdk install latest
+	emsdk_portable/emsdk activate latest
+	cd emsdk_portable/; source emsdk_add_path
+	rm emsdk-portable.tar.gz
 
 clean:
 	rm -rf $(OBJECTS) lib.a $(TESTS) doc tests $(EM_OBJECTS)

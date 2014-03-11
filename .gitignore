@@ -4,7 +4,7 @@
 build/*
 doc/*
 tmp
-lib/emsdk_portable
+emsdk_portable
 tests
 *.o
 *.a
