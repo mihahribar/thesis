@@ -6,7 +6,7 @@ RANLIB = ranlib
 CFLAGS = -Isrc -Ilib
 CFLAGS_TEST = $(CFLAGS) -Llib -lgmock -lgtest -pthread
 EMFLAGS = -O2 --closure 1 -s ASM_JS=0 -s INVOKE_RUN=0 -s INCLUDE_FULL_LIBRARY=0 -std=c++11
-EMFLAGS_BIND = $(EMFLAGS) -O2 --closure 1 --js-transform "python js/bundle.py" --bind
+EMFLAGS_BIND = $(EMFLAGS) -O2 --closure 1 --js-transform "python $(J)/bundle.py" --bind
 
 S = src
 T = test
@@ -26,7 +26,7 @@ GTEST = \
 $(L)/libgtest.a \
 $(L)/libgmock.a
 
-EM_OBJECTS = $(OBJECTS:.o=.bc) js/bindings.bc
+EM_OBJECTS = $(OBJECTS:.o=.bc) $(J)/bindings.bc
 
 all : lib.a
 
