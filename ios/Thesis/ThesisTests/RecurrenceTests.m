@@ -61,9 +61,9 @@
 - (void)testSetUntil {
     ThesisRecurrence *rec = [[ThesisRecurrence alloc] init];
     [rec setUntil:[[ThesisDate alloc] initWithYear:2018 month:12 andDay:31]];
-    XCTAssertEqual(2018, [[rec getStart] getYear]);
-    XCTAssertEqual(12, [[rec getStart] getMonth]);
-    XCTAssertEqual(31, [[rec getStart] getDay]);
+    XCTAssertEqual(2018, [[rec getUntil] getYear]);
+    XCTAssertEqual(12, [[rec getUntil] getMonth]);
+    XCTAssertEqual(31, [[rec getUntil] getDay]);
 }
 
 - (void)testSetFrequency {

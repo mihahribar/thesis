@@ -79,7 +79,7 @@
 }
 
 - (void)setUntil:(ThesisDate *)until {
-    wrapped->setStart(Thesis::Date([until getYear], [until getMonth], [until getDay]));
+    wrapped->setUntil(Thesis::Date([until getYear], [until getMonth], [until getDay]));
 }
 
 - (void)setFrequency:(ThesisFrequency)frequency {
