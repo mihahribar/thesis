@@ -114,4 +114,13 @@ public class DateTest {
 		date.setDay(3);
 		assertFalse("Is last day", date.isLastDay());
 	}
+
+	@Test
+	public void testGetWeekday() {
+		Date date = new Date(2014, 1, 4);
+		assertEquals("Weekday not saturday", Weekday.SATURDAY, date.getWeekday());
+
+		date = new Date(2014, 1, 1);
+		assertEquals("Weekday not wednesday", Weekday.WEDNESDAY, date.getWeekday());
+	}
 }

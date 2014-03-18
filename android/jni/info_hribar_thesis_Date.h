@@ -140,8 +140,8 @@ JNIEXPORT jboolean JNICALL Java_info_hribar_thesis_Date_isLastDay
  * Method:    getWeekday
  * Signature: ()Linfo/hribar/thesis/Weekday;
  */
-/*JNIEXPORT jobject JNICALL Java_info_hribar_thesis_Date_getWeekday
-  (JNIEnv *, jobject);*/
+JNIEXPORT jobject JNICALL Java_info_hribar_thesis_Date_getWeekday
+  (JNIEnv *, jobject);
 
 #ifdef __cplusplus
 }

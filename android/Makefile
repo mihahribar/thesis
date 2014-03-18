@@ -12,22 +12,27 @@ C = ../src
 
 OBJECTS = \
 $(S)/info/hribar/thesis/Date.class \
+$(S)/info/hribar/thesis/Weekday.class \
 $(J)/Date.o \
-$(J)/info_hribar_thesis_Date.o
+$(J)/info_hribar_thesis_Date.o \
+$(J)/info_hribar_thesis_Weekday.o
 
 all : libthesis.jnilib
 
 %.o : %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
-info_hribar_thesis_Date.h: $(S)/info/hribar/thesis/Date.class
+$(J)/info_hribar_thesis_Date.h: $(S)/info/hribar/thesis/Date.class
 	$(JAVAH) $(JFLAGS) info.hribar.thesis.Date
+
+$(J)/info_hribar_thesis_Weekday.h: $(S)/info/hribar/thesis/Weekday.class
+	$(JAVAH) $(JFLAGS) info.hribar.thesis.Weekday
 
 %.class : %.java
 	$(JAVAC) $(JFLAGS) $<
 
 libthesis.jnilib: $(OBJECTS)
-	$(CC) -dynamiclib -o $@ $(J)/info_hribar_thesis_Date.o
+	$(CC) -dynamiclib -o $@ $(J)/info_hribar_thesis_Date.o $(J)/info_hribar_thesis_Weekday.o
 
 clean:
 	rm -rf $(OBJECTS) libthesis.jnilib $(S)/info/hribar/app/App.class

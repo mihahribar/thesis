@@ -25,7 +25,7 @@ public class Date
 	public native boolean isEqual(Date date);
 	public native boolean isLastDay();
 
-	//public native Weekday getWeekday();
+	public native Weekday getWeekday();
 
 	public Date(int year, int month, int day) {
 		init(year, month, day);

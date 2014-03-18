@@ -95,8 +95,31 @@ JNIEXPORT jboolean JNICALL Java_info_hribar_thesis_Date_isLastDay(JNIEnv *env, j
 	return date->isLastDay();
 }
 
-/*jobject
-Java_info_hribar_thesis_Date_getWeekday(JNIEnv *env, jobject obj) {
+JNIEXPORT jobject JNICALL Java_info_hribar_thesis_Date_getWeekday(JNIEnv *env, jobject obj) {
 	Date *date = getHandle<Date>(env, obj);
-	return date->getWeekday();
-}*/
+	Weekday weekday = date->getWeekday();
+	jclass weekdayCls = env->FindClass("info/hribar/thesis/Weekday");
+	jfieldID fid;
+	if (weekday == Sunday) {
+		fid = env->GetStaticFieldID(weekdayCls, "SUNDAY", "Linfo/hribar/thesis/Weekday;");
+	}
+	else if (weekday == Monday) {
+		fid = env->GetStaticFieldID(weekdayCls, "MONDAY", "Linfo/hribar/thesis/Weekday;");
+	}
+	else if (weekday == Tuesday) {
+		fid = env->GetStaticFieldID(weekdayCls, "TUESDAY", "Linfo/hribar/thesis/Weekday;");
+	}
+	else if (weekday == Wednesday) {
+		fid = env->GetStaticFieldID(weekdayCls, "WEDNESDAY", "Linfo/hribar/thesis/Weekday;");
+	}
+	else if (weekday == Thursday) {
+		fid = env->GetStaticFieldID(weekdayCls, "THURSDAY", "Linfo/hribar/thesis/Weekday;");
+	}
+	else if (weekday == Friday) {
+		fid = env->GetStaticFieldID(weekdayCls, "FRIDAY", "Linfo/hribar/thesis/Weekday;");
+	}
+	else {
+		fid = env->GetStaticFieldID(weekdayCls, "SATURDAY", "Linfo/hribar/thesis/Weekday;");
+	}
+	return env->GetStaticObjectField(weekdayCls, fid);
+}
