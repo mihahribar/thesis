@@ -67,10 +67,7 @@ JNIEXPORT jstring JNICALL Java_info_hribar_thesis_Recurrence_getByDay(JNIEnv *en
 
 JNIEXPORT void JNICALL Java_info_hribar_thesis_Recurrence_setByDay(JNIEnv *env, jobject obj, jstring byday) {
 	const char *str = env->GetStringUTFChars(byday, NULL);
-	std::string sbyday = "";
-	if (str != NULL) {
-		sbyday = std::string(str);
-	}
+	std::string sbyday(str);
 	Recurrence *rec = getHandle<Recurrence>(env, obj);
 	rec->setByDay(sbyday);
 	env->ReleaseStringUTFChars(byday, str);
