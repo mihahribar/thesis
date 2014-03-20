@@ -11,3 +11,4 @@ Resources
 * http://stackoverflow.com/questions/230689/best-way-to-throw-exceptions-in-jni-code
 * http://docs.oracle.com/javase/7/docs/technotes/guides/jni/spec/functions.html#wp5901
 * http://pickerwengs.blogspot.com/2013/05/android-access-static-enum-field-from.html
+* http://electrofriends.com/articles/jni/jni-part-4-jni-strings/
