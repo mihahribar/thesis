@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<txcop:outputProfiles version="1" xmlns:txcop="http://schemas.ToolsCenter.org/TeXnicCenter/OutputProfiles.xsd">
+	<outputProfileList>
+		<outputProfile name="LaTeX =&gt; DVI =&gt; PDF" stopOnLatexError="false">
+			<texCommand execute="true" path="latex.exe" arguments="--src -interaction=nonstopmode &quot;%Wm&quot;"/>
+			<bibTexCommand execute="true" path="bibtex.exe" arguments="&quot;%bm&quot;"/>
+			<makeIndexCommand execute="true" path="makeindex.exe" arguments="&quot;%bm&quot;"/>
+			<postProcessors>
+				<processor name="dviPDFm" path="dvipdfm.exe" arguments="&quot;%bm.dvi&quot;" inputFile="" outputFile=""/>
+			</postProcessors>
+			<viewer path="AcroRd32.exe" closeBeforeCompilation="true">
+				<viewProjectCommand type="dde">
+					<commandLineCommand path="AcroRd32.exe" arguments="-1 &quot;%bm.dvi&quot;"/>
+					<ddeCommand path="AcroRd32.exe" server="acroview" topic="control" command="[DocOpen(&quot;%bm.pdf&quot;)][FileOpen(&quot;%bm.pdf&quot;)]"/>
+				</viewProjectCommand>
+				<viewCurrentFileCommand type="dde">
+					<commandLineCommand path="AcroRd32.exe" arguments="[DocOpen(&quot;%bm.pdf&quot;)][FileOpen(&quot;%bm.pdf&quot;)]"/>
+					<ddeCommand path="AcroRd32.exe" server="acroview" topic="control" command="[DocOpen(&quot;%bm.pdf&quot;)][FileOpen(&quot;%bm.pdf&quot;)]"/>
+				</viewCurrentFileCommand>
+				<viewCloseCommand type="dde">
+					<commandLineCommand path="" arguments=""/>
+					<ddeCommand path="" server="acroview" topic="control" command="[DocClose(&quot;%bm.pdf&quot;)]"/>
+				</viewCloseCommand>
+			</viewer>
+		</outputProfile>
+	</outputProfileList>
+</txcop:outputProfiles>
