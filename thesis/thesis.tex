@@ -1,4 +1,4 @@
-% load FRI thesis document class with options: 
+% load FRI thesis document class with options:
 % - english for writing in english
 % - slovene for writing in slovene
 % - BVSRI for a BVSRI thesis - BVSRI diplomska naloga
@@ -17,23 +17,23 @@
 \documentclass[slovene,BUNRI,twoside]{FRIthesis}
 
 % titlepage info
-% - use \title[short title][short other language title]{title}{other language title} to define the title; short title is optional; 
-%       both main and alternate language MUST be supplied for correct PDF generation; 
-%   eg. \title[slo short][eng short]{slo}{eng} when writing in slovene or 
+% - use \title[short title][short other language title]{title}{other language title} to define the title; short title is optional;
+%       both main and alternate language MUST be supplied for correct PDF generation;
+%   eg. \title[slo short][eng short]{slo}{eng} when writing in slovene or
 %       \title[eng short][slo short]{eng}{slo} when writing in english
 % - use \author{Name Surname}{StudentID} to define the author(s); use CSL to supply multiple authors
-% - use \advisor{Name Surname} to define the advisor; 
+% - use \advisor{Name Surname} to define the advisor;
 % - use \coadvisor{Name Surname} to define coadvisor(s); use CSL to supply multiple coadvisors
 % - use \keywords{CSL keywords}{other language CSL keywords} to supply keywords;
-%   eg. \keywords{slo keyword 1, slo keyword 2}{eng keyword 1, eng keyword 2} when writing in slovene or 
+%   eg. \keywords{slo keyword 1, slo keyword 2}{eng keyword 1, eng keyword 2} when writing in slovene or
 %       \keywords{eng keyword 1, eng keyword 2}{slo keyword 1, slo keyword 2} when writing in english
 \title[LaTeX predloga][LaTeX thesis class]
       {Razvoj medplatformne knjižnice}{Developing a cross platform library}
 \author{Miha Hribar}{63010042}
 \advisor{Dejan Lavbič}
-        {Dejan Lavbič}
-\keywords{ključna beseda 1, ključna beseda 2, ...}
-         {keyword 1, keyword 2, ...}
+        {Dejana Lavbiča}
+\keywords{medplatformna knjižnica, iOS, Android, Windows Phone, JavaScript, Emscripten, LLVM}
+         {cross platform library, iOS, Android, Windows Phone, JavaScript, Emscripten, LLVM}
 
 % define common abbreviations
 % define i.e.
@@ -55,27 +55,27 @@
 % define QED symbol
 \newcommand{\QED}{\hfill\ensuremath{\Box}}
 
-% define macros for frequently used commands 
+% define macros for frequently used commands
 \newcommand{\eng}[1]{angl.~\emph{#1}}
 
 % define custom macros for notation
 %% define real numbers symbol
-%\newcommand{\Rset}{\ensuremath{\mathbb{R}}} 
-%\newcommand{\R}{\Rset} 
+%\newcommand{\Rset}{\ensuremath{\mathbb{R}}}
+%\newcommand{\R}{\Rset}
 %% define natural numbers symbol
-%\newcommand{\Nset}{\ensuremath{\mathbb{N}}} 
-%\newcommand{\N}{\Nset} 
+%\newcommand{\Nset}{\ensuremath{\mathbb{N}}}
+%\newcommand{\N}{\Nset}
 %% define euclidean vector space symbol
-%\newcommand{\Eset}{\ensuremath{\mathbb{E}}} 
-%\newcommand{\E}{\Eset} 
+%\newcommand{\Eset}{\ensuremath{\mathbb{E}}}
+%\newcommand{\E}{\Eset}
 %% define degrees symbol
-%\renewcommand{\deg}{\ensuremath{^\circ}} 
-%\newcommand{\degC}{{\deg}\ensuremath{\mathrm{C}}} 
+%\renewcommand{\deg}{\ensuremath{^\circ}}
+%\newcommand{\degC}{{\deg}\ensuremath{\mathrm{C}}}
 %
 %% define set style
-%\newcommand{\set}[1]{{\ensuremath{\mathbf{#1}}}} 
+%\newcommand{\set}[1]{{\ensuremath{\mathbf{#1}}}}
 %% define power set
-%\newcommand{\powset}[1]{{\ensuremath{\mathcal{P}(#1)}}} 
+%\newcommand{\powset}[1]{{\ensuremath{\mathcal{P}(#1)}}}
 %% define vector style
 %\newcommand{\vect}[1]{{\ensuremath{\mathbf{#1}}}}
 
@@ -83,7 +83,7 @@
 
 \maketitle
 % copyright info
-% - use \makecopyright[FRI|CC|GNU] to define the copyright license; 
+% - use \makecopyright[FRI|CC|GNU] to define the copyright license;
 %   eg. \makecopyright[FRI] distributed under FRI license
 %       \makecopyright[CC] distributed under CC-BY-SA license
 %       \makecopyright[GNU] distributed under GNU license
@@ -94,7 +94,7 @@
 \frontmatter
  \input{thesis_abstracts}
  \input{thesis_acknowledgements}
- \tableofcontents 
+ \tableofcontents
 
 \mainmatter
  \input{thesis_introduction}
