@@ -1,4 +1,4 @@
-# Razvoj medplatformne knjižnice
+# Razvoj medplatformne knjižnice za uporabo v mobilnih in spletnih aplikacijah
 
 [![Build Status](https://travis-ci.org/mihahribar/thesis.png?branch=master)](https://travis-ci.org/mihahribar/thesis)
 
