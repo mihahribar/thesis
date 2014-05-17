@@ -1,4 +1,4 @@
-# Razvoj medplatformne knjižnice
+# Razvoj medplatformne knjižnice za uporabo v mobilnih in spletnih aplikacijah
 
 [![Build Status](https://travis-ci.org/mihahribar/thesis.png?branch=master)](https://travis-ci.org/mihahribar/thesis)
 
@@ -13,3 +13,32 @@ V vsako od omenjenih platform je možno vklučiti C++ knjižnico na različne na
 * Windows Phone je z različico 8 podprl uporabo C++ kode.
 * Android nam uporabo C++ omogoča s pomočjo knjižnice [NDK](http://developer.android.com/tools/sdk/ndk/).
 * Za spletno aplikacijo lahko s pomočjo orodja emscripten uporabimo isto C++ kodo, prevedeno v Javascript.
+
+## Kazalo
+
+1. Uvod
+  1. Predstavitev problema
+  2. Funkcije medplatformne knjižnice
+2. Pregled metod medplaformnega razvoja
+  1. Celovit
+      1. Qt
+      2. Xamarin
+      3. Adobe AIR
+  2. Hibriden
+      1. PhoneGap
+      2. Appcelerator Titanium
+  3. Deljen
+      1. Lua
+      2. Haxe
+      3. XMLVM
+      4. C++ in emscripten
+3. Razvoj knjižnice
+  1. C++
+  2. Emscripten
+  3. Omejitve
+4. Vključitev knjižnice v platforme
+  1. iOS
+  2. Android
+  3. Windows Phone
+  4. Spletna aplikacija
+5. Zaključne ugotovitve
