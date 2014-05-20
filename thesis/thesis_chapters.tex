@@ -26,8 +26,6 @@ Qt\footnote{\href{http://qt-project.org}{http://qt-project.org}} je ogrodje za g
 
 Qt projekt je povsem odprtokoden in dovoljuje uporabo v skladu z licencama GPL v3\footnote{\href{http://www.gnu.org/copyleft/gpl.html}{http://www.gnu.org/copyleft/gpl.html}} in LGPL v2.1\footnote{\href{https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html}{https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html}}, a če želite orodje uporabiti za razvoj mobilne aplikacije, boste morali za to odšteti 149\$ mesečno.
 
-Če bi izpostavili dva projekta, ki uporabljata ogrodje Qt, bi omenil medijski predvajalnik VLC in program Mathematica.
-
 Glavne slabosti Qt so neskladnost z izgledom ostalih aplikacij na mobilnih platformah, plačljiva licenca za razvoj mobilnih aplikacij ter končna velikost samih programov.
 
 \subsection{Xamarin}
@@ -42,7 +40,7 @@ Glavna slabost ogrodja Xamarin je cena. Za majhno ekipo je začetna cena enostav
 
 Adobe Air je brezplačno ogrodje, ki omogoča zagon iste aplikacije na platformah iOS, Android, Mac, Windows in Linux. Čeprav za razvoj namiznih aplikacij omogoča uporabo HTML in Javascript, je za razvoj mobilnih aplikacij omejen na uporabo jezika ActionScript. V času pisanja diplomske naloge ogrodje ne omogoča zagon na platformi Windows Phone.
 
-Kot glavno slabost ogrodja Adobe Air bi navedel upadanje zanimanja za orodje Flash. Špekuliramo lahko tudi o planih podjetja Adobe, saj so pred kratkim kupili podjetje Nitobi, ki je avtor ogrodja Phone Gap (katerega si ga bomo ogledali v nadaljevanju).
+Kot glavno slabost ogrodja Adobe Air bi navedel upadanje zanimanja za orodje Flash. Špekuliramo lahko tudi o planih podjetja Adobe, saj so pred kratkim kupili podjetje Nitobi, ki je avtor ogrodja PhoneGap (katerega si ga bomo ogledali v nadaljevanju).
 
 %-----
 \section{Hibriden}
@@ -72,13 +70,37 @@ Glavna slabost ogrodja je počasno dodajanje novih platform zaradi obsežnosti d
 %-----
 \section{Deljen}
 
+Deljena metoda za razvoj aplikacij omogoča uporabo dela aplikacijske kode na vseh platformah za katere razvijamo. To lahko naredimo s pomočjo vgradnega skriptnega jezika (Lua), s pomočjo prevajanja iz izbranega programskega jezika v domorodnega (Haxe, XMLVM, emscripten) ali pa z uporabo programskega jezika C++ in programskimi ovoji, s katerimi pripravimo knjižnico za vgradnjo v druge platforme.
+
 \subsection{Lua}
+
+Lua\footnote{\href{http://www.lua.org}{http://www.lua.org}} je preprost vgrandi skriptni jezik, ki ga odlikuje hitrost izvajanja in procesorska nezahtevnost, kar pomeni, da je kot nalašč za hitro izdelavo prototipov. Vgradimo ga lahko v platforme Android, iOS, Symbian in Windows Phone, z nekaj potrpljenja pa lahko isto kodo zaženemo tudi v spletni aplikaciji.
+
+Čeprav je jezik Lua preprost za uporabo, se izkaže da za kompleksnejše knjižnice ni primeren. Manjka tudi Unicode podpora in boljša podpora rokovanju z napakami.
+
+Standardna knjižnica?
 
 \subsection{Haxe}
 
+Haxe\footnote{\href{http://haxe.org}{http://haxe.org}} zase pravi, da je večplatformski programski jezik. Razvijalec lahko svojo aplikacijo napiše v jeziku Haxe, nato pa jo s pomočjo prevajalnika prevede v JavaScript, C++, C\# ali Javo.
+
+Pri prevajanju aplikacije v ciljni jezik Haxe povzroči ne tako zanemarljivo napihjenje kode.
+
 \subsection{XMLVM}
 
+XMLVM\footnote{\href{http://xmlvm.org}{http://xmlvm.org}} spada v isti razred kot Haxe - tako imenovanih prevajalcev iz enega jezika v drugega (ang. cross-compilers), a se XMLVM tega loti na drugačen način. Medtem ko Haxe prevaja na nivoju izvorne kode, XMLVM to počne na nivoju zlogovne kode (ang. byte code). Izvorna koda je lahko napisana za navidezne stroje (ang. virtual machine) JVM, .NET CLI ali Ruby YARV, medtem ko je rezultat delujoč program za JVM, .NET CLI, Javascript, Pyhton, Objective-C in C++.
+
+// slika JVM, .NET CLI, Ruby YARV -> JVM, .NET CLI, JavaScript, Python, Objc, C++
+
+Projekt izgleda zelo ambiciozen, a vse kaže da je šlo le za akademsko raziskavo, saj je v času pisanja diplome minilo že več ko leto dni odkar se je izvorna koda posodobila. Kljub temu se mi je projekt zdel zanimiv.
+
 \subsection{C++ in emscripten}
+
+V kolikor nobena od naštetih možnosti ne zadošča našim potrebam, želeli pa bi vseeno imeti deljeno knjižnico, ki bi jo bilo možno vgraditi v iOS, Android, Windows Phone in uporabiti v spletni aplikaciji, obstaja še ena možnost: C++ in emscripten.
+
+C++\footnote{\href{http://www.cplusplus.com}{http://www.cplusplus.com}} je eden izmed najbolj razširjenih programksih jezikov. V času pisanja diplomske naloge zaseda četrto mesto na lestvici najbolj popularnih jezikov\footnote{\href{http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html}{http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html}}.
+
+Emscripten\footnote{\href{https://github.com/kripken/emscripten}{https://github.com/kripken/emscripten}} je projekt Mozilinih laboratorijev, in omogoča prevajanje iz LLVM\footnote{Low Level Virtual Machine} zlogovne kode v skriptni jezik JavaScript.
 
 %==============================
 \chapter{Razvoj knjižnice}
