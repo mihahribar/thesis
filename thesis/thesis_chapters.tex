@@ -96,11 +96,11 @@ Projekt izgleda zelo ambiciozen, a vse kaže da je šlo le za akademsko raziskav
 
 \subsection{C++ in emscripten}
 
-V kolikor nobena od naštetih možnosti ne zadošča našim potrebam, želeli pa bi vseeno imeti deljeno knjižnico, ki bi jo bilo možno vgraditi v iOS, Android, Windows Phone in uporabiti v spletni aplikaciji, obstaja še ena možnost: C++ in emscripten.
+V kolikor nobena od naštetih možnosti ne zadošča našim potrebam, želeli pa bi vseeno imeti deljeno knjižnico, obstaja še ena možnost: uporaba jezika C++\footnote{\href{http://www.cplusplus.com}{http://www.cplusplus.com}} in projekta emscripten\footnote{\href{http://emscripten.org}{http://emscripten.org}}.
 
-C++\footnote{\href{http://www.cplusplus.com}{http://www.cplusplus.com}} je eden izmed najbolj razširjenih programksih jezikov. V času pisanja diplomske naloge zaseda četrto mesto na lestvici najbolj popularnih jezikov\footnote{\href{http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html}{http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html}}.
+C++ je eden izmed najbolj razširjenih programksih jezikov. V času pisanja diplomske naloge zaseda četrto mesto na lestvici najbolj popularnih jezikov\footnote{\href{http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html}{http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html}}, pred njim so samo C, Java in Objecitve-C. Uporablja se ga v raznolikih projektih, od prevajalnikov, strežnikov, do video igric.
 
-Emscripten\footnote{\href{https://github.com/kripken/emscripten}{https://github.com/kripken/emscripten}} je projekt Mozilinih laboratorijev, in omogoča prevajanje iz LLVM\footnote{Low Level Virtual Machine} zlogovne kode v skriptni jezik JavaScript.
+Emscripten je projekt Mozilinih laboratorijev ki omogoča prevajanje iz LLVM\footnote{Low Level Virtual Machine} zlogovne kode v skriptni jezik JavaScript. LLVM si lahko predstavljamo kot vmesni sloj med izvorno (C, C++, Objective-C, Java, C#) in strojno kodo, ki skrbi poskrbi za visoko optimizacijo vmesne kode, to pa lahko potem prevedemo v ustrezen nabor ukazov za posamezne procesorje (ARM, x86 itd.). Emscripten tako predstavlja zadnjo fazo prevajalnika, le da vmesne kode iz LLVM ne prevede v ukaze specifičnega procesorja, ampak prevede nazaj v jezik JavaScript. To seveda pomeni da lahko prevedemo skoraj vsak program (z določenimi omejitvami) v JavaScript in ga zaženemo v brskalniku. Celo grafično zahtevne aplikacije niso problematične, saj emscripten za prevod v JavaScript uporablja asm.js\footnote{\href{http://asmjs.org}{http://asmjs.org}}, kar je podmnožica jezika JavaScript, ki jo JavaScript pogoni znajo dobro optimizirati.
 
 %==============================
 \chapter{Razvoj knjižnice}
