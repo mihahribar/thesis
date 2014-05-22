@@ -14,11 +14,12 @@
 \chapter{Pregled metod medplaformnega razvoja}
 \label{chap:overview}
 
+Predno postavimo omejitve razvoja naše aplikacije, si poglejmo različne metode medplatformnega razvoja in v katerih primerih jih je pametno uporabiti. Kot je pričakovati, jih je kar nekaj. Razdelili jih bomo v skupine celovitih, delnih in deljenih metod.
 
 %-----
 \section{Celovit}
 
-Celovita metoda za razvoj uporablja eno samo okolje, s pomočjo katerega nato aplikacijo izvozimo za ralične platforme - tako imenovani princip ``piši enkrat, uporabljaj povsod'', ki nam je znan iz programskega jezika Java. Zajema tako orodja za grafični vmesnik, kot prenosljivost programske kode.
+Celovita metoda za razvoj uporablja ogrodje, s pomočjo katerega aplikacijo pripravimo za različne platforme. Velika večina tako napisane izvorne kode je uporabljena na vseh destinacijskih platformah, za kar poskrbi ogrodje. Rezultat te metode je domorodna aplikacija, ki jo je možno objaviti v trgovinah posameznih platform in pri tem ne kršijo (ponavadi) strogih pravil.
 
 \subsection{Qt}
 
@@ -26,26 +27,34 @@ Qt\footnote{\href{http://qt-project.org}{http://qt-project.org}} je ogrodje za g
 
 Qt projekt je povsem odprtokoden in dovoljuje uporabo v skladu z licencama GPL v3\footnote{\href{http://www.gnu.org/copyleft/gpl.html}{http://www.gnu.org/copyleft/gpl.html}} in LGPL v2.1\footnote{\href{https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html}{https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html}}, a če želite orodje uporabiti za razvoj mobilne aplikacije, boste morali za to odšteti 149\$ mesečno.
 
+Projekt so vrsto let uspešno razvijali v podjetju Nokia, kjer so ga uporabili kot glavno orodje za razvoj aplikacij na platformi Symbian. Ko je pred časom Microsoft kupil podjetje Nokia, je projekt prevzela novonastala organizacija Qt Project, ki projekt vodi še danes.
+
+Qt je še posebej privlačen zaradi podpore namiznih platform kot so Windows, Mac OSX in Linux. Odlikuje ga tudi zagreta skupnost razvijalcev.
+
 Glavne slabosti Qt so neskladnost z izgledom ostalih aplikacij na mobilnih platformah, plačljiva licenca za razvoj mobilnih aplikacij ter končna velikost samih programov.
 
 \subsection{Xamarin}
 
-Xamarin\footnote{\href{https://xamarin.com}{https://xamarin.com}} je ogrodje za sočasen razvoj aplikacij za platforme iOS, Android, Mac in Windows v jeziku C\#. Izjaha iz projekta Mono\footnote{\href{http://www.mono-project.com}{http://www.mono-project.com}}, ki omogoča uporabo ogrodja .NET na različnih platformah. Cenovno ni ravno ugoden, saj se cene začnejo pri 299\$/mesec za vsakega razvijalca in vsako platformo.
+Xamarin\footnote{\href{https://xamarin.com}{https://xamarin.com}} je ogrodje za sočasen razvoj aplikacij za platforme iOS, Android, Mac in Windows v jeziku C\#. Izjaha iz projekta Mono\footnote{\href{http://www.mono-project.com}{http://www.mono-project.com}}, ki omogoča uporabo ogrodja .NET na različnih platformah.
 
 Ogrodje omogoča razvoj aplikacij, katerih izgled je skladen z ostalimi aplikacijami na izbrani platformi. Kot primer si lahko ogledamo aplikacijo za poslušanje glasbe Rdio\footnote{\href{https://www.rdio.com}{https://www.rdio.com}}, ki je na voljo za iOS, Android in Windows Phone.
 
-Glavna slabost ogrodja Xamarin je cena. Za majhno ekipo je začetna cena enostavno previsoka. Vprašljiva je hitrost dodajanja funckionalnosti posameznih platform, ko se te nadgradijo, določen riziko predstavlja tudi muhavost posameznih platform pri omejitvah uporabe tega ogrodja.
+Ogrodje odlikuje integrirano razvojno okolje (IDE), ki razvoj aplikacij znatno olajša. Omogoča testiranje tako v emulatorju/simulatorju kot na samih napravah.
+
+Glavna slabost ogrodja Xamarin je cena, saj se paketi začnejo šele pri 299\$/mesec za vsakega razvijalca in vsako platformo posebej. Za majhno ekipo je lahko taka začetna cena enostavno previsoka. Vprašljiva je tudi hitrost dodajanja funckionalnosti posameznih platform, ko se te nadgradijo, določen riziko predstavlja tudi muhavost posameznih platform pri omejitvah uporabe tega ogrodja, sploh še nadgradnja povzroči nedelovanje takih aplikacij.
 
 \subsection{Adobe Air}
 
-Adobe Air je brezplačno ogrodje, ki omogoča zagon iste aplikacije na platformah iOS, Android, Mac, Windows in Linux. Čeprav za razvoj namiznih aplikacij omogoča uporabo HTML in Javascript, je za razvoj mobilnih aplikacij omejen na uporabo jezika ActionScript. V času pisanja diplomske naloge ogrodje ne omogoča zagon na platformi Windows Phone.
+Adobe Air je brezplačno ogrodje, ki omogoča zagon iste aplikacije na platformah iOS, Android, Mac, Windows in Linux. Čeprav za razvoj namiznih aplikacij omogoča uporabo HTML in Javascript, je za razvoj mobilnih aplikacij omejen na uporabo jezika ActionScript. V času pisanja diplomske naloge ogrodje ne omogoča zagon na platformi Windows Phone, vendar so razvijalci podporo že napovedali.
 
-Kot glavno slabost ogrodja Adobe Air bi navedel upadanje zanimanja za orodje Flash. Špekuliramo lahko tudi o planih podjetja Adobe, saj so pred kratkim kupili podjetje Nitobi, ki je avtor ogrodja PhoneGap (katerega si ga bomo ogledali v nadaljevanju).
+Izbor orodja je še posebej uporaben za ravoj iger, kjer se razvijalcem ni treba prav preveč prilagajati domorodnim aplikacijam.
+
+Kot glavno slabost ogrodja Adobe Air bi navedel upadanje zanimanja za orodje Flash. Špekuliramo lahko tudi o planih podjetja Adobe, saj so pred kratkim kupili podjetje Nitobi, ki je avtor ogrodja PhoneGap (katerega si ga bomo ogledali v nadaljevanju). Uporaba tudi ni primerna za razvoj klasičnih mobilinih aplikacij, saj je prilagajanje domorodnim aplikacijam precej zahtevno, še posebej kadar na platformi pride do posodobitve izgleda.
 
 %-----
 \section{Hibriden}
 
-Hibridna metoda za razvoj aplikacij uporablja spletne tehnologije v sožitju z kodo za posamezno platformo (t.i. premostitvena tehnika), ki omogoča dostop do glavnih funkcij naprav (kot so kamera, pospeškomer in podobno).
+Hibridna metoda za razvoj aplikacij uporablja spletne tehnologije v sožitju z kodo za posamezno platformo (t.i. premostitvena tehnika), ki omogoča dostop do glavnih funkcij naprav (kot so kamera, pospeškomer in podobno). Tako kot pri celovitih metodah, je tudi tu rezultat domorodna aplikacija, ki jo je možno objaviti v trgovinah posameznih platform.
 
 \subsection{Apache Cordova / PhoneGap}
 
@@ -55,13 +64,13 @@ Projekt PhoneGap\footnote{\href{http://phonegap.com}{http://phonegap.com}} je de
 
 Za razvoj aplikacij razvijalci lahko uporabljajo spletne tehnologije HTML, CSS in JavaScript. S pomočjo ogrodij jQuery Mobile in Sencha Touch je možno izdelati aplikacije, katerih izgled je zelo lep približek ostalim aplikacijam na izbrani platformi. Če naletimo na funkcijo naprave, do katere nimamo dostopa, ali ugotovimo da je JavaScript za določene naloge premalo učinkovit, lahko preprosto spišemo lasten vtičnik, ki služi kot most med JavaScript in domorodno kodo.
 
-Glavna prednost ogrodja Apache Cordova in predvsem distribucije PhoneGap je izredno nizka pregrada. Priporoča se predvsem za izdelavo prototipnih aplikacij, saj nam omogoča hiter razvoj in iteracijo.
+Glavna prednost ogrodja Apache Cordova in predvsem distribucije PhoneGap je izredno nezahtevnost ogrodja. Priporoča se predvsem za izdelavo prototipnih aplikacij, saj nam omogoča hiter razvoj in iteracijo.
 
 Glavna slabost tega pristopa tiči v performanci in odzivnosti aplikacije, saj ta za prikazovanje izkorišča vgrajeno spletno okno. Trenutno je težko izdelati aplikacije, ki so grafično zahtevnejše, kar pomeni še toliko bolj pereč problem na napravah s slabšimi karakteristikami.
 
 \subsection{Appcelerator Titanium}
 
-Ogrodje Titanium nam omogoča izdelavo aplikacij za več platform hkrati s pomočjo JavaScript okolja, ki služi kot abstrakcijska plast med našo aplikacijo in domorodno kodo. Aplikacijo gradimo s pomočjo jezika JavaScript, ki se med uporabo aplikacije izvaja s pomočjo V8 (Android) in JavaScriptCore (iOS) ali vgrajenega JavaScript okolja (če aplikacijo poganjamo v brskalniku). Za pravilen vizualen izgled skrbijo namestniški elementi, ki uporabljajo domorodne grafične elemente, kar pomeni da vizualno aplikacije ne ločimo od ostalih domorodnih aplikacij. V času pisanja diplomske naloge ogrodje podpira iOS, Android, Blackberry, Tizen in spletne aplikacije.
+Ogrodje Titanium nam omogoča izdelavo aplikacij za več platform hkrati s pomočjo JavaScript okolja, ki služi kot abstrakcijska plast med našo aplikacijo in domorodno kodo. Aplikacijo gradimo s pomočjo jezika JavaScript, ki se med uporabo aplikacije izvaja s pomočjo V8 (Android), JavaScriptCore (iOS) ali vgrajenega JavaScript okolja (če aplikacijo poganjamo v brskalniku). Za pravilen vizualen izgled skrbijo namestniški elementi, ki uporabljajo domorodne grafične elemente, kar pomeni da vizualno aplikacije ne ločimo od ostalih domorodnih aplikacij. V času pisanja diplomske naloge ogrodje podpira iOS, Android, Blackberry, Tizen in spletne aplikacije.
 
 Glavna prednost ogrodja Titanium ni t.i. način piši enkrat, uporabljaj povosd; njegova prednost je da lahko celotno aplikacijo izdelamo v enem jeziku - JavaScript-u. Le redko se bomo srečali z domorodno kodo, saj ogrodje nudi široko paleto knjižnic.
 
@@ -74,7 +83,7 @@ Deljena metoda za razvoj aplikacij omogoča uporabo dela aplikacijske kode na vs
 
 \subsection{Lua}
 
-Lua\footnote{\href{http://www.lua.org}{http://www.lua.org}} je preprost vgrandi skriptni jezik, ki ga odlikuje hitrost izvajanja in procesorska nezahtevnost, kar pomeni, da je kot nalašč za hitro izdelavo prototipov. Vgradimo ga lahko v platforme Android, iOS, Symbian in Windows Phone, z nekaj potrpljenja pa lahko isto kodo zaženemo tudi v spletni aplikaciji.
+Lua\footnote{\href{http://www.lua.org}{http://www.lua.org}} je preprost vgrandi skriptni jezik, ki ga odlikuje hitrost izvajanja in procesorska nezahtevnost. Vgradimo ga lahko v platforme Android, iOS, Symbian in Windows Phone, z nekaj potrpljenja pa lahko isto kodo zaženemo tudi v spletni aplikaciji.
 
 Čeprav je jezik Lua preprost za uporabo, se izkaže da za kompleksnejše knjižnice ni primeren. Manjka tudi Unicode podpora in boljša podpora rokovanju z napakami.
 
@@ -84,7 +93,7 @@ Standardna knjižnica?
 
 Haxe\footnote{\href{http://haxe.org}{http://haxe.org}} zase pravi, da je večplatformski programski jezik. Razvijalec lahko svojo aplikacijo napiše v jeziku Haxe, nato pa jo s pomočjo prevajalnika prevede v JavaScript, C++, C\# ali Javo.
 
-Pri prevajanju aplikacije v ciljni jezik Haxe povzroči ne tako zanemarljivo napihjenje kode.
+Pri prevajanju aplikacije v ciljni jezik Haxe povzroči ne tako zanemarljivo napihnjenje kode, saj v želji dobesednega prevoda na vsako od ciljnih platform prenese svoje delovanje plus kodo, ki smo jo napisala za našo aplikacijo.
 
 \subsection{XMLVM}
 
@@ -92,7 +101,7 @@ XMLVM\footnote{\href{http://xmlvm.org}{http://xmlvm.org}} spada v isti razred ko
 
 // slika JVM, .NET CLI, Ruby YARV -> JVM, .NET CLI, JavaScript, Python, Objc, C++
 
-Projekt izgleda zelo ambiciozen, a vse kaže da je šlo le za akademsko raziskavo, saj je v času pisanja diplome minilo že več ko leto dni odkar se je izvorna koda posodobila. Kljub temu se mi je projekt zdel zanimiv.
+Projekt izgleda zelo ambiciozen, a vse kaže da je šlo le za akademsko raziskavo, saj je v času pisanja diplome minilo že več ko leto dni odkar se je izvorna koda posodobila. Kljub temu se mi je projekt zdel zanimiv in ga je bilo vredno izpostaviti.
 
 \subsection{C++ in emscripten}
 
@@ -100,20 +109,20 @@ V kolikor nobena od naštetih možnosti ne zadošča našim potrebam, želeli pa
 
 C++ je eden izmed najbolj razširjenih programksih jezikov. V času pisanja diplomske naloge zaseda četrto mesto na lestvici najbolj popularnih jezikov\footnote{\href{http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html}{http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html}}, pred njim so samo C, Java in Objecitve-C. Uporablja se ga v raznolikih projektih, od prevajalnikov, strežnikov, do video igric.
 
-Emscripten je projekt Mozilinih laboratorijev ki omogoča prevajanje iz LLVM\footnote{Low Level Virtual Machine} zlogovne kode v skriptni jezik JavaScript. LLVM si lahko predstavljamo kot vmesni sloj med izvorno (C, C++, Objective-C, Java, C#) in strojno kodo, ki skrbi poskrbi za visoko optimizacijo vmesne kode, to pa lahko potem prevedemo v ustrezen nabor ukazov za posamezne procesorje (ARM, x86 itd.). Emscripten tako predstavlja zadnjo fazo prevajalnika, le da vmesne kode iz LLVM ne prevede v ukaze specifičnega procesorja, ampak prevede nazaj v jezik JavaScript. To seveda pomeni da lahko prevedemo skoraj vsak program (z določenimi omejitvami) v JavaScript in ga zaženemo v brskalniku. Celo grafično zahtevne aplikacije niso problematične, saj emscripten za prevod v JavaScript uporablja asm.js\footnote{\href{http://asmjs.org}{http://asmjs.org}}, kar je podmnožica jezika JavaScript, ki jo JavaScript pogoni znajo dobro optimizirati.
+Emscripten je projekt Mozilinih laboratorijev ki omogoča prevajanje iz LLVM\footnote{Low Level Virtual Machine} zlogovne kode v skriptni jezik JavaScript. LLVM si lahko predstavljamo kot vmesni sloj med izvorno (C, C++, Objective-C, Java, C\#) in strojno kodo, ki skrbi poskrbi za visoko optimizacijo vmesne kode, to pa lahko potem prevedemo v ustrezen nabor ukazov za posamezne procesorje (ARM, x86 itd.). Emscripten tako predstavlja zadnjo fazo prevajalnika, le da vmesne kode iz LLVM ne prevede v ukaze specifičnega procesorja, ampak prevede nazaj v jezik JavaScript. To seveda pomeni da lahko prevedemo skoraj vsak program (z določenimi omejitvami) v JavaScript in ga zaženemo v brskalniku. Celo grafično zahtevne aplikacije niso problematične, saj emscripten za prevod v JavaScript uporablja asm.js\footnote{\href{http://asmjs.org}{http://asmjs.org}}, kar je podmnožica jezika JavaScript, ki jo JavaScript pogoni znajo izredno dobro optimizirati.
 
 %==============================
 \chapter{Razvoj knjižnice}
 \label{chap:development}
 
 %-----
+\section{Omejitve}
+
+%-----
 \section{C++}
 
 %-----
 \section{Emscripten}
-
-%-----
-\section{Omejitve}
 
 %==============================
 \chapter{Vključitev knjižnice v različne platforme}
