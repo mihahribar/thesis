@@ -9,7 +9,6 @@
 
 
 
-
 %==============================
 \chapter{Pregled metod medplaformnega razvoja}
 \label{chap:overview}
@@ -101,7 +100,11 @@ Pri prevajanju aplikacije v ciljni jezik Haxe povzroči ne tako zanemarljivo nap
 
 XMLVM\footnote{\href{http://xmlvm.org}{http://xmlvm.org}} spada v isti razred kot Haxe - tako imenovanih prevajalcev iz enega jezika v drugega (ang. cross-compilers), a se XMLVM tega loti na drugačen način. Medtem ko Haxe prevaja na nivoju izvorne kode, XMLVM to počne na nivoju zlogovne kode (ang. byte code). Izvorna koda je lahko napisana za navidezne stroje (ang. virtual machine) JVM, .NET CLI ali Ruby YARV, medtem ko je rezultat delujoč program za JVM, .NET CLI, Javascript, Pyhton, Objective-C in C++.
 
-// slika JVM, .NET CLI, Ruby YARV -> JVM, .NET CLI, JavaScript, Python, Objc, C++
+\begin{figure}
+ \includegraphics[scale=0.5]{xmlvm}
+ \caption{XMLVM}
+ \label{fig:xmlvm}
+\end{figure}
 
 Projekt izgleda zelo ambiciozen, a vse kaže da je šlo le za akademsko raziskavo, saj je v času pisanja diplome minilo že več ko leto dni odkar se je izvorna koda posodobila. Kljub temu se mi je projekt zdel zanimiv in ga je bilo vredno izpostaviti.
 
@@ -109,22 +112,68 @@ Projekt izgleda zelo ambiciozen, a vse kaže da je šlo le za akademsko raziskav
 
 V kolikor nobena od naštetih možnosti ne zadošča našim potrebam, želeli pa bi vseeno imeti deljeno knjižnico, obstaja še ena možnost: uporaba jezika C++\footnote{\href{http://www.cplusplus.com}{http://www.cplusplus.com}} in projekta emscripten\footnote{\href{http://emscripten.org}{http://emscripten.org}}.
 
-C++ je eden izmed najbolj razširjenih programksih jezikov. V času pisanja diplomske naloge zaseda četrto mesto na lestvici najbolj popularnih jezikov\footnote{\href{http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html}{http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html}}, pred njim so samo C, Java in Objecitve-C. Uporablja se ga v raznolikih projektih, od prevajalnikov, strežnikov, do video igric.
+C++ je eden izmed najbolj razširjenih programksih jezikov. V času pisanja diplomske naloge zaseda četrto mesto na lestvici najbolj popularnih jezikov \ref{fig:tiobe-index}, pred njim so samo C, Java in Objecitve-C. Uporablja se ga v raznolikih projektih, od prevajalnikov, strežnikov, do video igric.
 
-// slika tiobe grafični prikaz prilubljenosti jezikov
+\begin{figure}
+ \includegraphics[width=\linewidth]{tiobe-index}
+ \caption{Tiobe programming comunity index \protect\href{http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html}{http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html}}
+ \label{fig:tiobe-index}
+\end{figure}
 
 Emscripten je projekt Mozilinih laboratorijev ki omogoča prevajanje iz LLVM\footnote{Low Level Virtual Machine} zlogovne kode v skriptni jezik JavaScript. LLVM si lahko predstavljamo kot vmesni sloj med izvorno (C, C++, Objective-C, Java, C\#) in strojno kodo, ki skrbi poskrbi za visoko optimizacijo vmesne kode, to pa lahko potem prevedemo v ustrezen nabor ukazov za posamezne procesorje (ARM, x86 itd.). Emscripten tako predstavlja zadnjo fazo prevajalnika, le da vmesne kode iz LLVM ne prevede v ukaze specifičnega procesorja, ampak prevede nazaj v jezik JavaScript. To seveda pomeni, da lahko prevedemo skoraj vsak program (z določenimi omejitvami) v JavaScript in ga zaženemo v brskalniku. Celo grafično zahtevne aplikacije niso problematične, saj emscripten za prevod v JavaScript uporablja asm.js\footnote{\href{http://asmjs.org}{http://asmjs.org}}, kar je podmnožica jezika JavaScript, ki jo JavaScript pogoni znajo izredno dobro optimizirati.
 
-// slika epic citadel running in the browser
+\begin{figure}
+ \includegraphics[width=\linewidth]{emscripten-epic-citadel}
+ \caption{Skupina Mozilinih inžinirjev je grafično ogrodje Unreal v štirih dneh posodobilo do te mere, da je lahko s pomočjo orodja emscripten grafično zahtevna aplikacija brezhibno delovala v brskalniku.}
+ \label{fig:epic-citadel}
+\end{figure}
 
 %==============================
 \chapter{Razvoj knjižnice}
 \label{chap:development}
 
 %-----
+\section{Omejitve}
+
+Predno se lotimo izbora primerne metode postavimo nekaj omejitev:
+
+\begin{enumerate}
+  \item Delovati mora na platformah iOS, Android, Windows Phone in spletu.
+  \item Zagotavljati grafično skladnost z ostalimi domorodnimi aplikacijami.
+  \item Imeti dovolj razgibano razvijalsko skupnost, da bomo lahko našli odgovore na nastale probleme.
+  \item Mora biti odporna na spremembe pri nadgradnjah platforme.
+\end{enumerate}
+
+Izbrano rešitev želimo prikazati na primeru aplikacije, ki prikazuje ponavaljajoče si dogodke s pomočjo standarda RFC 5545\footnote{\href{http://tools.ietf.org/html/rfc5545}{http://tools.ietf.org/html/rfc5545}}. Zaradi poenostavitve se bomo osredotočili zgolj na del RRULE{\footnote{\href{http://tools.ietf.org/html/rfc5545\#section-3.3.10}{http://tools.ietf.org/html/rfc5545\#section-3.3.10}}}, ki definira pravila za ponavljanje dogodka.
+
+Poglejmo si primer kompleksnega pravila za ponavljanje dogodka:
+
+\begin{lstlisting}
+FREQ=YEARLY;INTERVAL=2;BYMONTH=1;BYDAY=SU;BYHOUR=8,9;BYMINUTE=30
+\end{lstlisting}
+
+Če prevedemo to v človeku prijazno obliko, bi to pomenilo ``vsako nedeljo v januarju ob 8:30 zjutraj in 9:30 zjutraj, vsako drugo leto''.
+
+Ponavljajoč dogodek bo aplikacija prikazala v preprostem seznamu, ki bo prilagojen za vsako od izbranih platform.
+
+// slika iOS seznama z vsemi podatki ki bodo prikazani
+
+%-----
 \section{Izbor primerne metode}
 
-// slika google search terms za phonegap, c++ etc
+Izbor primerne metode lahko začnemo z pregledom popularnih vprašanj na spletni strani Stackoverflow. Ta nam da lahko hiter pregled v aktivnost posameznih razvijalskih skupnosti.
+
+\begin{figure}
+ \includegraphics[width=\linewidth]{stackoverflow-trends}
+ \caption{Prikaz trendov za nekaj od predlaganih rešitev na spletni strani Stackoverflow, kjer razvijalci iščejo rešitve problemov na katere so naleteli.}
+ \label{fig:stackoverflow-trends}
+\end{figure}
+
+Grafično prilagajanje domorodnim aplikacijam.
+
+Xamarin -> slabost cena
+PhoneGap -> neskladnost
+Appcelerator -> ni zastonj
 
 %-----
 \section{C++}
