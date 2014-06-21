@@ -16,6 +16,19 @@
 %   for a more capabilities load the todonotes package - http://ctan.org/pkg/todonotes
 \documentclass[slovene,BUNRI,twoside]{FRIthesis}
 \usepackage{listings}
+\lstset{
+    basicstyle=\small\sffamily,
+    numbers=left,
+    numberstyle=\tiny,
+    frame=tb,
+    columns=fullflexible,
+    showstringspaces=false
+}
+
+\usepackage{amssymb}% http://ctan.org/pkg/amssymb
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
 
 % titlepage info
 % - use \title[short title][short other language title]{title}{other language title} to define the title; short title is optional;

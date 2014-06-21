@@ -22,31 +22,33 @@ Celovita metoda za razvoj uporablja ogrodje, s pomočjo katerega aplikacijo prip
 
 \subsection{Qt}
 
-Qt\footnote{\href{http://qt-project.org}{http://qt-project.org}} je ogrodje za grafično programiranje za več platform s pomočjo jezika C++ in QML\footnote{Qt Meta Language ali Qt Modeling Language, vir \href{http://en.wikipedia.org/wiki/QML}{Wikipedia}}. Omogoča nam sočasni razvoj za platforme OSX, Linux, Windows, Android in iOS. Podpira tudi uporabo HTML5\footnote{\href{http://en.wikipedia.org/wiki/HTML5}{http://en.wikipedia.org/wiki/HTML5}} namesto QML, kar pomeni, da spletni razvijalci lahko uporabijo že obstoječe znanje in učenje novega jezika ni potrebno.
+Qt\footnote{\href{http://qt-project.org}{qt-project.org}} je ogrodje za grafično programiranje za več platform s pomočjo jezika C++ in QML\footnote{Qt Meta Language ali Qt Modeling Language, vir \href{http://en.wikipedia.org/wiki/QML}{Wikipedia}}. Omogoča nam sočasni razvoj za platforme OSX, Linux, Windows, Android in iOS. Podpira tudi uporabo HTML5\footnote{\href{http://en.wikipedia.org/wiki/HTML5}{wikipedia.org/wiki/HTML5}} namesto QML, kar pomeni, da spletni razvijalci lahko uporabijo že obstoječe znanje in učenje novega jezika ni potrebno.
 
-Qt projekt je povsem odprtokoden in dovoljuje uporabo v skladu z licencama GPL v3\footnote{\href{http://www.gnu.org/copyleft/gpl.html}{http://www.gnu.org/copyleft/gpl.html}} in LGPL v2.1\footnote{\href{https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html}{https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html}}, a če želite orodje uporabiti za razvoj mobilne aplikacije, boste morali za to odšteti 149\$ mesečno.
+Qt projekt je povsem odprtokoden in dovoljuje uporabo v skladu z licencama GPL v3\footnote{\href{http://www.gnu.org/copyleft/gpl.html}{gnu.org/copyleft/gpl.html}} in LGPL v2.1\footnote{\href{https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html}{gnu.org/licenses/old-licenses/lgpl-2.1.html}}, a če želite orodje uporabiti za razvoj mobilne aplikacije, boste morali za to odšteti 149\$ mesečno.
 
 Projekt so vrsto let uspešno razvijali v podjetju Nokia, kjer so ga uporabili kot glavno orodje za razvoj aplikacij na platformi Symbian. Ko je pred časom Microsoft kupil podjetje Nokia, je projekt prevzela novonastala organizacija Qt Project, ki projekt vodi še danes.
 
 Qt je še posebej privlačen zaradi podpore namiznih platform kot so Windows, Mac OSX in Linux. Odlikuje ga tudi zagreta skupnost razvijalcev.
 
-Glavne slabosti Qt so neskladnost z izgledom ostalih aplikacij na mobilnih platformah, plačljiva licenca za razvoj mobilnih aplikacij ter končna velikost samih programov.
+Ogrodje Qt je primeren za izdelavo aplikacij, ki vključujejo kompleksne algoritme, za katere bi porabili preveč časa pri prepisovanju na različne platforme. Lep primer tega sta aplikaciji Mathematica\footnote{\href{http://www.wolfram.com/mathematica/}{wolfram.com/mathematica/}} in multimedijski predvajalnik VLC\footnote{\href{http://www.videolan.org/vlc/}{videolan.org/vlc/}}.
+
+Glavne slabosti Qt so neskladnost z izgledom ostalih aplikacij na mobilnih platformah, plačljiva licenca za razvoj mobilnih aplikacij ter končna velikost samih programov. Manjka tudi napovedana podpora za platformo Windows Phone.
 
 \subsection{Xamarin}
 
-Xamarin\footnote{\href{https://xamarin.com}{https://xamarin.com}} je ogrodje za sočasen razvoj aplikacij za platforme iOS, Android, Mac in Windows v jeziku C\#. Izjaha iz projekta Mono\footnote{\href{http://www.mono-project.com}{http://www.mono-project.com}}, ki omogoča uporabo ogrodja .NET na različnih platformah.
+Xamarin\footnote{\href{https://xamarin.com}{xamarin.com}} je ogrodje za sočasen razvoj aplikacij za platforme iOS, Android, Mac in Windows v jeziku C\#. Izjaha iz projekta Mono\footnote{\href{http://www.mono-project.com}{mono-project.com}}, ki omogoča uporabo ogrodja .NET na različnih platformah. Ogrodje omogoča razvoj aplikacij, katerih izgled je skladen z ostalimi domorodnimi aplikacijami.
 
-Ogrodje omogoča razvoj aplikacij, katerih izgled je skladen z ostalimi aplikacijami na izbrani platformi. Kot primer si lahko ogledamo aplikacijo za poslušanje glasbe Rdio\footnote{\href{https://www.rdio.com}{https://www.rdio.com}}, ki je na voljo za iOS, Android in Windows Phone.
+Ogrodje odlikuje integrirano razvojno okolje (IDE), ki razvoj aplikacij znatno olajša. Omogoča testiranje tako v emulatorju/simulatorju, kot na samih napravah.
 
-Ogrodje odlikuje integrirano razvojno okolje (IDE), ki razvoj aplikacij znatno olajša. Omogoča testiranje tako v emulatorju/simulatorju kot na samih napravah.
+Xamarin je primeren za izdelavo aplikacij za več različnih platform, kjer je ključnega pomena končna grafična skladnost z ostalimi domorodnimi aplikacijami. Kot primer si lahko ogledamo aplikacijo za poslušanje glasbe Rdio\footnote{\href{https://www.rdio.com}{rdio.com}}, ki je na voljo za iOS, Android in Windows Phone.
 
 Glavna slabost ogrodja Xamarin je cena, saj se paketi začnejo šele pri 299\$/mesec za vsakega razvijalca in vsako platformo posebej. Za majhno ekipo je lahko taka začetna cena enostavno previsoka. Vprašljiva je tudi hitrost dodajanja funckionalnosti posameznih platform, ko se te nadgradijo, določen riziko predstavlja tudi muhavost posameznih platform pri omejitvah uporabe tega ogrodja, sploh če nadgradnja povzroči nedelovanje takih aplikacij.
 
 \subsection{Adobe Air}
 
-Adobe Air je brezplačno ogrodje, ki omogoča zagon iste aplikacije na platformah iOS, Android, Mac, Windows in Linux. Čeprav za razvoj namiznih aplikacij omogoča uporabo HTML in Javascript, je za razvoj mobilnih aplikacij omejen na uporabo jezika ActionScript. V času pisanja diplomske naloge ogrodje ne omogoča zagon na platformi Windows Phone, vendar so razvijalci podporo že napovedali.
+Adobe Air je brezplačno ogrodje, ki omogoča zagon iste aplikacije na platformah iOS, Android, Mac, Windows in Linux, zagon aplikacije pa je možen tudi iz spletnega brskalnika. Čeprav za razvoj namiznih aplikacij omogoča uporabo HTML in Javascript, je za razvoj mobilnih aplikacij omejen na uporabo jezika ActionScript. V času pisanja diplomske naloge ogrodje ne omogoča zagon na platformi Windows Phone, vendar so razvijalci podporo že napovedali.
 
-Izbor orodja je še posebej uporaben za razvoj iger, kjer se razvijalcem ni treba prav preveč prilagajati domorodnim aplikacijam.
+Izbor orodja je še posebej uporaben za aplikacije v katerih uporabniški vmesnik ni potrebno prilagajati posamezni platformi. Ravno zaradi tega je orodje priljubljeno med razvijalci iger, ko je naprimer Angry Birds\footnote{\href{https://www.angrybirds.com}{angrybirds.com}}.
 
 Kot glavno slabost ogrodja Adobe Air bi navedel upadanje zanimanja za orodje Flash. Špekuliramo lahko tudi o planih podjetja Adobe, saj so pred kratkim kupili podjetje Nitobi, ki je avtor ogrodja PhoneGap (katerega si ga bomo ogledali v nadaljevanju). Uporaba tudi ni primerna za razvoj klasičnih mobilinih aplikacij, saj je prilagajanje domorodnim aplikacijam precej zahtevno, še posebej kadar na platformi pride do posodobitve izgleda.
 
@@ -57,9 +59,9 @@ Hibridna metoda za razvoj aplikacij uporablja spletne tehnologije v sožitju z k
 
 \subsection{Apache Cordova / PhoneGap}
 
-Ogrodje Apache Cordova\footnote{\href{http://cordova.apache.org}{http://cordova.apache.org}} je odprtokodni projekt, ki omogoča objavo spletnih aplikacij kot domorodne. V času pisanja diplomske naloge ogrodje podpira iOS, Android, Windows Phone, Blackberry, Palm WebOS, Bada in Symbian. Na vseh omenjenih platformah nam ogrodje Apache Cordova omogoča dostop do funkcij naprave, ko so naprimer kamera in pospeškomer.
+Ogrodje Apache Cordova\footnote{\href{http://cordova.apache.org}{cordova.apache.org}} je odprtokodni projekt, ki omogoča objavo spletnih aplikacij kot domorodne. V času pisanja diplomske naloge ogrodje podpira iOS, Android, Windows Phone, Blackberry, Palm WebOS, Bada in Symbian. Na vseh omenjenih platformah nam ogrodje Apache Cordova omogoča dostop do funkcij naprave, ko so naprimer kamera in pospeškomer. Isto aplikacijo je možno zagnati tudi v spletnem brskalniku, a je za to potrebno nekaj dodatnega dela.
 
-Projekt PhoneGap\footnote{\href{http://phonegap.com}{http://phonegap.com}} je dejansko samo ena od distribucij projekta Apache Cordova, ki poleg vseh obstoječih funkcionalnosti ponuja tudi razne storitve na katerih delajo v podjetju Adobe.
+Projekt PhoneGap\footnote{\href{http://phonegap.com}{phonegap.com}} je dejansko samo ena od distribucij projekta Apache Cordova, ki poleg vseh obstoječih funkcionalnosti ponuja tudi razne storitve na katerih delajo v podjetju Adobe.
 
 Za razvoj aplikacij razvijalci lahko uporabljajo spletne tehnologije HTML, CSS in JavaScript. S pomočjo ogrodij jQuery Mobile in Sencha Touch je možno izdelati aplikacije, katerih izgled je zelo lep približek ostalim aplikacijam na izbrani platformi. Če naletimo na funkcijo naprave, do katere nimamo dostopa, ali ugotovimo da je JavaScript za določene naloge premalo učinkovit, lahko preprosto spišemo lasten vtičnik, ki služi kot most med kodo napisano v jeziku JavaScript in domorodno kodo.
 
@@ -73,6 +75,8 @@ Ogrodje Titanium nam omogoča izdelavo aplikacij za več platform hkrati s pomo�
 
 Glavna prednost ogrodja Titanium ni t.i. način piši enkrat, uporabljaj povosd; njegova prednost je da lahko celotno aplikacijo izdelamo v enem jeziku - JavaScript-u. Le redko se bomo srečali z domorodno kodo, saj ogrodje nudi široko paleto knjižnic.
 
+Prav tako kot PhoneGap, je Titanium še posebej uporaben pri razvoju prototipov aplikacij, kjer je cilj hiter razvoj in predstavitev aplikacije čim večjemu krogu uporabnikov.
+
 Glavna slabost ogrodja je počasno dodajanje novih platform zaradi obsežnosti dela, ki ga tak podvig zahteva. Določene knjižnice za delo z domorodnimi elementi tudi niso najbolj performančne, manjka pa tudi napovedana podpora platformi Windows Phone.
 
 %-----
@@ -82,7 +86,7 @@ Deljena metoda za razvoj aplikacij omogoča uporabo dela aplikacijske kode na vs
 
 \subsection{Lua}
 
-Lua\footnote{\href{http://www.lua.org}{http://www.lua.org}} je preprost vgradni skriptni jezik, ki ga odlikuje hitrost izvajanja in procesorska nezahtevnost. Vgradimo ga lahko v platforme Android, iOS, Symbian in Windows Phone, z nekaj potrpljenja pa lahko isto kodo zaženemo tudi v spletni aplikaciji.
+Lua\footnote{\href{http://www.lua.org}{lua.org}} je preprost vgradni skriptni jezik, ki ga odlikuje hitrost izvajanja in procesorska nezahtevnost. Vgradimo ga lahko v platforme Android, iOS, Symbian in Windows Phone, z nekaj potrpljenja pa lahko isto kodo zaženemo tudi v spletni aplikaciji.
 
 Čeprav je jezik Lua preprost za uporabo, se izkaže da za kompleksnejše knjižnice ni primeren. Manjka tudi Unicode podpora in boljša podpora rokovanju z napakami.
 
@@ -90,7 +94,7 @@ Lua\footnote{\href{http://www.lua.org}{http://www.lua.org}} je preprost vgradni 
 
 \subsection{Haxe}
 
-Haxe\footnote{\href{http://haxe.org}{http://haxe.org}} zase pravi, da je večplatformski programski jezik. Razvijalec lahko svojo aplikacijo napiše v jeziku Haxe, nato pa jo s pomočjo prevajalnika prevede v JavaScript, C++, C\# ali Javo.
+Haxe\footnote{\href{http://haxe.org}{haxe.org}} zase pravi, da je večplatformski programski jezik. Razvijalec lahko svojo aplikacijo napiše v jeziku Haxe, nato pa jo s pomočjo prevajalnika prevede v JavaScript, C++, C\# ali Javo.
 
 Pri prevajanju aplikacije v ciljni jezik Haxe povzroči ne tako zanemarljivo napihnjenje kode, saj v želji dobesednega prevoda na vsako od ciljnih platform prenese svoje delovanje plus kodo, ki smo jo napisala za našo aplikacijo.
 
@@ -98,7 +102,7 @@ Pri prevajanju aplikacije v ciljni jezik Haxe povzroči ne tako zanemarljivo nap
 
 \subsection{XMLVM}
 
-XMLVM\footnote{\href{http://xmlvm.org}{http://xmlvm.org}} spada v isti razred kot Haxe - tako imenovanih prevajalcev iz enega jezika v drugega (ang. cross-compilers), a se XMLVM tega loti na drugačen način. Medtem ko Haxe prevaja na nivoju izvorne kode, XMLVM to počne na nivoju zlogovne kode (ang. byte code). Izvorna koda je lahko napisana za navidezne stroje (ang. virtual machine) JVM, .NET CLI ali Ruby YARV, medtem ko je rezultat delujoč program za JVM, .NET CLI, Javascript, Pyhton, Objective-C in C++.
+XMLVM\footnote{\href{http://xmlvm.org}{xmlvm.org}} spada v isti razred kot Haxe - tako imenovanih prevajalcev iz enega jezika v drugega (ang. cross-compilers), a se XMLVM tega loti na drugačen način. Medtem ko Haxe prevaja na nivoju izvorne kode, XMLVM to počne na nivoju zlogovne kode (ang. byte code). Izvorna koda je lahko napisana za navidezne stroje (ang. virtual machine) JVM, .NET CLI ali Ruby YARV, medtem ko je rezultat delujoč program za JVM, .NET CLI, Javascript, Pyhton, Objective-C in C++.
 
 \begin{figure}
  \includegraphics[scale=0.5]{xmlvm}
@@ -110,17 +114,17 @@ Projekt izgleda zelo ambiciozen, a vse kaže da je šlo le za akademsko raziskav
 
 \subsection{C++ in emscripten}
 
-V kolikor nobena od naštetih možnosti ne zadošča našim potrebam, želeli pa bi vseeno imeti deljeno knjižnico, obstaja še ena možnost: uporaba jezika C++\footnote{\href{http://www.cplusplus.com}{http://www.cplusplus.com}} in projekta emscripten\footnote{\href{http://emscripten.org}{http://emscripten.org}}.
+V kolikor nobena od naštetih možnosti ne zadošča našim potrebam, želeli pa bi vseeno imeti deljeno knjižnico, obstaja še ena možnost: uporaba jezika C++\footnote{\href{http://www.cplusplus.com}{cplusplus.com}} in projekta emscripten\footnote{\href{http://emscripten.org}{emscripten.org}}.
 
 C++ je eden izmed najbolj razširjenih programksih jezikov. V času pisanja diplomske naloge zaseda četrto mesto na lestvici najbolj popularnih jezikov \ref{fig:tiobe-index}, pred njim so samo C, Java in Objecitve-C. Uporablja se ga v raznolikih projektih, od prevajalnikov, strežnikov, do video igric.
 
 \begin{figure}
  \includegraphics[width=\linewidth]{tiobe-index}
- \caption{Tiobe programming comunity index \protect\href{http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html}{http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html}}
+ \caption{Tiobe programming comunity index \protect\href{http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html}{tiobe.com/index.php/content/paperinfo/tpci/index.html}}
  \label{fig:tiobe-index}
 \end{figure}
 
-Emscripten je projekt Mozilinih laboratorijev ki omogoča prevajanje iz LLVM\footnote{Low Level Virtual Machine} zlogovne kode v skriptni jezik JavaScript. LLVM si lahko predstavljamo kot vmesni sloj med izvorno (C, C++, Objective-C, Java, C\#) in strojno kodo, ki skrbi poskrbi za visoko optimizacijo vmesne kode, to pa lahko potem prevedemo v ustrezen nabor ukazov za posamezne procesorje (ARM, x86 itd.). Emscripten tako predstavlja zadnjo fazo prevajalnika, le da vmesne kode iz LLVM ne prevede v ukaze specifičnega procesorja, ampak prevede nazaj v jezik JavaScript. To seveda pomeni, da lahko prevedemo skoraj vsak program (z določenimi omejitvami) v JavaScript in ga zaženemo v brskalniku. Celo grafično zahtevne aplikacije niso problematične, saj emscripten za prevod v JavaScript uporablja asm.js\footnote{\href{http://asmjs.org}{http://asmjs.org}}, kar je podmnožica jezika JavaScript, ki jo JavaScript pogoni znajo izredno dobro optimizirati.
+Emscripten je projekt Mozilinih laboratorijev ki omogoča prevajanje iz LLVM\footnote{Low Level Virtual Machine} zlogovne kode v skriptni jezik JavaScript. LLVM si lahko predstavljamo kot vmesni sloj med izvorno (C, C++, Objective-C, Java, C\#) in strojno kodo, ki skrbi poskrbi za visoko optimizacijo vmesne kode, to pa lahko potem prevedemo v ustrezen nabor ukazov za posamezne procesorje (ARM, x86 itd.). Emscripten tako predstavlja zadnjo fazo prevajalnika, le da vmesne kode iz LLVM ne prevede v ukaze specifičnega procesorja, ampak prevede nazaj v jezik JavaScript. To seveda pomeni, da lahko prevedemo skoraj vsak program (z določenimi omejitvami) v JavaScript in ga zaženemo v brskalniku. Celo grafično zahtevne aplikacije niso problematične, saj emscripten za prevod v JavaScript uporablja asm.js\footnote{\href{http://asmjs.org}{asmjs.org}}, kar je podmnožica jezika JavaScript, ki jo JavaScript pogoni znajo izredno dobro optimizirati.
 
 \begin{figure}
  \includegraphics[width=\linewidth]{emscripten-epic-citadel}
@@ -142,17 +146,14 @@ Predno se lotimo izbora primerne metode postavimo nekaj omejitev:
   \item Zagotavljati grafično skladnost z ostalimi domorodnimi aplikacijami.
   \item Imeti dovolj razgibano razvijalsko skupnost, da bomo lahko našli odgovore na nastale probleme.
   \item Mora biti odporna na spremembe pri nadgradnjah platforme.
+  \item Biti cenovno ugodna.
 \end{enumerate}
 
-Izbrano rešitev želimo prikazati na primeru aplikacije, ki prikazuje ponavaljajoče si dogodke s pomočjo standarda RFC 5545\footnote{\href{http://tools.ietf.org/html/rfc5545}{http://tools.ietf.org/html/rfc5545}}. Zaradi poenostavitve se bomo osredotočili zgolj na del RRULE{\footnote{\href{http://tools.ietf.org/html/rfc5545\#section-3.3.10}{http://tools.ietf.org/html/rfc5545\#section-3.3.10}}}, ki definira pravila za ponavljanje dogodka.
+Izbrano rešitev želimo prikazati na primeru aplikacije, ki prikazuje ponavaljajoče dogodke s pomočjo standarda RFC 5545\footnote{\href{http://tools.ietf.org/html/rfc5545}{tools.ietf.org/html/rfc5545}}. Zaradi poenostavitve se bomo osredotočili zgolj na del RRULE{\footnote{\href{http://tools.ietf.org/html/rfc5545\#section-3.3.10}{tools.ietf.org/html/rfc5545\#section-3.3.10}}}, ki definira pravila za ponavljanje dogodka. Kot je razvidno iz primera \ref{code:rrule} je s pomočjo standarda RFC 5545 možno opisati kar kompleksne načine ponavljanja. Če primer prevedemo v človeku prijazno obliko, bi to pomenilo ``vsako nedeljo v januarju ob 8:30 zjutraj in 9:30 zjutraj, vsako drugo leto''.
 
-Poglejmo si primer kompleksnega pravila za ponavljanje dogodka:
-
-\begin{lstlisting}
+\begin{lstlisting}[caption=Primer uporabe pravila RRULE standarda RFC 5545., label=code:rrule]
 FREQ=YEARLY;INTERVAL=2;BYMONTH=1;BYDAY=SU;BYHOUR=8,9;BYMINUTE=30
 \end{lstlisting}
-
-Če prevedemo to v človeku prijazno obliko, bi to pomenilo ``vsako nedeljo v januarju ob 8:30 zjutraj in 9:30 zjutraj, vsako drugo leto''.
 
 Ponavljajoč dogodek bo aplikacija prikazala v preprostem seznamu, ki bo prilagojen za vsako od izbranih platform.
 
@@ -161,7 +162,7 @@ Ponavljajoč dogodek bo aplikacija prikazala v preprostem seznamu, ki bo prilago
 %-----
 \section{Izbor primerne metode}
 
-Izbor primerne metode lahko začnemo z pregledom popularnih vprašanj na spletni strani Stackoverflow. Ta nam da lahko hiter pregled v aktivnost posameznih razvijalskih skupnosti.
+Izbor primerne metode lahko začnemo z pregledom popularnih vprašanj na spletni strani Stackoverflow (slika \ref{fig:stackoverflow-trends}). Vidimo lahko izjemno popularnost ogrodij Qt in Phonegap. Kot opombo lahko omenim, da Xamarin na tem grafu ni prikazan zaradi premajhnega števila vprašanj. Prav tako nebi bilo ravno smiselno vključiti jezik C++ ali JavaScript, saj ti podatki niso reprezentativni.
 
 \begin{figure}
  \includegraphics[width=\linewidth]{stackoverflow-trends}
@@ -169,11 +170,28 @@ Izbor primerne metode lahko začnemo z pregledom popularnih vprašanj na spletni
  \label{fig:stackoverflow-trends}
 \end{figure}
 
-Grafično prilagajanje domorodnim aplikacijam.
+Vse omejitve omenjene v prejšnjem poglavju so predstavljene v tabeli \ref{table:omejitve}. Prazne vrstice pri ``grafični skladnosti'' za Lua, Haxe in C++ so posledica nezmožnosti zadoščanja te omejitve, niso pa ovira, saj mora v tem primeru za grafično skladnost poskrbeti domorodna koda, ki ni napisana v jezikih Lua, Haxe ali C++.
 
-Xamarin -> slabost cena
-PhoneGap -> neskladnost
-Appcelerator -> ni zastonj
+Iz tabele \ref{table:omejitve} je lepo razvidno, da edino rešitev C++ zadošča vsem naštetim omejitvam. Poglejmo si torej kako lahko izbrano rešitev pripravimo s pomočjo jezika C++, ter kako lahko nato isto rešitev uporabimo tudi v aplikaciji, ki teče spletnem brskalniku, s pomočjo ogrodja Emscripten.
+
+\begin{table}
+\begin{tabular}{ l | c | c | c | c | c | c | c | c }
+  \hline
+  Metoda & Qt & Xamarin & Air & Cordova & Titanium & Lua & Haxe & C++ \\
+  \hline
+  Android & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark \\
+  iOS & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark \\
+  Windows Phone & \xmark & \cmark & \xmark & \cmark & \xmark & \cmark & \cmark & \cmark \\
+  Spletna aplikacija & \xmark & \xmark & \cmark & \cmark & \xmark & \cmark & \cmark & \cmark \\
+  Grafična skladnost & \xmark & \cmark & \xmark & \xmark & \cmark &  &  &  \\
+  Skupnost & \cmark & \cmark & \xmark & \cmark & \cmark & \cmark & \xmark & \cmark \\
+  Odpornost na nadgradnje & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark \\
+  Cena (mesečno) & 149\$ & 299\$ & - & - & - & - & - & - \\
+  \hline
+\end{tabular}
+\label{table:omejitve}
+\caption{Pregled funkcionalnosti posametnih rešitev.}
+\end{table}
 
 %-----
 \section{C++}
