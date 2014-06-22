@@ -18,7 +18,7 @@ Predno postavimo omejitve razvoja naše aplikacije, si poglejmo različne metode
 %-----
 \section{Celovit}
 
-Celovita metoda za razvoj uporablja ogrodje, s pomočjo katerega aplikacijo pripravimo za različne platforme. Velika večina tako napisane izvorne kode je uporabljena na vseh destinacijskih platformah, za kar poskrbi ogrodje. Rezultat te metode je domorodna aplikacija, ki jo je možno objaviti v trgovinah posameznih platform in pri tem ne kršijo (ponavadi) strogih pravil.
+Celovita metoda za razvoj uporablja ogrodje, s pomočjo katerega aplikacijo pripravimo za različne platforme. Velika večina tako napisane izvorne kode je uporabljena na vseh destinacijskih platformah, za kar poskrbi ogrodje. Rezultat te metode je domorodna aplikacija (\eng{native application}), ki jo je možno objaviti v trgovinah posameznih platform in pri tem ne kršijo (ponavadi) strogih pravil.
 
 \subsection{Qt}
 
@@ -82,33 +82,27 @@ Glavna slabost ogrodja je počasno dodajanje novih platform zaradi obsežnosti d
 %-----
 \section{Deljen}
 
-Deljena metoda za razvoj aplikacij omogoča uporabo dela aplikacijske kode na vseh platformah za katere razvijamo. To lahko naredimo s pomočjo vgradnega skriptnega jezika (Lua), s pomočjo prevajanja iz izbranega programskega jezika v domorodnega (Haxe, XMLVM, emscripten) ali pa z uporabo programskega jezika C++ in programskimi ovoji, s katerimi pripravimo knjižnico za vgradnjo v druge platforme.
+Deljena metoda za razvoj aplikacij omogoča uporabo dela aplikacijske kode na vseh platformah za katere razvijamo. To lahko naredimo s pomočjo vgradnega skriptnega jezika (Lua), s pomočjo prevajanja iz izbranega programskega jezika v domorodnega (Haxe, XMLVM, emscripten) ali pa z uporabo programskih jezikov C++ ali JavaScript in programskimi ovojev, s katerimi pripravimo knjižnico za vgradnjo v druge platforme.
 
 \subsection{Lua}
 
 Lua\footnote{\href{http://www.lua.org}{lua.org}} je preprost vgradni skriptni jezik, ki ga odlikuje hitrost izvajanja in procesorska nezahtevnost. Vgradimo ga lahko v platforme Android, iOS, Symbian in Windows Phone, z nekaj potrpljenja pa lahko isto kodo zaženemo tudi v spletni aplikaciji.
 
-Čeprav je jezik Lua preprost za uporabo, se izkaže da za kompleksnejše knjižnice ni primeren. Manjka tudi Unicode podpora in boljša podpora rokovanju z napakami.
+Ker gre za skriptni jezik, se znajdemo v zanimiv situaciji kjer združujemo prevajane jezike z interpretiranimi jeziki. Velika prednost tega je hitro odzivanje na napake pri razvoju, saj razvijalcu ni potrebno čakati na prevod kode. Odpira tudi možnost posodobitve vgrajene knjižnice brez posodobitve celotne aplikacije.
 
-// TODO Standardna knjižnica?, več razlage o načinu uporabe.
+Čeprav je jezik Lua preprost za uporabo, se izkaže da za kompleksnejše knjižnice ni primeren. Manjka Unicode podpora, boljša podpora rokovanju z napakami, boljša podpora starejšim verzijam in vgrajen razhroščevalnik (\eng{debugger}).
 
 \subsection{Haxe}
 
-Haxe\footnote{\href{http://haxe.org}{haxe.org}} zase pravi, da je večplatformski programski jezik. Razvijalec lahko svojo aplikacijo napiše v jeziku Haxe, nato pa jo s pomočjo prevajalnika prevede v JavaScript, C++, C\# ali Javo.
+Haxe\footnote{\href{http://haxe.org}{haxe.org}} zase pravi, da je večplatformski programski jezik. Razvijalec lahko svojo aplikacijo napiše v jeziku Haxe, nato pa jo s pomočjo prevajalnika prevede v izvorno kodo jezikov PHP, ActionScript, Neko, JavaScript, C++, C\# ali Javo. Nudi tudi dodatne vmesnike za dostop do specifičnih metod ciljnega jezika.
 
-Pri prevajanju aplikacije v ciljni jezik Haxe povzroči ne tako zanemarljivo napihnjenje kode, saj v želji dobesednega prevoda na vsako od ciljnih platform prenese svoje delovanje plus kodo, ki smo jo napisala za našo aplikacijo.
+Jezik se je prijel predvsem za razvoj iger, kjer naj bi dolgoročno zamenjal jezik ActionScript, ki ga uporablja orodje Flash.
 
-// TODO več razlage o načinu uporabe, prednostih in slabostih
+Glavna slabost uporaba rešitve Haxe je majhna razvijalska skupnost. V primerjavi z ostalimi rešitvami, je ta kar v manjšini. V zadnjem času sicer pridobiva nekaj zagona, a je trenutno vse premalo knjižnic, ki bi bile razvite za to platformo.
 
 \subsection{XMLVM}
 
 XMLVM\footnote{\href{http://xmlvm.org}{xmlvm.org}} spada v isti razred kot Haxe - tako imenovanih prevajalcev iz enega jezika v drugega (ang. cross-compilers), a se XMLVM tega loti na drugačen način. Medtem ko Haxe prevaja na nivoju izvorne kode, XMLVM to počne na nivoju zlogovne kode (ang. byte code). Izvorna koda je lahko napisana za navidezne stroje (ang. virtual machine) JVM, .NET CLI ali Ruby YARV, medtem ko je rezultat delujoč program za JVM, .NET CLI, Javascript, Pyhton, Objective-C in C++.
-
-\begin{figure}
- \includegraphics[scale=0.5]{xmlvm}
- \caption{XMLVM}
- \label{fig:xmlvm}
-\end{figure}
 
 Projekt izgleda zelo ambiciozen, a vse kaže da je šlo le za akademsko raziskavo, saj je v času pisanja diplome minilo že več ko leto dni odkar se je izvorna koda posodobila. Kljub temu se mi je projekt zdel zanimiv in ga je bilo vredno izpostaviti.
 
@@ -124,21 +118,27 @@ C++ je eden izmed najbolj razširjenih programksih jezikov. V času pisanja dipl
  \label{fig:tiobe-index}
 \end{figure}
 
-Emscripten je projekt Mozilinih laboratorijev ki omogoča prevajanje iz LLVM\footnote{Low Level Virtual Machine} zlogovne kode v skriptni jezik JavaScript. LLVM si lahko predstavljamo kot vmesni sloj med izvorno (C, C++, Objective-C, Java, C\#) in strojno kodo, ki skrbi poskrbi za visoko optimizacijo vmesne kode, to pa lahko potem prevedemo v ustrezen nabor ukazov za posamezne procesorje (ARM, x86 itd.). Emscripten tako predstavlja zadnjo fazo prevajalnika, le da vmesne kode iz LLVM ne prevede v ukaze specifičnega procesorja, ampak prevede nazaj v jezik JavaScript. To seveda pomeni, da lahko prevedemo skoraj vsak program (z določenimi omejitvami) v JavaScript in ga zaženemo v brskalniku. Celo grafično zahtevne aplikacije niso problematične, saj emscripten za prevod v JavaScript uporablja asm.js\footnote{\href{http://asmjs.org}{asmjs.org}}, kar je podmnožica jezika JavaScript, ki jo JavaScript pogoni znajo izredno dobro optimizirati.
-
-\begin{figure}
- \includegraphics[width=\linewidth]{emscripten-epic-citadel}
- \caption{Skupina Mozilinih inžinirjev je grafično ogrodje Unreal v štirih dneh posodobilo do te mere, da je lahko s pomočjo orodja emscripten grafično zahtevna aplikacija brezhibno delovala v brskalniku.}
- \label{fig:epic-citadel}
-\end{figure}
+Emscripten je projekt Mozilinih laboratorijev, ki omogoča prevajanje iz LLVM\footnote{Low Level Virtual Machine} zlogovne kode v skriptni jezik JavaScript. LLVM si lahko predstavljamo kot vmesni sloj med izvorno (C, C++, Objective-C, Java, C\#) in strojno kodo, ki skrbi poskrbi za visoko optimizacijo vmesne kode, to pa lahko potem prevedemo v ustrezen nabor ukazov za posamezne procesorje (ARM, x86 itd.). Emscripten tako predstavlja zadnjo fazo prevajalnika, le da vmesne kode iz LLVM ne prevede v ukaze specifičnega procesorja, ampak nazaj v jezik JavaScript. To pomeni, da lahko prevedemo skoraj vsak program (z določenimi omejitvami) v JavaScript in ga zaženemo v brskalniku. Celo grafično zahtevne aplikacije\footnote{Skupina Mozilinih inžinirjev je grafično ogrodje Unreal v štirih dneh posodobilo do te mere, da je lahko s pomočjo orodja emscripten grafično zahtevna aplikacija brezhibno delovala v brskalniku. Več o tem si lahko preberete na njihovi domači strani \href{https://blog.mozilla.org/futurereleases/2013/05/02/epic-citadel-demo-shows-the-power-of-the-web-as-a-platform-for-gaming/}{blog.mozilla.org}.} niso problematične, saj emscripten za prevod v JavaScript uporablja asm.js\footnote{\href{http://asmjs.org}{asmjs.org}}, kar je podmnožica jezika JavaScript, ki jo JavaScript pogoni znajo izredno dobro optimizirati\footnote{S pomočjo asm.js so v podjetju Mozilla uspeli doseči le enkrat počasnejše izvajanje od domorodne kode, kar je izjemen dosežek. \href{http://techcrunch.com/2013/12/21/mozillas-asm-js-gets-another-step-closer-to-native-performance/}{Novica}}.
 
 \subsection{JavaScript}
 
-iOS: JavaScriptCore
-Android: Rhino, Nashorn, V8, SpiderMonkey
-Windows Phone: V8 + https://github.com/JavascriptNet/Javascript.Net, Jint https://github.com/sebastienros/jint
+Namesto prevajanja v jezik JavaScript s pomočjo ogrodja Emscripten, bi lahko celotno knjižnico napisali kar v jeziku JavaScript. V zadnjih nekaj letih je jezik JavaScript doživel izredno hitro rast, tako v popularnosti, kot v zmogljivosti in funkcionalnostih, kar je tudi razvidno iz slike \ref{fig:github-jeziki}.
 
-Prednosti: Ker je knjižnica napisana v jeziku JavaScript, jo je preprosto možno vgraditi v spletno aplikacijo. Težji del je vgraditev pogona JavaScript na vsako od platform.
+\begin{figure}
+ \includegraphics[width=\linewidth]{github-jeziki}
+ \caption{Jeziki novih projektov na spletni strani github.com.}
+ \label{fig:github-jeziki}
+\end{figure}
+
+Pri vključitvi v svojo aplikacijo moramo biti malce bolj iznajdljivi. iOS je z verzijo 7 dodal knjižnico JavaScriptCore, ki omogoča mešanje domorodne in JavaScript kode.
+
+Android je malce bolj problematičen, saj SDK v času pisanja diplomske naloge ne nudi direktne implementacije. Zaradi tega smo primorani vključiti JavaScript pogon, kot je Rhino, V8 in podobni. V kolikor je pogon napisan v jeziku Java, je integracija preprosta, če pa izberemo pogon v drugem jeziku, mora za Android obstajati paket za uvoz.
+
+Windows Phone prav tako kot Android ne nudi JavaScript implementacije, ki bi jo lahko uporabljali skupaj z domorodno kodo. Uporabimo lahko pogon V8 in knjižnico JavaScriptNet\footnote{\href{https://github.com/JavascriptNet/Javascript.Net}{github.com/JavascriptNet/Javascript.Net}}.
+
+Ker je knjižnica napisana v jeziku JavaScript, jo je možno preprosto vgraditi v spletno aplikacijo. Pri tem se moramo držati le delov JavaScripta, ki so enotni na vseh platformah (ECMAScript specifikacija).
+
+Težji del je vgraditev pogona JavaScript na vsako od platform. Dokler ne bo na voljo domorodnih integracij, se bomo težko zanesli na brezhibno delovanje pri nadgradnji operacijskega sistema. Navkljub temu, je ideja zelo zanimiva in vredna nadaljne raziskave.
 
 %==============================
 \chapter{Razvoj knjižnice}
@@ -157,7 +157,7 @@ Predno se lotimo izbora primerne metode postavimo nekaj omejitev:
   \item Biti cenovno ugodna.
 \end{enumerate}
 
-Izbrano rešitev želimo prikazati na primeru aplikacije, ki prikazuje ponavaljajoče dogodke s pomočjo standarda RFC 5545\footnote{\href{http://tools.ietf.org/html/rfc5545}{tools.ietf.org/html/rfc5545}}. Zaradi poenostavitve se bomo osredotočili zgolj na del RRULE{\footnote{\href{http://tools.ietf.org/html/rfc5545\#section-3.3.10}{tools.ietf.org/html/rfc5545\#section-3.3.10}}}, ki definira pravila za ponavljanje dogodka. Kot je razvidno iz primera \ref{code:rrule} je s pomočjo standarda RFC 5545 možno opisati kar kompleksne načine ponavljanja. Če primer prevedemo v človeku prijazno obliko, bi to pomenilo ``vsako nedeljo v januarju ob 8:30 zjutraj in 9:30 zjutraj, vsako drugo leto''.
+Izbrano rešitev želimo prikazati na primeru aplikacije, ki prikazuje ponavaljajoče dogodke s pomočjo standarda RFC 5545\footnote{\href{http://tools.ietf.org/html/rfc5545}{tools.ietf.org/html/rfc5545}}. Zaradi poenostavitve se bomo osredotočili zgolj na del RRULE{\footnote{\href{http://tools.ietf.org/html/rfc5545\#section-3.3.10}{tools.ietf.org/html/rfc5545\#section-3.3.10}}}, ki definira pravila za ponavljanje dogodka. Kot je razvidno iz primera \ref{code:rrule}, je s pomočjo standarda RFC 5545 možno opisati kar kompleksne vzorce ponavljanja. Če primer prevedemo v človeku prijazno obliko, bi to pomenilo ``vsako nedeljo v januarju, ob 8:30 zjutraj in 9:30 zjutraj, vsako drugo leto''.
 
 \begin{lstlisting}[caption=Primer uporabe pravila RRULE standarda RFC 5545., label=code:rrule]
 FREQ=YEARLY;INTERVAL=2;BYMONTH=1;BYDAY=SU;BYHOUR=8,9;BYMINUTE=30
@@ -178,23 +178,23 @@ Izbor primerne metode lahko začnemo z pregledom popularnih vprašanj na spletni
  \label{fig:stackoverflow-trends}
 \end{figure}
 
-Vse omejitve omenjene v prejšnjem poglavju so predstavljene v tabeli \ref{table:omejitve}. Prazne vrstice pri ``grafični skladnosti'' za Lua, Haxe in C++ so posledica nezmožnosti zadoščanja te omejitve, niso pa ovira, saj mora v tem primeru za grafično skladnost poskrbeti domorodna koda, ki ni napisana v jezikih Lua, Haxe ali C++.
+Vse omejitve omenjene v prejšnjem poglavju so predstavljene v tabeli \ref{table:omejitve}. Prazne vrstice pri ``grafični skladnosti'' za Lua, Haxe, C++ in JavaScript so posledica nezmožnosti zadoščanja te omejitve, niso pa ovira, saj mora v tem primeru za grafično skladnost poskrbeti domorodna koda, ki ni napisana v omenjenih jezikih.
 
 Iz tabele \ref{table:omejitve} je lepo razvidno, da edino rešitev C++ zadošča vsem naštetim omejitvam. Poglejmo si torej kako lahko izbrano rešitev pripravimo s pomočjo jezika C++, ter kako lahko nato isto rešitev uporabimo tudi v aplikaciji, ki teče spletnem brskalniku, s pomočjo ogrodja Emscripten.
 
 \begin{table}
-\begin{tabular}{ l | c | c | c | c | c | c | c | c }
+\begin{tabular}{ l | c | c | c | c | c | c | c | c | c }
   \hline
-  Metoda & Qt & Xamarin & Air & Cordova & Titanium & Lua & Haxe & C++ \\
+  Omejitev/Rešitev & Qt & Xamarin & Air & Cordova & Titanium & Lua & Haxe & C++ & JavaScript \\
   \hline
-  Android & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark \\
-  iOS & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark \\
-  Windows Phone & \xmark & \cmark & \xmark & \cmark & \xmark & \cmark & \cmark & \cmark \\
-  Spletna aplikacija & \xmark & \xmark & \cmark & \cmark & \xmark & \cmark & \cmark & \cmark \\
-  Grafična skladnost & \xmark & \cmark & \xmark & \xmark & \cmark &  &  &  \\
-  Skupnost & \cmark & \cmark & \xmark & \cmark & \cmark & \cmark & \xmark & \cmark \\
-  Odpornost na nadgradnje & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark \\
-  Cena (mesečno) & 149\$ & 299\$ & - & - & - & - & - & - \\
+  Android & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark \\
+  iOS & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark \\
+  Windows Phone & \xmark & \cmark & \xmark & \cmark & \xmark & \cmark & \cmark & \cmark & \cmark \\
+  Spletna aplikacija & \xmark & \xmark & \cmark & \cmark & \xmark & \cmark & \cmark & \cmark & \cmark \\
+  Grafična skladnost & \xmark & \cmark & \xmark & \xmark & \cmark &  &  & &  \\
+  Skupnost & \cmark & \cmark & \xmark & \cmark & \cmark & \cmark & \xmark & \cmark & \cmark \\
+  Odpornost na nadgradnje & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark \\
+  Cena (mesečno) & 149\$ & 299\$ & - & - & - & - & - & - & - \\
   \hline
 \end{tabular}
 \label{table:omejitve}
@@ -204,27 +204,37 @@ Iz tabele \ref{table:omejitve} je lepo razvidno, da edino rešitev C++ zadošča
 %-----
 \section{C++}
 
-Izbrani del RRULE specifikacije RFC 5545 je na srečo dovolj preprost, da za razvoj potrebujemo le STL (Standard Template Library) knjižnico. V kolikor bi naša rešitev zahtevala vključitev dodatne knjižnice (recimo vzpostavitev internetne povezave), bi lahko ta problem rešili na dva načina:
+Izbrani del RRULE specifikacije RFC 5545 je na srečo dovolj preprost, da za razvoj potrebujemo le STL (Standard Template Library) knjižnico. V kolikor bi naša rešitev zahtevala vključitev dodatne knjižnice, recimo vzpostavitev internetne povezave, bi lahko ta problem rešili na dva načina:
 
 \begin{enumerate}
   \item V našo rešitev bi vključili dodatno knjižnico \texttt{libcurl}. To bi povzorčilo kar nekaj problemov pri vključevanju knjižnice na različne platforme, saj bi morali knjižnico \texttt{libcurl} pripraviti za vsak platformo posebej.
   \item Nalogo vzpostavitve in prenosa podatkov iz oddaljene lokacije bi lahko delegirali v domorodno kodo, ki bi po prenosu rezultat prenesla nazaj v našo knjižnico.
 \end{enumerate}
 
-Če izberemo prvi način, bo naša knjižnica podvajala funckionalnost, ki že obstaja na destinacijski platformi. Veliko lepša rešitev je uporaba delegiranja v domorodno kodo, saj lahko ta boljše izkorišča vse sposobnosti naprave. To sicer pomeni nekaj več kode v ovojih naše knjižnice (kar si bomo ogledali v 4. poglavju), a omogoča boljšo odpornost na nadgradnje operacijskega sistema destinacijske platforme.
+Če izberemo prvi način, bo naša knjižnica podvajala funckionalnost, ki že obstaja v domorodni kodi. Veliko lepša rešitev je uporaba delegiranja v domorodno kodo, saj lahko ta boljše izkorišča vse sposobnosti naprave. To sicer pomeni nekaj več kode v ovojih naše knjižnice (kar si bomo ogledali v 4. poglavju), a omogoča boljšo odpornost na nadgradnje operacijskega sistema destinacijske platforme.
 
 Razvito knjižnico lahko v platformske aplikacije vključimo na več različnih načinov:
 
 \begin{enumerate}
-  \item Z izvorno kodo C++.
-  \item Statično knjižnico, ki jo ciljni program vključi v svoj paket.
-  \item Deljeno knjižnico, ki jo ciljni program samo referencira, a jo ne vključi direktno v svoj paket.
+  \item Z izvorno kodo C++, ki jo ciljni program vključi v svoj paket.
+  \item Statično knjižnico (\eng{static library}), ki jo ciljni program vključi v svoj paket.
+  \item Deljeno knjižnico (\eng{shared library}), ki jo ciljni program samo referencira, a jo ne vključi direktno v svoj paket.
 \end{enumerate}
 
-Pri vseh naštetih načinih je končni rezultat enak - ciljni program lahko uporablja našo knjižnico.
+Pri vseh naštetih načinih je potrebna dodatna ovojna koda (\eng{wrapper}), ki je različna za vsako destinacijsko platformo. Detajle teh ovojev si bomo ogledali v 4. poglavju.
 
-%-----
-\section{Emscripten}
+Primer uporabe knjižnjice RRULE RFC 5545 lahko vidimo v primeru \ref{code:cpp-primer}. Razred \texttt{Date} vsebuje vso potrebno logiko za delo z datumi, kot so naprimer prištevanje, odštevanje ter primerjanje datumov. Razred \texttt{Recurrence} vsebuje logiko za ponavljanje dogodkov. Tip dogodka, ki se ponavlja, je poljuben in ni del knjižnjice.
+
+\begin{lstlisting}[caption={Primer uporabe C++ knjižnjice RRULE standarda RFC 5545. Izbrani dogodek bi se s tem pravilom ponavljal tedensko, vsak ponedeljek, od 1. januarja 2014 naprej.}, label=code:cpp-primer, language=C++]
+Recurrence rec = Recurrence(Weekly, Date(2014, 1, 1));
+rec.setByDay("MO");
+map<int, Date> days = rec.daysInRange(Date(2014, 2, 1), Date(2014, 2, 28));
+// spremenljivka days bo vsebovala
+// result[5] = Date(2014, 2, 3);
+// result[6] = Date(2014, 2, 10);
+// result[7] = Date(2014, 2, 17);
+// result[8] = Date(2014, 2, 24);
+\end{lstlisting}
 
 %==============================
 \chapter{Vključitev knjižnice v različne platforme}
