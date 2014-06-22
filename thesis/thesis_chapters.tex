@@ -132,6 +132,14 @@ Emscripten je projekt Mozilinih laboratorijev ki omogoča prevajanje iz LLVM\foo
  \label{fig:epic-citadel}
 \end{figure}
 
+\subsection{JavaScript}
+
+iOS: JavaScriptCore
+Android: Rhino, Nashorn, V8, SpiderMonkey
+Windows Phone: V8 + https://github.com/JavascriptNet/Javascript.Net, Jint https://github.com/sebastienros/jint
+
+Prednosti: Ker je knjižnica napisana v jeziku JavaScript, jo je preprosto možno vgraditi v spletno aplikacijo. Težji del je vgraditev pogona JavaScript na vsako od platform.
+
 %==============================
 \chapter{Razvoj knjižnice}
 \label{chap:development}
@@ -195,6 +203,25 @@ Iz tabele \ref{table:omejitve} je lepo razvidno, da edino rešitev C++ zadošča
 
 %-----
 \section{C++}
+
+Izbrani del RRULE specifikacije RFC 5545 je na srečo dovolj preprost, da za razvoj potrebujemo le STL (Standard Template Library) knjižnico. V kolikor bi naša rešitev zahtevala vključitev dodatne knjižnice (recimo vzpostavitev internetne povezave), bi lahko ta problem rešili na dva načina:
+
+\begin{enumerate}
+  \item V našo rešitev bi vključili dodatno knjižnico \texttt{libcurl}. To bi povzorčilo kar nekaj problemov pri vključevanju knjižnice na različne platforme, saj bi morali knjižnico \texttt{libcurl} pripraviti za vsak platformo posebej.
+  \item Nalogo vzpostavitve in prenosa podatkov iz oddaljene lokacije bi lahko delegirali v domorodno kodo, ki bi po prenosu rezultat prenesla nazaj v našo knjižnico.
+\end{enumerate}
+
+Če izberemo prvi način, bo naša knjižnica podvajala funckionalnost, ki že obstaja na destinacijski platformi. Veliko lepša rešitev je uporaba delegiranja v domorodno kodo, saj lahko ta boljše izkorišča vse sposobnosti naprave. To sicer pomeni nekaj več kode v ovojih naše knjižnice (kar si bomo ogledali v 4. poglavju), a omogoča boljšo odpornost na nadgradnje operacijskega sistema destinacijske platforme.
+
+Razvito knjižnico lahko v platformske aplikacije vključimo na več različnih načinov:
+
+\begin{enumerate}
+  \item Z izvorno kodo C++.
+  \item Statično knjižnico, ki jo ciljni program vključi v svoj paket.
+  \item Deljeno knjižnico, ki jo ciljni program samo referencira, a jo ne vključi direktno v svoj paket.
+\end{enumerate}
+
+Pri vseh naštetih načinih je končni rezultat enak - ciljni program lahko uporablja našo knjižnico.
 
 %-----
 \section{Emscripten}
