@@ -221,7 +221,7 @@ Razvito knjižnico lahko v platformske aplikacije vključimo na več različnih 
   \item Deljeno knjižnico (\eng{shared library}), ki jo ciljni program samo referencira, a jo ne vključi direktno v svoj paket.
 \end{enumerate}
 
-Pri vseh naštetih načinih je potrebna dodatna ovojna koda (\eng{wrapper}), ki je različna za vsako destinacijsko platformo. Detajle teh ovojev si bomo ogledali v 4. poglavju.
+Pri vseh naštetih načinih je potrebna dodatna ovojna koda (\eng{wrapper}), ki je različna za vsako destinacijsko platformo. Detajle teh ovojev si bomo ogledali v poglavju \ref{chap:cross-platform}.
 
 Primer uporabe knjižnjice RRULE RFC 5545 lahko vidimo v primeru \ref{code:cpp-primer}. Razred \texttt{Date} vsebuje vso potrebno logiko za delo z datumi, kot so naprimer prištevanje, odštevanje ter primerjanje datumov. Razred \texttt{Recurrence} vsebuje logiko za ponavljanje dogodkov. Tip dogodka, ki se ponavlja, je poljuben in ni del knjižnjice.
 
@@ -243,8 +243,103 @@ map<int, Date> days = rec.daysInRange(Date(2014, 2, 1), Date(2014, 2, 28));
 %-----
 \section{iOS}
 
+Platforma iOS primarno uporablja jezik Objective-C, ki je, kot ime namiguje, objektna razširitev jezika C. Na srečo obstaja tudi variacija Objective-C++, ki nam omogoča souporabo jezikov Objective-C in C++ v istem projektu. Datoteki, v kateri želimo uporabljati C++, namesto končnice \texttt{.m} pripnemo končnico \texttt{.mm}.
+
+iOS ne podpira uporabe deljene knjižnice (\eng{shared library}), omogoča pa uporabo statične knjižnice (\eng{static library}) ali izvorne kode. Za prvi primer izberimo uvoz izvorne kode.
+
+iOS v svojem arsenalu ne vključuje orodje za avtomatično sproščanje pomnilnika (\eng{garbage collection}). Od razvijalca se pričakuje, da za seboj počisti pomnilnik z uravnoteženimi ukazi \texttt{retain} in \texttt{release}, ko je koda opravila svoje delo. V ta namen je v integriranem razvijalskem okolju (\eng{Integrated Development Environment}) XCode na voljo kar nekaj orodij, ki nam omogočajo lažjo detekcijo puščanja pomnilnika (\eng{memory leak}). Kar rado se zgodi, da se pri štetju referenc razvijalec zmoti. Na srečo je v iOS5 Apple predstavil ARC (avtomatično štetje referenc - \eng{Automatic Reference Counting}) s čimer so razijvalcem znatno olajšali delo, saj prevajalnik sedaj zna sam vnesti ukaze za sproščanje pomnilnika.
+
+Implementacija iOS ovoja je dokaj preprosta (glej primer \ref{code:ios-wrapper}). Za vsakega C++ od razredov naredimo zrcalne Objective-C++ ovojne razrede, ki v inicializacijski metodi \texttt{init} poskrbijo za pravilno dodeljevanje in hranjenje C++ objekta (vrstica 14). Ko na določen objekt ne kaže več noben kazalec, se pred sprostitvijo pomnilnika pokliče metoda \texttt{dealloc}, v kateri poskribmo za ustrezno sprostitev C++ objekta predno pride do puščanja pomnilnika (vrstica 21). Klic v ovoj nato preprosto posreduje klic v C++ objekt (vrstica 25) in poskrbi za transformacije med C++ in Objective-C podatkovnimi tipi.
+
+\lstset{language=[Objective]C, breaklines}
+\begin{lstlisting}[caption={Primer Objective-C++ ovoja C++ razreda \texttt{Date}.}, label=code:ios-wrapper]
+#import "ThesisDate.h"
+#import "Date.hpp"
+
+@interface ThesisDate() {
+    Thesis::Date* wrapped;
+}
+@end
+
+@implementation ThesisDate
+
+- (ThesisDate *)initWithYear:(NSInteger)year month:(NSInteger)month andDay:(NSInteger)day {
+    self = [super init];
+    if (self) {
+        wrapped = new Thesis::Date(year, month, day);
+        if (!wrapped) self = nil;
+    }
+    return self;
+}
+
+- (void)dealloc {
+    delete wrapped;
+}
+
+- (void)addDays:(NSInteger)days {
+    wrapped->addDays(days);
+}
+\end{lstlisting}
+
 %-----
 \section{Android}
+
+Java, ki jo srečamo na platformi Android, se od odprtokodne Jave kar precej razlikuje. Na površju za razvijalce morda ni opaziti razlike, a se veliko razlik skriva pod gladino. Android ne uporablja Java virtualnega pogona (\eng{Java Virtual Machine}) ampak svoj pogon, ki se imenuje Dalvik in je prilagojen za uporabo na mobilnih napravh. Pred kratkim je Google napovedal nov virtualen pogon, Android Runtime (ART), ki bo v prihodnosti zamenjal Dalvik in vsebuje veliko izboljšav v hitrosti in stabilnosti aplikacij.
+
+Za izdelavo ovoja C++ kode moramo uporabiti dve orodji:
+
+\begin{enumerate}
+  \item JNI (Java Native Interface), ki poskrbi za komunikacijo med jezikoma Java in C++
+  \item NDK (Native Development Kit), ki poskrbi za pravilno prevajanje C++ kode za vsako od ciljnih arhitektur Android platforme (armeabi, armeabi-v7a, x86 in mips).
+\end{enumerate}
+
+Uporaba orodja JNI je za razvijalca kar časovno potratna. Spisati je treba dva ovoja:
+
+\begin{enumerate}
+  \item Java ovoj, ki izpostavi C++ razrede in metode s pomočjo direktive \texttt{native}.
+  \item C++ ovoj, ki služi kot most med jezikoma Java in C++, ter poskrbi za transformacije med podatkovnimi tipi.
+\end{enumerate}
+
+\begin{lstlisting}[caption={Primer Java ovoja C++ razreda \texttt{Date}.}, label=code:android-java-wrapper, language=Java]
+public class Date
+{
+	private long nativeHandle = 0;
+	public native void init(int year, int month, int day);
+	public native void addDays(int days);
+	public native void dispose();
+
+	public Date(int year, int month, int day) {
+		init(year, month, day);
+	}
+
+	static {
+		System.loadLibrary("thesis");
+	}
+}
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Primer mosta med jezikoma Java in C++ razreda \texttt{Date}.}, label=code:android-cpp-wrapper, language=C++]
+#include "info_hribar_thesis_Date.h"
+#include "Date.cpp"
+#include "handle.h"
+
+using namespace Thesis;
+
+JNIEXPORT void JNICALL Java_info_hribar_thesis_Date_init(JNIEnv *env, jobject obj, jint year, jint month, jint day) {
+	Date *date = new Date(year, month, day);
+	setHandle(env, obj, date);
+}
+
+JNIEXPORT void JNICALL Java_info_hribar_thesis_Date_addDays(JNIEnv *env, jobject obj, jint days) {
+	Date *date = getHandle<Date>(env, obj);
+	date->addDays(days);
+}
+
+JNIEXPORT void JNICALL Java_info_hribar_thesis_Date_dispose(JNIEnv *env, jobject obj) {
+	Date *date = getHandle<Date>(env, obj);
+	delete date;
+}
+\end{lstlisting}
 
 %-----
 \section{Windows Phone}
