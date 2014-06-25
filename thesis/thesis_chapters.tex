@@ -121,6 +121,7 @@ C++ je eden izmed najbolj razširjenih programksih jezikov. V času pisanja dipl
 Emscripten je projekt Mozilinih laboratorijev, ki omogoča prevajanje iz LLVM\footnote{Low Level Virtual Machine} zlogovne kode v skriptni jezik JavaScript. LLVM si lahko predstavljamo kot vmesni sloj med izvorno (C, C++, Objective-C, Java, C\#) in strojno kodo, ki skrbi poskrbi za visoko optimizacijo vmesne kode, to pa lahko potem prevedemo v ustrezen nabor ukazov za posamezne procesorje (ARM, x86 itd.). Emscripten tako predstavlja zadnjo fazo prevajalnika, le da vmesne kode iz LLVM ne prevede v ukaze specifičnega procesorja, ampak nazaj v jezik JavaScript. To pomeni, da lahko prevedemo skoraj vsak program (z določenimi omejitvami) v JavaScript in ga zaženemo v brskalniku. Celo grafično zahtevne aplikacije\footnote{Skupina Mozilinih inžinirjev je grafično ogrodje Unreal v štirih dneh posodobilo do te mere, da je lahko s pomočjo orodja emscripten grafično zahtevna aplikacija brezhibno delovala v brskalniku. Več o tem si lahko preberete na njihovi domači strani \href{https://blog.mozilla.org/futurereleases/2013/05/02/epic-citadel-demo-shows-the-power-of-the-web-as-a-platform-for-gaming/}{blog.mozilla.org}.} niso problematične, saj emscripten za prevod v JavaScript uporablja asm.js\footnote{\href{http://asmjs.org}{asmjs.org}}, kar je podmnožica jezika JavaScript, ki jo JavaScript pogoni znajo izredno dobro optimizirati\footnote{S pomočjo asm.js so v podjetju Mozilla uspeli doseči le enkrat počasnejše izvajanje od domorodne kode, kar je izjemen dosežek. \href{http://techcrunch.com/2013/12/21/mozillas-asm-js-gets-another-step-closer-to-native-performance/}{Novica}}.
 
 \subsection{JavaScript}
+\label{chap:javascript}
 
 Namesto prevajanja v jezik JavaScript s pomočjo ogrodja Emscripten, bi lahko celotno knjižnico napisali kar v jeziku JavaScript. V zadnjih nekaj letih je jezik JavaScript doživel izredno hitro rast, tako v popularnosti, kot v zmogljivosti in funkcionalnostih, kar je tudi razvidno iz slike \ref{fig:github-jeziki}.
 
@@ -157,7 +158,7 @@ Predno se lotimo izbora primerne metode postavimo nekaj omejitev:
   \item Biti cenovno ugodna.
 \end{enumerate}
 
-Izbrano rešitev želimo prikazati na primeru aplikacije, ki prikazuje ponavaljajoče dogodke s pomočjo standarda RFC 5545\footnote{\href{http://tools.ietf.org/html/rfc5545}{tools.ietf.org/html/rfc5545}}. Zaradi poenostavitve se bomo osredotočili zgolj na del RRULE{\footnote{\href{http://tools.ietf.org/html/rfc5545\#section-3.3.10}{tools.ietf.org/html/rfc5545\#section-3.3.10}}}, ki definira pravila za ponavljanje dogodka. Kot je razvidno iz primera \ref{code:rrule}, je s pomočjo standarda RFC 5545 možno opisati kar kompleksne vzorce ponavljanja. Če primer prevedemo v človeku prijazno obliko, bi to pomenilo ``vsako nedeljo v januarju, ob 8:30 zjutraj in 9:30 zjutraj, vsako drugo leto''.
+Izbrano rešitev želimo prikazati na primeru aplikacije, ki prikazuje ponavaljajoče dogodke s pomočjo standarda RFC 5545\footnote{\href{http://tools.ietf.org/html/rfc5545}{tools.ietf.org/html/rfc5545}}. Zaradi poenostavitve se bomo osredotočili zgolj na del RRULE{\footnote{\href{http://tools.ietf.org/html/rfc5545\#section-3.3.10}{tools.ietf.org/html/rfc5545\#section-3.3.10}}}, ki definira pravila za ponavljanje dogodka. Kot je razvidno iz primera \ref{code:rrule}, je s pomočjo standarda RFC 5545 možno opisati kar kompleksne vzorce ponavljanj. Če primer prevedemo v človeku prijazno obliko, bi to pomenilo ``vsako nedeljo v januarju, ob 8:30 zjutraj in 9:30 zjutraj, vsako drugo leto''.
 
 \begin{lstlisting}[caption=Primer uporabe pravila RRULE standarda RFC 5545., label=code:rrule]
 FREQ=YEARLY;INTERVAL=2;BYMONTH=1;BYDAY=SU;BYHOUR=8,9;BYMINUTE=30
@@ -296,16 +297,28 @@ Za izdelavo ovoja C++ kode moramo uporabiti dve orodji:
 Uporaba orodja JNI je za razvijalca kar časovno potratna. Spisati je treba dva ovoja:
 
 \begin{enumerate}
-  \item Java ovoj, ki izpostavi C++ razrede in metode s pomočjo direktive \texttt{native}.
-  \item C++ ovoj, ki služi kot most med jezikoma Java in C++, ter poskrbi za transformacije med podatkovnimi tipi.
+  \item Java ovoj, ki izpostavi C++ razrede in metode s pomočjo direktive \texttt{native} (glej primer \ref{code:android-java-wrapper}).
+  \item C++ ovoj, ki služi kot most med jezikoma Java in C++, ter poskrbi za transformacije med podatkovnimi tipi (glej primer \ref{code:android-cpp-wrapper}).
 \end{enumerate}
+
+Java ovoje shranimo v direktorij \texttt{src}, medtem ko C++ JNI ovoje shranimo v \texttt{jni}. Poglejmo kako poteka komunikacija med Javo in C++ v primeru klica \texttt{isBefore} (glej primer \ref{code:android-cpp-wrapper}):
+
+\begin{enumerate}
+  \item Java preko JNI najde pravo metodo v C++ ovoju s pomočjo dogovorjene poimenovalne sheme (vrstica 12)
+  \item C++ ovoj pretvori Java argumente v C++ argumente (vrstica 14).
+  \item C++ ovoj najde predhodno shranjen objekt (vrstice 40 - 44).
+  \item Pokliče prailno metodo na najdenem objektu z C++ argumenti (vrstice 21 - 29).
+  \item Če metoda vrne kak rezultat, C++ ovoj poskbi za pretvorbo nazaj v Java podatkovne tipe (vrstica 13).
+\end{enumerate}
+
+Bralca morda zanima čemu služi metoda \texttt{dispose} (vrstice 16-19). Java nam nudi avtomatično sproščanje pomnilnika (\eng{garbage collection}), medtem ko C++ od razvijalca zahteva samostojno čiščenje pomnilniških naslovov, ki niso več v uporabi. Ko v Javi pride do sproščanja pomnilnika se pokliče metoda \texttt{finalize}, a kot lahko preberemo v dokumentaciji\footnote{\href{http://developer.android.com/reference/java/lang/Object.html}{Android Java finalize dokumentacija}} do klica ne prihaja prav pogosto. Ker želimo biti malce bolj prijazni uporabniki platforme na kateri gostujemo, se držimo pravila: ko se objekt ne potrebuje več, ga sprostimo s pomočjo klica \texttt{dispose}.
 
 \begin{lstlisting}[caption={Primer Java ovoja C++ razreda \texttt{Date}.}, label=code:android-java-wrapper, language=Java]
 public class Date
 {
 	private long nativeHandle = 0;
 	public native void init(int year, int month, int day);
-	public native void addDays(int days);
+	public native boolean isBefore(Date date);
 	public native void dispose();
 
 	public Date(int year, int month, int day) {
@@ -321,7 +334,6 @@ public class Date
 \begin{lstlisting}[caption={Primer mosta med jezikoma Java in C++ razreda \texttt{Date}.}, label=code:android-cpp-wrapper, language=C++]
 #include "info_hribar_thesis_Date.h"
 #include "Date.cpp"
-#include "handle.h"
 
 using namespace Thesis;
 
@@ -330,14 +342,46 @@ JNIEXPORT void JNICALL Java_info_hribar_thesis_Date_init(JNIEnv *env, jobject ob
 	setHandle(env, obj, date);
 }
 
-JNIEXPORT void JNICALL Java_info_hribar_thesis_Date_addDays(JNIEnv *env, jobject obj, jint days) {
+JNIEXPORT jboolean JNICALL Java_info_hribar_thesis_Date_isBefore(JNIEnv *env, jobject obj, jobject compare) {
 	Date *date = getHandle<Date>(env, obj);
-	date->addDays(days);
+	return date->isBefore(getDate(env, compare));
 }
 
 JNIEXPORT void JNICALL Java_info_hribar_thesis_Date_dispose(JNIEnv *env, jobject obj) {
 	Date *date = getHandle<Date>(env, obj);
 	delete date;
+}
+
+Date getDate(JNIEnv *env, jobject date) {
+	jclass dateCls = env->GetObjectClass(date);
+	jmethodID mGetYear = env->GetMethodID(dateCls, "getYear", "()I");
+	jmethodID mGetMonth = env->GetMethodID(dateCls, "getMonth", "()I");
+	jmethodID mGetDay = env->GetMethodID(dateCls, "getDay", "()I");
+	jint year = env->CallIntMethod(date, mGetYear);
+	jint month = env->CallIntMethod(date, mGetMonth);
+	jint day = env->CallIntMethod(date, mGetDay);
+	return Date(year, month, day);
+}
+
+jfieldID getHandleField(JNIEnv *env, jobject obj)
+{
+    jclass c = env->GetObjectClass(obj);
+    // J is the type signature for long:
+    return env->GetFieldID(c, "nativeHandle", "J");
+}
+
+template <typename T>
+T *getHandle(JNIEnv *env, jobject obj)
+{
+    jlong handle = env->GetLongField(obj, getHandleField(env, obj));
+    return reinterpret_cast<T *>(handle);
+}
+
+template <typename T>
+void setHandle(JNIEnv *env, jobject obj, T *t)
+{
+    jlong handle = reinterpret_cast<jlong>(t);
+    env->SetLongField(obj, getHandleField(env, obj), handle);
 }
 \end{lstlisting}
 
@@ -346,3 +390,41 @@ JNIEXPORT void JNICALL Java_info_hribar_thesis_Date_dispose(JNIEnv *env, jobject
 
 %-----
 \section{Spletna aplikacija}
+
+C++ knjižnico moramo za uporabo v spletni aplikaciji prevesti v JavaScript. To lahko storimo s pomočjo orodja emscripten, ki vzame LLVM zlogovno kodo in namesto prevoda v nabor ukazov za podprte procesorje, prevede to kodo v JavaScript. Rezultat je knjižnjica, ki jo lahko brez težav uvozimo v obstoječo spletno aplikacijo.
+
+Primarno emscripten prevaja celotne programe, ki imajo jasno definirane vhode in izhode. Te lahko v JavaScriptu sprožimo kot bi jih v uporabniški vrstici (\eng{terminal}). V našem primeru gre vendarle za prevod C++ knjižnjice, za kar emscripten potrebuje dodatna navodila za izvoz funkcionalnosti (glej primer \ref{code:emscripten-bindings}). Za te namene projekt emscripten vsebuje \texttt{embind}, s pomočjo katerega lahko izvozimo dostop do razredov, podatkovnih tipov, pomnilniškim upravljanje in podobne jezikovne konstrukte.
+
+\begin{lstlisting}[caption={C++ koda za izvoz funckionalnosti knjižnice v JavaScript razreda \texttt{Date}.}, label=code:emscripten-bindings, language=c++]
+#include "emscripten/bind.h"
+#include "src/Date.hpp"
+
+using namespace emscripten;
+using namespace Thesis;
+
+EMSCRIPTEN_BINDINGS(date) {
+    class_<Date>("Date")
+        .constructor<int, int, int>()
+        .property("year", &Date::getYear, &Date::setYear)
+        .property("month", &Date::getMonth, &Date::setMonth)
+        .property("day", &Date::getDay, &Date::setDay)
+        .function("setDate", &Date::setDate)
+        .function("addDays", &Date::addDays)
+        .function("addMonths", &Date::addMonths)
+        .function("addYears", &Date::addYears)
+        .function("toString", &Date::toString)
+        .function("isBefore", &Date::isBefore)
+        .function("isAfter", &Date::isAfter)
+        .function("isEqual", &Date::isEqual)
+        .function("getWeekday", &Date::getWeekday)
+        .function("isLastDay", &Date::isLastDay);
+}
+\end{lstlisting}
+
+Končni rezultat izvoza knjižnice v JavaScript lahko vidimo v primeru \ref{code:javascript-date}.
+
+\begin{lstlisting}[caption={Primer uporabe izvoženega razreda \texttt{Date} v JavaScript.}, label=code:javascript-date, language=JavaScript]
+var date = new Thesis.Date(2014, 10, 10);
+date.addMonths(1);
+console.log(date.toString());
+\end{lstlisting}
