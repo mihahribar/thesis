@@ -388,6 +388,25 @@ void setHandle(JNIEnv *env, jobject obj, T *t)
 %-----
 \section{Windows Phone}
 
+Primarni jezik vseh Windows platform je C\#, in isto velja tudi za Windows Phone. Z 8. verzijo mobilnega operacijskega sistema je Microsoft odprl možnost souporabe C++ in domorodne kode. To storimo z uporabo Windows Phone Runtime komponente (WinPRT), ki jo spišemo v jeziku C++, to pa nato uvozimo v naš Windows Phone projekt kot zunanjo referenco.
+
+Našo knjižnico lahko uvozimo kot statično knjižnico (\eng{static library}), ali direktno kot C++ izvorno kodo (če imamo do nje dostop). Če se odločimo za uporabo statične knjižnice, moramo paziti, da ta uporablja le standardno knjižnjico (\texttt{STL}) in \texttt{Win32} klice, ki so dovoljeni za Windows Phone aplikacije\footnote{Navodila za uporabo statičnih knjižnjic lahko najdemo na spletni strani \href{http://msdn.microsoft.com/en-us/library/windows/apps/hh771041.aspx}{msdn.microsoft.com/en-us/library/windows/apps/hh771041.aspx}}.
+
+Funkcionalnost, ki jo rabimo v naši Windows Phone 8 aplikaciji, izvozimo v WinPRT C++ komponenti (glej primer \ref{code:wp8-wrapper}).
+
+\lstset{language=[Sharp]C, breaklines}
+\begin{lstlisting}[caption={C++ koda za izvoz funckionalnosti knjižnice v JavaScript razreda \texttt{Date}.}, label=code:wp8-wrapper, language=c++]
+namespace ThesisWINRT {
+    using namespace Windows::Foundation;
+    using Platform::String;
+
+    public ref class Date sealed {
+    public:
+        unsigned int GetLength(String^ strToParse);
+    };
+}
+\end{lstlisting}
+
 %-----
 \section{Spletna aplikacija}
 

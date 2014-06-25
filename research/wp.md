@@ -20,3 +20,5 @@ Resources
 * http://msdn.microsoft.com/en-us/library/windows/apps/hh771041.aspx
 * http://developer.nokia.com/community/wiki/C++_support_from_Windows_Phone_8#Mixed_application
 * http://msdn.microsoft.com/library/windows/apps/hh441569.aspx Creating Windows Runtime Components in C++
+* http://kodierer.blogspot.com/2014/01/windows-phone-natives-how-to-leverage.html
+* http://www.jarredcapellman.com/2012/11/03/how-to-get-c-winrt-in-a-windows-phone-8-application/
