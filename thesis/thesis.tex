@@ -113,6 +113,8 @@
 %% define vector style
 %\newcommand{\vect}[1]{{\ensuremath{\mathbf{#1}}}}
 
+\usepackage[nonumberlist]{glossaries}
+
 \begin{document}
 
 \maketitle
@@ -124,11 +126,13 @@
 \makecopyright
 \thesistopic
 \makedeclaration
+\makeglossaries
 
 \frontmatter
  \input{thesis_abstracts}
  \input{thesis_acknowledgements}
  \tableofcontents
+ \printglossary[title=Seznam uporabljenih kratic]
 
 \mainmatter
  \input{thesis_introduction}

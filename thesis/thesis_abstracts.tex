@@ -6,7 +6,10 @@
 
 
 
-
+\newglossaryentry{ios}{name=iOS, description={Mobilni opracijski sistem razvit pri podjetju Apple. Najdemo ga na napravah iPhone, iPad, iPod in Apple TV}}
+\newglossaryentry{android}{name=Android, description={Operacijski sistem, razvit pri podjetju Google, namenjen uporabi na mobilnih napravah}}
+\newglossaryentry{wp}{name=Windows Phone, description={Mobilni operacijski sistem razvit pri podjetju Microsoft}}
+\newglossaryentry{rfc}{name=RFC, description={\eng{Request For Comment}; publikacija IEFT (Internet Engineering Task Force) v kateri so predstavljeni standardi}}
 
 
 
@@ -18,7 +21,7 @@ Razvoj aplikacij za več različnih platform je težaven. Odpira veliko možnost
 
 Kljub različnosti med posameznimi platformami je ponavadi veliko kode z identično funkcionalnostjo, ki jo je potrebno razviti za vsako platformo posebej. Velikokrat je v podjetju za vsako od platform zadolžen drug razvijalec, še bolj pogosto pa razvoj na različnih platformah ne poteka sočasno. Rešitev iz te zagate je razvoj medplatformne knjižnice.
 
-Cilj diplomske naloge je razvoj knjižnice za specifikacijo RFC 5545\cite{rfc5545}, ki omogoča generiranje ponavljajočih koledarskih dogodkov in jo je možno uporabiti v spletni, iOS, Android in Windows Phone aplikaciji. Pregledali bomo različne možne pristope, navedli prednosti in slabosti, ter na koncu izbrali najbolj primerno rešitev za implementacijo knjižnice.
+Cilj diplomske naloge je razvoj knjižnice za specifikacijo \gls{rfc} 5545, ki omogoča generiranje ponavljajočih koledarskih dogodkov in jo je možno uporabiti v spletni, \gls{ios}, \gls{android} in \gls{wp} aplikaciji. Pregledali bomo različne možne pristope, navedli prednosti in slabosti, ter na koncu izbrali najbolj primerno rešitev za implementacijo knjižnice.
 \end{Povzetek}
 
 
@@ -37,5 +40,5 @@ Developing applications for different platforms is complicated. It opens a lot o
 
 Despite the differences between different plaftorms, they most likely share a lot of functionality which has to be developed for each platform. Most of the time each platform is handled by a different developer and usually not simultaneously with other applications. The solution to this problem is to develop a cross-platform library.
 
-The goal of the thesis is to develop a library for the RRULE RFC5545\cite{rfc5545} specification, which enables applications to schedule and display recurring events. The library will then be used in an web, iOS, Android and Windows Phone application. We will outline different approaches to writing the shared library, list the pros and cons and in the end decide on the best approach.
+The goal of the thesis is to develop a library for the RRULE RFC5545 specification, which enables applications to schedule and display recurring events. The library will then be used in an web, iOS, Android and Windows Phone application. We will outline different approaches to writing the shared library, list the pros and cons and in the end decide on the best approach.
 \end{Abstract}
