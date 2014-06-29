@@ -21,6 +21,7 @@
 \newglossaryentry{jni}{name=JNI, description={\eng{Java Native Interface}; programsko ogrodje, ki omogoča kodi, napisani v jeziku Java, klicanje domorodnih aplikacij in knjižnic}}
 \newglossaryentry{ndk}{name=NDK, description={\eng{Native Development Kit}; ogrodje, ki na platformi Android omogoča pripravo knjižnic za vključitev v domorodne aplikacije}}
 \newglossaryentry{stl}{name=STL, description={\eng{Standard Template Library}; C++ knjižnica, ki vsebuje razne programske konstrukte in algoritme}}
+\newglossaryentry{tdd}{name=TDD, description={\eng{Test-driven development}; testno usmerjeni razvoj}}
 
 
 %==============================
@@ -213,19 +214,19 @@ Pravilo \texttt{UNTIL} definira končni datum ponavljanja dogodka (vključno z k
 
 Pravilo \texttt{COUNT} vsebuje pozitivno celo število, ki predstavlja število ponovitev dogodka. V kolikor ima pravilo nastavljeno tako \texttt{UNTIL} kot \texttt{COUNT}, obvelja tisto pravilo, ki ponavljanje dogodka prej konča.
 
-Pravila \texttt{BYSECOND}, \texttt{BYMINUTE} in \texttt{BYHOUR} vsebujejo z vejico ločene sezname pozitivnih celih števil. Možne vrednosti \texttt{BYSECOND} so od 0 do 60, \texttt{BYMINUTE} od 0 do 59 in \texttt{BYHOUR} od 0 do 23. Če nastavimo pravilo \texttt{BYHOUR} na vrednost ``8,20'', se bo dogodek ponovil ob 8 zjutraj in 8 zvečer.
+Pravila \texttt{BYSECOND}, \texttt{BYMINUTE} in \texttt{BYHOUR} vsebujejo z vejico ločene sezname pozitivnih celih števil. Možne vrednosti \texttt{BYSECOND} so od 0 do 60, \texttt{BYMINUTE} od 0 do 59 in \texttt{BYHOUR} od 0 do 23. Če nastavimo pravilo \texttt{BYHOUR} na vrednost \texttt{8,20}, se bo dogodek ponovil ob 8 zjutraj in 8 zvečer.
 
-Pravilo \texttt{BYDAY} vsebuje z vejico ločen seznam dnevov v tednu, kjer je \texttt{MO} ponedeljek, \texttt{TU} torek, \texttt{WE} sreda, \texttt{TH} četrtek, \texttt{FR} petek, \texttt{SA} sobota in \texttt{SU} nedelja. Pred oznako za posamezen dan lahko postavimo pozivitno ali negativno celo število, ki predstavlja N-to ponovitev v mesečnem ali letnem ponavljanju dogodka. Za mesečno ponavljanje dogodka, vrednost ``+1MO'' pomeni vsak prvi ponedeljek v mesecu, ``-1MO'' vsak zadnji ponedeljek v mesecu, ``MO'' pa preprosto vsak ponedeljek v mesecu.
+Pravilo \texttt{BYDAY} vsebuje z vejico ločen seznam dnevov v tednu, kjer je \texttt{MO} ponedeljek, \texttt{TU} torek, \texttt{WE} sreda, \texttt{TH} četrtek, \texttt{FR} petek, \texttt{SA} sobota in \texttt{SU} nedelja. Pred oznako za posamezen dan lahko postavimo pozivitno ali negativno celo število, ki predstavlja N-to ponovitev v mesečnem ali letnem ponavljanju dogodka. Za mesečno ponavljanje dogodka, vrednost \texttt{+1MO} pomeni vsak prvi ponedeljek v mesecu, \texttt{-1MO} vsak zadnji ponedeljek v mesecu, \texttt{MO} pa preprosto vsak ponedeljek v mesecu.
 
-Pravilo \texttt{BYMONTHDAY} vsebuje z vejico ločen seznam celih števil z možnimi vrednostmi od -31 do -1 in 1 do 31, ki prestavljajo dneve v mesecu. Vrednost ``-10'' predstavlja 10 dan od konca meseca. Pravilo \texttt{BYMONTHDAY} ne sme biti nastavljeno, če je frekvenca ponavaljanja nastavljena na tedensko.
+Pravilo \texttt{BYMONTHDAY} vsebuje z vejico ločen seznam celih števil z možnimi vrednostmi od -31 do -1 in 1 do 31, ki prestavljajo dneve v mesecu. Vrednost \texttt{-10} predstavlja 10 dan od konca meseca. Pravilo \texttt{BYMONTHDAY} ne sme biti nastavljeno, če je frekvenca ponavaljanja nastavljena na tedensko.
 
-Pravilo \texttt{BYYEARDAY} vsebuje z vejico ločen seznam celih števil z možnimi vrednostmi od -366 do -1 in 1 do 366, ki predstavljajo dneve v letu. Vrednost ``-1'' predstavlja zadnji dan v letu (31. december), ``-306'' pa 306. dan od konca leta (1. marec). Pravilo \texttt{BYYEARDAY} ne sme biti uporabljeno, če je v uporabi dnevna, tedenska ali mesečna frekvenca ponavljanja dogodka.
+Pravilo \texttt{BYYEARDAY} vsebuje z vejico ločen seznam celih števil z možnimi vrednostmi od -366 do -1 in 1 do 366, ki predstavljajo dneve v letu. Vrednost \texttt{-1} predstavlja zadnji dan v letu (31. december), \texttt{-306} pa 306. dan od konca leta (1. marec). Pravilo \texttt{BYYEARDAY} ne sme biti uporabljeno, če je v uporabi dnevna, tedenska ali mesečna frekvenca ponavljanja dogodka.
 
-Pravilo \texttt{BYWEEKNO} vsebuje z vejico ločen seznam celih števil z možnimi vrednostmi od -53 do -1 in 1 do 53, ki predstavljajo tedne v letu. Prvi teden v letu je tisti, ki ima vsaj 4 dni v koledarskem letu. Vrednost ``3'' predstavlja tretji teden v letu. Pravilo \texttt{BYWEEKNO} je lahko definirano le, če imamo opravka z letno frekvenco dogodka.
+Pravilo \texttt{BYWEEKNO} vsebuje z vejico ločen seznam celih števil z možnimi vrednostmi od -53 do -1 in 1 do 53, ki predstavljajo tedne v letu. Prvi teden v letu je tisti, ki ima vsaj 4 dni v koledarskem letu. Vrednost \texttt{3} predstavlja tretji teden v letu. Pravilo \texttt{BYWEEKNO} je lahko definirano le, če imamo opravka z letno frekvenco dogodka.
 
-Pravilo \texttt{BYMONTH} vsebuje z vejico ločen seznam pozitivnih celih števil, z možnimi vrednostmi od 1 do 12, ki predstavljajo mesece v letu. Vrednost ``2'' predstavlja 2. mesec v letu.
+Pravilo \texttt{BYMONTH} vsebuje z vejico ločen seznam pozitivnih celih števil, z možnimi vrednostmi od 1 do 12, ki predstavljajo mesece v letu. Vrednost \texttt{2} predstavlja 2. mesec v letu.
 
-S pravilom \texttt{WKST} definiramo dan začetka tedna. Možne vrednosti so iste kot pri pravilu \texttt{BYDAY}. Vrednost ``SU'' pomeni, da se delovni teden za nas začne v nedeljo. Če pravilo ni posebej nastavljeno, obvelja vrednost ``MO''.
+S pravilom \texttt{WKST} definiramo dan začetka tedna. Možne vrednosti so iste kot pri pravilu \texttt{BYDAY}. Vrednost \texttt{SU} pomeni, da se delovni teden za nas začne v nedeljo. Če pravilo ni posebej nastavljeno, obvelja vrednost \texttt{MO}.
 
 Pravilo \texttt{BYSETPOS} vsebuje z vejico ločen seznam celih števil, z možnimi vrednostmi od -366 do -1 in 1 do 366. Predstavljajo N-to ponovitev znotraj pravil \texttt{BYSECOND}, \texttt{BYMINUTE}, \texttt{BYHOUR}, \texttt{BYDAY}, \texttt{BYMONTHDAY}, \texttt{BYYEARDAY} in \texttt{BYWEEKNO}. Primer \ref{code:rrule-last-work-day} predstavlja zadnji delovni dan v mesecu.
 
@@ -237,7 +238,7 @@ Pravila lahko v nekaterih situacijah povzročijo ponovitev dogodka na neobstoje�
 
 Začetni datum ponavljanja dogodka je definiran izven omenjenih pravil, in sicer v delu \texttt{DTSTART}. Datum prve ponovitve dogodka je vedno isti začetnemu datumu, ne glede na to, če je ta dan smiselen glede na opisana pravila ponavljanja.
 
-Opisana pravila z predpono \texttt{BY}, vedno na nek način spremenijo ponavljanje dogodka. Število dni lahko ta pravila omejijo, kot v primeru ``FREQ=DAILY;BYMONTH=1'', kjer je dnevno ponavljanje omeji samo na mesec januar. Lahko pa jih tudi razširijo, kot v primeru ``FREQ=YEARLY;BYMONTH=1,2'', kjer je enkratno letno ponavljanje razširjeno na ponovitev vsak januar in februar, vsako leto.
+Opisana pravila z predpono \texttt{BY}, vedno na nek način spremenijo ponavljanje dogodka. Število dni lahko ta pravila omejijo, kot v primeru \texttt{FREQ=DAILY;BYMONTH=1}, kjer je dnevno ponavljanje omeji samo na mesec januar. Lahko pa jih tudi razširijo, kot v primeru \texttt{FREQ=YEARLY;BYMONTH=1,2}, kjer je enkratno letno ponavljanje razširjeno na ponovitev vsak januar in februar, vsako leto.
 
 Če je v pravilu ponavljanja uporabljenih več pravil z predpono \texttt{BY}, se ta obravnavajo v vrstnem redu \texttt{FREQ}, \texttt{INTERVAL}, \texttt{BYMONTH}, \texttt{BYWEEKNO}, \texttt{BYYEARDAY}, \texttt{BYMONTHDAY}, \texttt{BYDAY}, \texttt{BYHOUR}, \texttt{BYMINUTE}, \texttt{BYSECOND}, \texttt{BYSETPOS}, \texttt{COUNT} in \texttt{UNTIL}.
 
@@ -278,9 +279,9 @@ Predno se lotimo izbora primerne metode postavimo nekaj omejitev:
   \item Biti cenovno ugodna.
 \end{enumerate}
 
-Izbrano rešitev želimo prikazati na primeru aplikacije, ki prikazuje ponavaljajoče dogodke s pomočjo standarda RFC 5545\cite{rfc5545}. Zaradi poenostavitve se bomo osredotočili zgolj na del RRULE, ki definira pravila za ponavljanje dogodka. Kot je razvidno iz primera \ref{code:rrule}, je s pomočjo standarda RFC 5545 možno opisati kar kompleksne vzorce ponavljanj.
+Izbrano rešitev želimo prikazati na primeru aplikacije, ki prikazuje ponavaljajoče dogodke s pomočjo standarda iCalendar \cite{rfc5545}. Kot omenjeno, se bomo zaradi poenostavitve osredotočili zgolj na del RRULE, ki definira pravila za ponavljanje dogodka.
 
-Ponavljajoč dogodek bo aplikacija prikazala v preprostem seznamu, ki bo prilagojen za vsako od izbranih platform.
+Ponavljajoče dogodke bo aplikacija prikazala v preprostem seznamu, ki bo prilagojen za vsako od izbranih platform.
 
 // TODO slika iOS seznama z vsemi podatki ki bodo prikazani
 
@@ -295,9 +296,9 @@ Izbor primerne metode lahko začnemo z pregledom popularnih vprašanj na spletni
  \label{fig:stackoverflow-trends}
 \end{figure}
 
-Vse omejitve omenjene v prejšnjem poglavju so predstavljene v tabelah \ref{table:omejitve-celovite-hibridne} in \ref{table:omejitve-deljene}. Prazne vrstice pri ``grafični skladnosti'' za Lua, Haxe, C++ in JavaScript so posledica nezmožnosti zadoščanja te omejitve, niso pa ovira, saj mora v tem primeru za grafično skladnost poskrbeti domorodna koda, ki ni napisana v omenjenih jezikih.
+Vse omejitve omenjene v prejšnjem poglavju so predstavljene v tabeli \ref{table:omejitve}. Prazne vrstice pri ``grafični skladnosti'' za Lua, Haxe, C++ in JavaScript so posledica nezmožnosti zadoščanja te omejitve, niso pa ovira, saj mora v tem primeru za grafično skladnost poskrbeti domorodna koda, ki ni napisana v omenjenih jezikih.
 
-Iz tabele \ref{table:omejitve} je lepo razvidno, da edino rešitev C++ zadošča vsem naštetim omejitvam. Poglejmo si torej kako lahko izbrano rešitev pripravimo s pomočjo jezika C++, ter kako lahko nato isto rešitev uporabimo tudi v aplikaciji, ki teče spletnem brskalniku, s pomočjo ogrodja Emscripten.
+Iz tabele \ref{table:omejitve} je lepo razvidno, da le rešitev C++ zadošča vsem naštetim omejitvam. Poglejmo si torej kako lahko izbrano rešitev pripravimo s pomočjo jezika C++, ter kako lahko nato isto rešitev uporabimo tudi v aplikaciji, ki teče spletnem brskalniku, s pomočjo ogrodja Emscripten.
 
 \begin{table}
 \footnotesize
@@ -323,7 +324,9 @@ Iz tabele \ref{table:omejitve} je lepo razvidno, da edino rešitev C++ zadošča
 %-----
 \section{C++}
 
-Izbrani del RRULE specifikacije RFC 5545 je na srečo dovolj preprost, da za razvoj potrebujemo le STL (Standard Template Library) knjižnico. V kolikor bi naša rešitev zahtevala vključitev dodatne knjižnice, recimo vzpostavitev internetne povezave, bi lahko ta problem rešili na dva načina:
+Namesto razvoja lastne knjižnice, bi lahko na tem mestu v naš projekt vključili odprtokodno knjižnico \texttt{libical} \cite{libical}, a bomo za potrebe diplomske naloge rajši izbrali samostojno rešitev, saj bomo s tem lahko podrobneje raziskali kaj vse je potrebno za razvoj podobne knjižnice.
+
+Izbrani del RRULE specifikacije RFC 5545 je na srečo dovolj preprost, da za razvoj potrebujemo le \gls{stl} knjižnico. V kolikor bi naša rešitev zahtevala vključitev dodatne knjižnice, recimo vzpostavitev internetne povezave, bi lahko ta problem rešili na dva načina:
 
 \begin{enumerate}
   \item V našo rešitev bi vključili dodatno knjižnico \texttt{libcurl}. To bi povzorčilo kar nekaj problemov pri vključevanju knjižnice na različne platforme, saj bi morali knjižnico \texttt{libcurl} pripraviti za vsak platformo posebej.
@@ -341,6 +344,8 @@ Razvito knjižnico lahko v platformske aplikacije vključimo na več različnih 
 \end{enumerate}
 
 Pri vseh naštetih načinih je potrebna dodatna ovojna koda (\eng{wrapper}), ki je različna za vsako destinacijsko platformo. Detajle teh ovojev si bomo ogledali v poglavju \ref{chap:cross-platform}.
+
+Celotna implementacija knjižnice je na voljo na spletni strani \href{https://github.com/mihahribar/thesis}{github.com/mihahribar/thesis}. Zaradi zagotavljanja kakovosti (\eng{quality assurance}) sem se pri razvoju knjižnice držal praks testno usmerjenega razvoja \gls{tdd} \cite{tdd-cpp}. Za implementacijo testov sem uporabil izvrstni knjižnici \texttt{googletest}\cite{googletest} in \texttt{googlemock}\cite{googlemock}. Za potrebe zvezne integracije (\eng{continuous integration}) sem uporabil Travis CI \cite{travisci}, ki je za odprtokodne projekte na voljo brezplačno.
 
 Primer uporabe knjižnjice RRULE RFC 5545 lahko vidimo v primeru \ref{code:cpp-primer}. Razred \texttt{Date} vsebuje vso potrebno logiko za delo z datumi, kot so naprimer prištevanje, odštevanje ter primerjanje datumov. Razred \texttt{Recurrence} vsebuje logiko za ponavljanje dogodkov. Tip dogodka, ki se ponavlja, je poljuben in ni del knjižnjice.
 
