@@ -23,10 +23,11 @@
 \newglossaryentry{stl}{name=STL, description={\eng{Standard Template Library}; C++ knjižnica, ki vsebuje razne programske konstrukte in algoritme}}
 \newglossaryentry{tdd}{name=TDD, description={\eng{Test-driven development}; testno usmerjeni razvoj}}
 \newglossaryentry{ci}{name=CI, description={\eng{Continuous integration}; zvezna integracija}}
+\newglossaryentry{swot}{name=SWOT, description={\eng{Strengths, Weaknesses, Opportunities, and Threats}; analiza prednosti, slabosti, priložnosti in nevarnosti}}
 
 
 %==============================
-\chapter{Pregled metod medplaformnega razvoja}
+\chapter[Pregled metod medplaformnega razvoja]{Pregled metod \\ medplaformnega razvoja}
 \label{chap:overview}
 
 Predno postavimo omejitve razvoja naše aplikacije, si poglejmo različne metode medplatformnega razvoja in v katerih primerih jih je pametno uporabiti. Kot je pričakovati, jih je kar nekaj. Razdelili jih bomo v skupine celovitih, hibridnih in deljenih metod.
@@ -357,7 +358,7 @@ Pri vseh naštetih načinih je potrebna dodatna ovojna koda (\eng{wrapper}), ki 
 
 Celotna izvorna koda knjižnice (skupaj z jezikovnimi oviji) je na voljo na spletni strani \href{https://github.com/mihahribar/thesis}{github.com/mihahribar/thesis}. Zaradi zagotavljanja kakovosti (\eng{quality assurance}) sem se pri razvoju knjižnice držal praks testno usmerjenega razvoja \gls{tdd} \cite{tdd-cpp}. Za implementacijo testov sem uporabil izvrstni knjižnici \texttt{googletest}\cite{googletest} in \texttt{googlemock}\cite{googlemock}, s testi pa mi je uspelo pokriti več kot 90\% vse kode (\eng{code coverage}), kar sem preveril s pomočjo programa \texttt{gcov}.
 
-Za potrebe zvezne integracije (\eng{continuous integration}) sem uporabil Travis \gls{ci} \cite{travisci}, ki je za odprtokodne projekte na voljo brezplačno. Vse kar je bilo potrebno storiti, da je Travis CI lahko uspešno testiral izvorno kodo naše knjižnice, je bilo dodati datoteko \texttt{.travis.yml} z vsebino \texttt{script: make tests}. To na strežniku za zvezno integracijo sproži prenos in pripravo knjižnic \texttt{googletest} in \texttt{googlemock}, prevede vse potrebne datoteke, ki vsebujejo izvorno kodo, ter zgradi tests program, ki zažene vse naše testne primere.
+Za potrebe zvezne integracije (\eng{continuous integration}) sem uporabil Travis \gls{ci} \cite{travisci}, ki je za odprtokodne projekte na voljo brezplačno. Vse kar je bilo potrebno storiti, da je Travis CI lahko uspešno testiral izvorno kodo naše knjižnice, je bilo dodati datoteko \texttt{.travis.yml} z vsebino \texttt{script:make tests}. To na strežniku za zvezno integracijo sproži prenos in pripravo knjižnic \texttt{googletest} in \texttt{googlemock}, prevede vse potrebne datoteke, ki vsebujejo izvorno kodo, ter zgradi testni program, ki zažene vse naše testne primere.
 
 \begin{figure}
  \includegraphics[width=\linewidth]{cpp-tests}
@@ -379,7 +380,7 @@ map<int, Date> days = rec.daysInRange(Date(2014, 2, 1), Date(2014, 2, 28));
 \end{lstlisting}
 
 %==============================
-\chapter{Vključitev knjižnice v različne platforme}
+\chapter[Vključitev knjižnice v različne platforme]{Vključitev knjižnice v \\ različne platforme}
 \label{chap:cross-platform}
 
 %-----
@@ -606,3 +607,42 @@ var date = new Thesis.Date(2014, 10, 10);
 date.addMonths(1);
 console.log(date.toString());
 \end{lstlisting}
+
+%-----
+\section{Pregled prednosti, slabosti, priložnosti in nevarnosti}
+
+Pred zaključnimi ugotovitvami, si poglejmo prednosti, slabosti, priložnosti in nevarnosti (t.i \gls{swot} analiza) izbrane metode.
+
+
+\subsection{Prednosti}
+
+\begin{itemize}
+  \item Metoda nam omogoča poenoten razvoj knjižnice za vse željene platforme.
+  \item Možnost večje pokritosti z napisanimi testi (\eng{code coverage}), saj knjižnico zaradi poenotenega razvoja testiramo le na C++ nivoju.
+  \item Manjše število napak pri razvoj aplikacij na posameznih platformah.
+  \item Odpornost na nadgradnje gostujočega operacijskega sistema.
+  \item Hitrost izvajanja.
+  \item Vsa uporabljena orodja so brezplačna.
+\end{itemize}
+
+\subsection{Slabosti}
+
+\begin{itemize}
+  \item Uporabniški vmesnik je potrebno razviti za vsako platformo posebej.
+  \item V aplikacije se lahko še vedno prikradejo napake v uporabniškem vmesniku, ki jih moramo vseeno reševati za vsako platformo posebej.
+  \item Potrebno predhodno znanje več različnih jezikov (C++, Java, C\#, Objective-C in JavaScript).
+\end{itemize}
+
+\subsection{Priložnosti}
+
+\begin{itemize}
+  \item Podpora za nove platforme, ki podpirajo C++ (recimo Windows Desktop, Mac OSX itd.).
+  \item Učenje novih programskih jezikov je za razvijalce priporočljivo za njihov razvoj razmišljanja pri reševanju problemov \cite{pragprog}.
+\end{itemize}
+
+\subsection{Nevarnosti}
+
+\begin{itemize}
+  \item Dolgotrajen razvoj, predvsem na začetku, dokler nimamo pripravljenih osnovnih jezikovnih ovojev.
+  \item Težko spreminjanje knjižnice, možno le dodajanje novih metod zaradi združljivosti s starejšimi verzijami.
+\end{itemize}
