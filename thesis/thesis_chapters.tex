@@ -175,7 +175,95 @@ Težji del je vgraditev pogona JavaScript na vsako od platform. Dokler ne bo na 
 \label{chap:development}
 
 %-----
-\section{Predstavitev knjižnice RFC 5545}
+\section{Predstavitev specifikacije RFC 5545}
+
+Specifikacija RFC 5545\cite{rfc5545} opisuje format iCalendar, ki se uporablja za dogovarjanje o urnikih sestankov in umeščanju na koledar. Gre za tekstovni format, katerega prepoznavna končnica datotek je \texttt{.ics}, in je dandanes v uporabi v vseh večjih koledarskih aplikacijah, kot so Google Calendar, Apple Calendar in ostali. Omogoča vse kar potrebujemo za opisovanje dogodkov, med drugim:
+
+\begin{itemize}
+  \item Datum začetka in konca dogodka
+  \item Nastavitve opozoril
+  \item Opis in priponke
+  \item Seznam povabljenih ljudi
+  \item Pravila za ponavaljanje dogodka
+\end{itemize}
+
+Zaradi obsežnosti specifikacije, se bomo v diplomski nalogi osredotočili zgolj na pravila za ponavljanje dogodkov \cite{rrule}. Za predstavo si najprej poglejmo primer \ref{code:rrule}. Če primer prevedemo v človeku prijazno obliko, bi to pomenilo ``vsako nedeljo v januarju, ob 8:30 zjutraj in 9:30 zjutraj, vsako drugo leto''.
+
+\begin{lstlisting}[caption=Primer uporabe pravila RRULE spefikiacije RFC 5545., label=code:rrule]
+FREQ=YEARLY;INTERVAL=2;BYMONTH=1;BYDAY=SU;BYHOUR=8,9;BYMINUTE=30
+\end{lstlisting}
+
+Vsak del pravila sestavlja par, sestavljen iz imena pravila in vrednosti. Vsak par je med seboj ločen z podpičjem (;), vsako pravilo pa je lahko določeno le enkrat. Vrstni red načeloma ni pomemben, a zaradi združljivosti s starejšimi specifikacijami, mora biti pravilo \texttt{FREQ} vedno na prvem mestu.
+
+Pravilo \texttt{FREQ} predstavlja frekvenco ponavaljanja dogodka. Možne vrednosti so:
+
+\begin{itemize}
+  \item \texttt{SECONDLY}, za ponavljanje vsako sekudo
+  \item \texttt{MINUTELY}, za ponavljanje vsako minuto
+  \item \texttt{HOURLY}, za ponavljanje vsako uro
+  \item \texttt{DAILY}, za dnevno ponavljanje
+  \item \texttt{WEEKLY}, za tedensko ponavljanje
+  \item \texttt{MONTHLY}, za mesečno ponavljanje
+  \item \texttt{YEARLY}, za letno ponavljanje
+\end{itemize}
+
+Pravilo \texttt{INTERVAL} vsebuje pozitivno celo število, ki predstavlja interval ponavljanja frekvence. Če je frekvenca nastavljenan na dnevno, interval pa na 8, pomeni da se dogodek ponovi vsak 8. dan.
+
+Pravilo \texttt{UNTIL} definira končni datum ponavljanja dogodka (vključno z končnim datumom). Definiramo ga lahko samo z datumom, ali pa z datumom in uro.
+
+Pravilo \texttt{COUNT} vsebuje pozitivno celo število, ki predstavlja število ponovitev dogodka. V kolikor ima pravilo nastavljeno tako \texttt{UNTIL} kot \texttt{COUNT}, obvelja tisto pravilo, ki ponavljanje dogodka prej konča.
+
+Pravila \texttt{BYSECOND}, \texttt{BYMINUTE} in \texttt{BYHOUR} vsebujejo z vejico ločene sezname pozitivnih celih števil. Možne vrednosti \texttt{BYSECOND} so od 0 do 60, \texttt{BYMINUTE} od 0 do 59 in \texttt{BYHOUR} od 0 do 23. Če nastavimo pravilo \texttt{BYHOUR} na vrednost ``8,20'', se bo dogodek ponovil ob 8 zjutraj in 8 zvečer.
+
+Pravilo \texttt{BYDAY} vsebuje z vejico ločen seznam dnevov v tednu, kjer je \texttt{MO} ponedeljek, \texttt{TU} torek, \texttt{WE} sreda, \texttt{TH} četrtek, \texttt{FR} petek, \texttt{SA} sobota in \texttt{SU} nedelja. Pred oznako za posamezen dan lahko postavimo pozivitno ali negativno celo število, ki predstavlja N-to ponovitev v mesečnem ali letnem ponavljanju dogodka. Za mesečno ponavljanje dogodka, vrednost ``+1MO'' pomeni vsak prvi ponedeljek v mesecu, ``-1MO'' vsak zadnji ponedeljek v mesecu, ``MO'' pa preprosto vsak ponedeljek v mesecu.
+
+Pravilo \texttt{BYMONTHDAY} vsebuje z vejico ločen seznam celih števil z možnimi vrednostmi od -31 do -1 in 1 do 31, ki prestavljajo dneve v mesecu. Vrednost ``-10'' predstavlja 10 dan od konca meseca. Pravilo \texttt{BYMONTHDAY} ne sme biti nastavljeno, če je frekvenca ponavaljanja nastavljena na tedensko.
+
+Pravilo \texttt{BYYEARDAY} vsebuje z vejico ločen seznam celih števil z možnimi vrednostmi od -366 do -1 in 1 do 366, ki predstavljajo dneve v letu. Vrednost ``-1'' predstavlja zadnji dan v letu (31. december), ``-306'' pa 306. dan od konca leta (1. marec). Pravilo \texttt{BYYEARDAY} ne sme biti uporabljeno, če je v uporabi dnevna, tedenska ali mesečna frekvenca ponavljanja dogodka.
+
+Pravilo \texttt{BYWEEKNO} vsebuje z vejico ločen seznam celih števil z možnimi vrednostmi od -53 do -1 in 1 do 53, ki predstavljajo tedne v letu. Prvi teden v letu je tisti, ki ima vsaj 4 dni v koledarskem letu. Vrednost ``3'' predstavlja tretji teden v letu. Pravilo \texttt{BYWEEKNO} je lahko definirano le, če imamo opravka z letno frekvenco dogodka.
+
+Pravilo \texttt{BYMONTH} vsebuje z vejico ločen seznam pozitivnih celih števil, z možnimi vrednostmi od 1 do 12, ki predstavljajo mesece v letu. Vrednost ``2'' predstavlja 2. mesec v letu.
+
+S pravilom \texttt{WKST} definiramo dan začetka tedna. Možne vrednosti so iste kot pri pravilu \texttt{BYDAY}. Vrednost ``SU'' pomeni, da se delovni teden za nas začne v nedeljo. Če pravilo ni posebej nastavljeno, obvelja vrednost ``MO''.
+
+Pravilo \texttt{BYSETPOS} vsebuje z vejico ločen seznam celih števil, z možnimi vrednostmi od -366 do -1 in 1 do 366. Predstavljajo N-to ponovitev znotraj pravil \texttt{BYSECOND}, \texttt{BYMINUTE}, \texttt{BYHOUR}, \texttt{BYDAY}, \texttt{BYMONTHDAY}, \texttt{BYYEARDAY} in \texttt{BYWEEKNO}. Primer \ref{code:rrule-last-work-day} predstavlja zadnji delovni dan v mesecu.
+
+\begin{lstlisting}[caption=Primer uporabe pravila za zadnji delovni dan v mesecu., label=code:rrule-last-work-day]
+FREQ=MONTHLY;BYDAY=MO,TU,WE,TH,FR;BYSETPOS=-1
+\end{lstlisting}
+
+Pravila lahko v nekaterih situacijah povzročijo ponovitev dogodka na neobstoječ datum, kot je naprimer 30. februar. V takih primerih se ponovitev dogodka preskoči brez opozorila.
+
+Začetni datum ponavljanja dogodka je definiran izven omenjenih pravil, in sicer v delu \texttt{DTSTART}. Datum prve ponovitve dogodka je vedno isti začetnemu datumu, ne glede na to, če je ta dan smiselen glede na opisana pravila ponavljanja.
+
+Opisana pravila z predpono \texttt{BY}, vedno na nek način spremenijo ponavljanje dogodka. Število dni lahko ta pravila omejijo, kot v primeru ``FREQ=DAILY;BYMONTH=1'', kjer je dnevno ponavljanje omeji samo na mesec januar. Lahko pa jih tudi razširijo, kot v primeru ``FREQ=YEARLY;BYMONTH=1,2'', kjer je enkratno letno ponavljanje razširjeno na ponovitev vsak januar in februar, vsako leto.
+
+Če je v pravilu ponavljanja uporabljenih več pravil z predpono \texttt{BY}, se ta obravnavajo v vrstnem redu \texttt{FREQ}, \texttt{INTERVAL}, \texttt{BYMONTH}, \texttt{BYWEEKNO}, \texttt{BYYEARDAY}, \texttt{BYMONTHDAY}, \texttt{BYDAY}, \texttt{BYHOUR}, \texttt{BYMINUTE}, \texttt{BYSECOND}, \texttt{BYSETPOS}, \texttt{COUNT} in \texttt{UNTIL}.
+
+Tabela \ref{table:rrule-behavior} opisuje vse izjeme, ki jih lahko povzročijo pravila z predpono \texttt{BY}.
+
+\begin{table}
+\footnotesize
+\scalebox{0.85}{
+\begin{tabular}{ l | l | l | l | l | l | l | l }
+  \hline
+  				& SECONDLY	& MINUTELY	& HOURLY	& DAILY		& WEEKLY 	& MONTHLY 	& YEARLY	\\
+  \hline
+  BYMONTH 		& omeji 	& omeji 	& omeji 	& omeji 	& omeji 	& omeji 	& razširi 	\\
+  BYWEEKNO		& - 		& -			& - 		& - 		& -			& - 		& razširi 	\\
+  BYYEARDAY		& omeji 	& omeji 	& omeji 	& - 		& - 		& - 		& razširi 	\\
+  BYMONTHDAY	& omeji 	& omeji 	& omeji 	& omeji 	& - 		& razširi 	& razširi 	\\
+  BYDAY 		& omeji 	& omeji 	& omeji 	& omeji 	& razširi 	& izjema 1 	& izjema 2 	\\
+  BYHOUR		& omeji 	& omeji 	& omeji 	& razširi 	& razširi 	& razširi 	& razširi 	\\
+  BYMINUTE 		& omeji 	& omeji 	& razširi 	& razširi 	& razširi 	& razširi 	& razširi 	\\
+  BYSECOND 		& omeji 	& razširi 	& razširi 	& razširi 	& razširi 	& razširi 	& razširi 	\\
+  BYSETPOS 		& omeji 	& omeji 	& omeji 	& omeji 	& omeji 	& omeji 	& omeji 	\\
+  \hline
+\end{tabular}}
+\caption{Razpredelnica izjem pri uporabi pravil za ponavljanje dogodkov. \textbf{Izjema 1:} omeji če je prisotno pravilo \texttt{BYMONTHDAY}, drugače razširi. \textbf{Izjema 2:} omeji za pravili \texttt{BYYEARDAY} in \texttt{BYMONTHDAY}, drugače razširi. }
+\label{table:rrule-behavior}
+\end{table}
 
 %-----
 \section{Omejitve}
@@ -190,11 +278,7 @@ Predno se lotimo izbora primerne metode postavimo nekaj omejitev:
   \item Biti cenovno ugodna.
 \end{enumerate}
 
-Izbrano rešitev želimo prikazati na primeru aplikacije, ki prikazuje ponavaljajoče dogodke s pomočjo standarda RFC 5545\cite{rfc5545}. Zaradi poenostavitve se bomo osredotočili zgolj na del RRULE, ki definira pravila za ponavljanje dogodka. Kot je razvidno iz primera \ref{code:rrule}, je s pomočjo standarda RFC 5545 možno opisati kar kompleksne vzorce ponavljanj. Če primer prevedemo v človeku prijazno obliko, bi to pomenilo ``vsako nedeljo v januarju, ob 8:30 zjutraj in 9:30 zjutraj, vsako drugo leto''.
-
-\begin{lstlisting}[caption=Primer uporabe pravila RRULE standarda RFC 5545., label=code:rrule]
-FREQ=YEARLY;INTERVAL=2;BYMONTH=1;BYDAY=SU;BYHOUR=8,9;BYMINUTE=30
-\end{lstlisting}
+Izbrano rešitev želimo prikazati na primeru aplikacije, ki prikazuje ponavaljajoče dogodke s pomočjo standarda RFC 5545\cite{rfc5545}. Zaradi poenostavitve se bomo osredotočili zgolj na del RRULE, ki definira pravila za ponavljanje dogodka. Kot je razvidno iz primera \ref{code:rrule}, je s pomočjo standarda RFC 5545 možno opisati kar kompleksne vzorce ponavljanj.
 
 Ponavljajoč dogodek bo aplikacija prikazala v preprostem seznamu, ki bo prilagojen za vsako od izbranih platform.
 
@@ -213,44 +297,27 @@ Izbor primerne metode lahko začnemo z pregledom popularnih vprašanj na spletni
 
 Vse omejitve omenjene v prejšnjem poglavju so predstavljene v tabelah \ref{table:omejitve-celovite-hibridne} in \ref{table:omejitve-deljene}. Prazne vrstice pri ``grafični skladnosti'' za Lua, Haxe, C++ in JavaScript so posledica nezmožnosti zadoščanja te omejitve, niso pa ovira, saj mora v tem primeru za grafično skladnost poskrbeti domorodna koda, ki ni napisana v omenjenih jezikih.
 
-Iz tabel \ref{table:omejitve-celovite-hibridne} in \ref{table:omejitve-deljene} je lepo razvidno, da edino rešitev C++ zadošča vsem naštetim omejitvam. Poglejmo si torej kako lahko izbrano rešitev pripravimo s pomočjo jezika C++, ter kako lahko nato isto rešitev uporabimo tudi v aplikaciji, ki teče spletnem brskalniku, s pomočjo ogrodja Emscripten.
+Iz tabele \ref{table:omejitve} je lepo razvidno, da edino rešitev C++ zadošča vsem naštetim omejitvam. Poglejmo si torej kako lahko izbrano rešitev pripravimo s pomočjo jezika C++, ter kako lahko nato isto rešitev uporabimo tudi v aplikaciji, ki teče spletnem brskalniku, s pomočjo ogrodja Emscripten.
 
 \begin{table}
-\begin{tabular}{ l | c | c | c | c | c }
+\footnotesize
+\scalebox{0.85}{
+\begin{tabular}{ l | c | c | c | c | c | c | c | c | c }
   \hline
-  Omejitev/Rešitev & Qt & Xamarin & Air & Cordova & Titanium \\
+  							& Qt & Xamarin & Air & Cordova & Titanium & Lua & Haxe & C++ & JavaScript \\
   \hline
-  Android 					& \cmark & \cmark & \cmark & \cmark & \cmark \\
-  iOS 						& \cmark & \cmark & \cmark & \cmark & \cmark \\
-  Windows Phone 			& \xmark & \cmark & \xmark & \cmark & \xmark \\
-  Spletna aplikacija 		& \xmark & \xmark & \cmark & \cmark & \xmark \\
-  Grafična skladnost 		& \xmark & \cmark & \xmark & \xmark & \cmark \\
-  Skupnost 					& \cmark & \cmark & \xmark & \cmark & \cmark \\
-  Odpornost na nadgradnje 	& \xmark & \xmark & \xmark & \xmark & \xmark \\
-  Cena (mesečno) 			& 149\$  & 299\$  & -      & -      & - \\
+  Android 					& \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark \\
+  iOS 						& \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark & \cmark \\
+  Windows Phone 			& \xmark & \cmark & \xmark & \cmark & \xmark & \cmark & \cmark & \cmark & \cmark \\
+  Spletna aplikacija 		& \xmark & \xmark & \cmark & \cmark & \xmark & \cmark & \cmark & \cmark & \cmark \\
+  Grafična skladnost 		& \xmark & \cmark & \xmark & \xmark & \cmark &        &        &        &        \\
+  Skupnost 					& \cmark & \cmark & \xmark & \cmark & \cmark & \cmark & \xmark & \cmark & \cmark \\
+  Odpornost na nadgradnje 	& \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \xmark & \cmark & \xmark \\
+  Cena (mesečno) 			& 149\$  & 299\$  & -      & -      & -      & -      & -      & -      & -      \\
   \hline
-\end{tabular}
-\label{table:omejitve-celovite-hibridne}
-\caption{Pregled funkcionalnosti celovitih in hibridnih metod.}
-\end{table}
-
-\begin{table}
-\begin{tabular}{ l | c | c | c | c }
-  \hline
-  Omejitev/Rešitev & Lua & Haxe & C++ & JavaScript \\
-  \hline
-  Android 					& \cmark & \cmark & \cmark & \cmark \\
-  iOS 						& \cmark & \cmark & \cmark & \cmark \\
-  Windows Phone 			& \cmark & \cmark & \cmark & \cmark \\
-  Spletna aplikacija 		& \cmark & \cmark & \cmark & \cmark \\
-  Grafična skladnost 		&        &        &        &        \\
-  Skupnost 					& \cmark & \xmark & \cmark & \cmark \\
-  Odpornost na nadgradnje	& \xmark & \xmark & \cmark & \xmark \\
-  Cena (mesečno) 			& -      & -      & -      & -      \\
-  \hline
-\end{tabular}
-\label{table:omejitve-deljene}
-\caption{Pregled funkcionalnosti deljenih metod.}
+\end{tabular}}
+\caption{Pregled funkcionalnosti predstavljenih metod.}
+\label{table:omejitve}
 \end{table}
 
 %-----
