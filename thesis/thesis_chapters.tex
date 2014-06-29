@@ -22,6 +22,7 @@
 \newglossaryentry{ndk}{name=NDK, description={\eng{Native Development Kit}; ogrodje, ki na platformi Android omogoča pripravo knjižnic za vključitev v domorodne aplikacije}}
 \newglossaryentry{stl}{name=STL, description={\eng{Standard Template Library}; C++ knjižnica, ki vsebuje razne programske konstrukte in algoritme}}
 \newglossaryentry{tdd}{name=TDD, description={\eng{Test-driven development}; testno usmerjeni razvoj}}
+\newglossaryentry{ci}{name=CI, description={\eng{Continuous integration}; zvezna integracija}}
 
 
 %==============================
@@ -288,7 +289,7 @@ Ponavljajoče dogodke bo aplikacija prikazala v preprostem seznamu, ki bo prilag
 %-----
 \section{Izbor primerne metode}
 
-Izbor primerne metode lahko začnemo z pregledom popularnih vprašanj na spletni strani Stackoverflow (slika \ref{fig:stackoverflow-trends}). Vidimo lahko izjemno popularnost ogrodij Qt in Phonegap. Kot opombo lahko omenim, da Xamarin na tem grafu ni prikazan zaradi premajhnega števila vprašanj. Prav tako nebi bilo ravno smiselno vključiti jezik C++ ali JavaScript, saj ti podatki niso reprezentativni.
+Izbor primerne metode lahko začnemo s pregledom popularnih vprašanj na spletni strani Stackoverflow (slika \ref{fig:stackoverflow-trends}). Vidimo lahko izjemno popularnost ogrodij Qt in Phonegap. Kot opombo lahko omenim, da Xamarin na tem grafu ni prikazan zaradi premajhnega števila vprašanj. Prav tako nebi bilo ravno smiselno vključiti jezik C++ ali JavaScript, saj ti podatki nebi bili reprezentativni.
 
 \begin{figure}
  \includegraphics[width=\linewidth]{stackoverflow-trends}
@@ -333,7 +334,7 @@ Izbrani del RRULE specifikacije RFC 5545 je na srečo dovolj preprost, da za raz
   \item Nalogo vzpostavitve in prenosa podatkov iz oddaljene lokacije bi lahko delegirali v domorodno kodo, ki bi po prenosu rezultat prenesla nazaj v našo knjižnico.
 \end{enumerate}
 
-Če izberemo prvi način, bo naša knjižnica podvajala funckionalnost, ki že obstaja v domorodni kodi. Veliko lepša rešitev je uporaba delegiranja v domorodno kodo, saj lahko ta boljše izkorišča vse sposobnosti naprave. To sicer pomeni nekaj več kode v ovojih naše knjižnice (kar si bomo ogledali v 4. poglavju), a omogoča boljšo odpornost na nadgradnje operacijskega sistema destinacijske platforme.
+Če izberemo prvi način, bo naša knjižnica podvajala funckionalnost, ki že obstaja v domorodni kodi. Veliko lepša rešitev je uporaba delegiranja v domorodno kodo, saj lahko ta boljše izkorišča vse sposobnosti naprave. To sicer pomeni nekaj več kode v ovojih naše knjižnice (kar si bomo ogledali v poglavju \ref{chap:cross-platform}), a omogoča boljšo odpornost na nadgradnje operacijskega sistema destinacijske platforme.
 
 Razvito knjižnico lahko v platformske aplikacije vključimo na več različnih načinov:
 
@@ -345,7 +346,11 @@ Razvito knjižnico lahko v platformske aplikacije vključimo na več različnih 
 
 Pri vseh naštetih načinih je potrebna dodatna ovojna koda (\eng{wrapper}), ki je različna za vsako destinacijsko platformo. Detajle teh ovojev si bomo ogledali v poglavju \ref{chap:cross-platform}.
 
-Celotna implementacija knjižnice je na voljo na spletni strani \href{https://github.com/mihahribar/thesis}{github.com/mihahribar/thesis}. Zaradi zagotavljanja kakovosti (\eng{quality assurance}) sem se pri razvoju knjižnice držal praks testno usmerjenega razvoja \gls{tdd} \cite{tdd-cpp}. Za implementacijo testov sem uporabil izvrstni knjižnici \texttt{googletest}\cite{googletest} in \texttt{googlemock}\cite{googlemock}. Za potrebe zvezne integracije (\eng{continuous integration}) sem uporabil Travis CI \cite{travisci}, ki je za odprtokodne projekte na voljo brezplačno.
+Celotna izvorna koda knjižnice (skupaj z jezikovnimi oviji) je na voljo na spletni strani \href{https://github.com/mihahribar/thesis}{github.com/mihahribar/thesis}. Zaradi zagotavljanja kakovosti (\eng{quality assurance}) sem se pri razvoju knjižnice držal praks testno usmerjenega razvoja \gls{tdd} \cite{tdd-cpp}. Za implementacijo testov sem uporabil izvrstni knjižnici \texttt{googletest}\cite{googletest} in \texttt{googlemock}\cite{googlemock}, s testi pa mi je uspelo pokriti več kot 90\% vse kode (\eng{code coverage}), kar sem preveril s pomočjo programa \texttt{gcov}.
+
+Za potrebe zvezne integracije (\eng{continuous integration}) sem uporabil Travis \gls{ci} \cite{travisci}, ki je za odprtokodne projekte na voljo brezplačno. Vse kar je bilo potrebno storiti, da je Travis CI lahko uspešno testiral izvorno kodo naše knjižnice, je bilo dodati datoteko \texttt{.travis.yml} z vsebino \texttt{script: make tests}. To na strežniku za zvezno integracijo sproži prenos in pripravo knjižnic \texttt{googletest} in \texttt{googlemock}, prevede vse potrebne datoteke, ki vsebujejo izvorno kodo, ter zgradi tests program, ki zažene vse naše testne primere.
+
+// TODO slika zagona testov (69 passed tests)
 
 Primer uporabe knjižnjice RRULE RFC 5545 lahko vidimo v primeru \ref{code:cpp-primer}. Razred \texttt{Date} vsebuje vso potrebno logiko za delo z datumi, kot so naprimer prištevanje, odštevanje ter primerjanje datumov. Razred \texttt{Recurrence} vsebuje logiko za ponavljanje dogodkov. Tip dogodka, ki se ponavlja, je poljuben in ni del knjižnjice.
 
@@ -405,19 +410,27 @@ Implementacija iOS ovoja je dokaj preprosta (glej primer \ref{code:ios-wrapper})
 }
 \end{lstlisting}
 
+Razvojno okolje XCode vsebuje testno ogrodje \texttt{XCTest}, ki nam omogoča zagotavljanje kakovosti. Testi iOS ovoja testirajo samo klice v in povratne vrednosti, ne testirajo pa dejanske funkcionalnosti knjižnice, saj bi to pomenilo podvajanje že obstoječih testov C++ knjižnice. Teste zaženemo iz menija Product -> Test.
+
+\begin{figure}
+ \includegraphics[width=\linewidth]{xcode-tests}
+ \caption{Zaslonska slika zagona testov iOS ovoja C++ knjižnice v razvojnem okolju XCode.}
+ \label{fig:xcode-tests}
+\end{figure}
+
 %-----
 \section{Android}
 
-Java, ki jo srečamo na platformi Android, se od odprtokodne Jave kar precej razlikuje. Na površju za razvijalce morda ni opaziti razlike, a se veliko razlik skriva pod gladino. Android ne uporablja Java virtualnega pogona (\eng{Java Virtual Machine}) ampak svoj pogon Dalvik, ki je prilagojen za uporabo na mobilnih napravh. Pred kratkim je Google napovedal nov virtualen pogon, Android Runtime (\gls{art}), ki bo v prihodnosti zamenjal Dalvik in vsebuje veliko izboljšav v hitrosti in stabilnosti aplikacij.
+Java, ki jo srečamo na platformi Android, se od odprtokodne Jave kar precej razlikuje. Android ne uporablja Java virtualnega pogona (\eng{Java Virtual Machine}) ampak svoj pogon Dalvik, ki je prilagojen za uporabo na mobilnih napravh. Pred kratkim je Google napovedal nov virtualen pogon, Android Runtime (\gls{art}), ki bo v prihodnosti zamenjal Dalvik in vsebuje veliko izboljšav v hitrosti in stabilnosti aplikacij.
 
-Za izdelavo ovoja C++ kode moramo uporabiti dve orodji:
+Za izdelavo ovoja C++ kode moramo uporabiti dve ogrodji:
 
 \begin{enumerate}
   \item \gls{jni} (\eng{Java Native Interface}), ki poskrbi za komunikacijo med jezikoma Java in C++
   \item \gls{ndk} (\eng{Native Development Kit}), ki poskrbi za pravilno prevajanje C++ kode za vsako od ciljnih arhitektur Android platforme (armeabi, armeabi-v7a, x86 in mips).
 \end{enumerate}
 
-Uporaba orodja JNI je za razvijalca kar časovno potratna. Spisati je treba dva ovoja:
+Uporaba orodja JNI je za razvijalca kar časovno potratna. Ovoj je potrebno napisati v dveh delih:
 
 \begin{enumerate}
   \item Java ovoj, ki izpostavi C++ razrede in metode s pomočjo direktive \texttt{native} (glej primer \ref{code:android-java-wrapper}).
@@ -509,6 +522,14 @@ void setHandle(JNIEnv *env, jobject obj, T *t)
     env->SetLongField(obj, getHandleField(env, obj), handle);
 }
 \end{lstlisting}
+
+Za testiranje Java ovoja smo uporabili ogrodji JUnit\cite{junit} in Maven\cite{maven}. Tako kot v primeru iOS ovoja, se na tem mestu ne testira dejanske knjižnice, ampak zgolj povezavo iz C++ knjižnice v Java kodo. Teste lahko zaženemo z ukazom \texttt{mvn test}, ki s pomočjo orodja Maven poskrbi za prenos vseh potrebnih knjižnic in za zagon testov Java ovoja.
+
+\begin{figure}
+ \includegraphics[width=\linewidth]{java-tests}
+ \caption{Zaslonska slika, ki prikazuje teste razreda \texttt{Date} Java ovoja.}
+ \label{fig:java-tests}
+\end{figure}
 
 %-----
 \section{Windows Phone}

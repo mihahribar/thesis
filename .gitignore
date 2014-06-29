@@ -11,6 +11,9 @@ tests
 *.bc
 *.class
 *.jnilib
+*.gcda
+*.gcno
+*.gcov
 android/jni/Date.cpp
 android/jni/Date.hpp
 android/jni/Recurrence.cpp

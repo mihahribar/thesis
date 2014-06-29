@@ -3,7 +3,7 @@ EM = emcc
 AR = ar
 RANLIB = ranlib
 
-CFLAGS = -Isrc -Ilib
+CFLAGS = -Isrc -Ilib -fprofile-arcs -ftest-coverage
 CFLAGS_TEST = $(CFLAGS) -Llib -lgmock -lgtest -pthread
 EMFLAGS = -O2 --closure 1 -s ASM_JS=0 -s INVOKE_RUN=0 -s INCLUDE_FULL_LIBRARY=0 -std=c++11
 EMFLAGS_BIND = $(EMFLAGS) -O2 --closure 1 --js-transform "python $(J)/bundle.py" --bind
