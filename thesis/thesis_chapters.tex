@@ -24,6 +24,7 @@
 \newglossaryentry{tdd}{name=TDD, description={\eng{Test-driven development}; testno usmerjeni razvoj}}
 \newglossaryentry{ci}{name=CI, description={\eng{Continuous integration}; zvezna integracija}}
 \newglossaryentry{swot}{name=SWOT, description={\eng{Strengths, Weaknesses, Opportunities, and Threats}; analiza prednosti, slabosti, priložnosti in nevarnosti}}
+\newglossaryentry{sdk}{name=SDK, description={\eng{Software development kit}; paket za razvoj programske opreme}}
 
 
 %==============================
@@ -88,7 +89,7 @@ Hibridna metoda za razvoj aplikacij uporablja spletne tehnologije v sožitju z d
 
 \subsection{Apache Cordova / PhoneGap}
 
-Ogrodje Apache Cordova\cite{cordova} je odprtokodni projekt, ki omogoča objavo spletnih aplikacij kot domorodne. V času pisanja diplomske naloge ogrodje podpira iOS, Android, Windows Phone, Blackberry, Palm WebOS, Bada in Symbian. Na vseh omenjenih platformah nam ogrodje Apache Cordova omogoča dostop do funkcij naprave, ko so naprimer kamera in pospeškomer. Isto aplikacijo je možno zagnati tudi v spletnem brskalniku, a je za to potrebno nekaj dodatnega dela. Ogrodje Cordova je izdano pod odprtokodno licenco Apache 2.0 \cite{apache-licence}.
+Ogrodje Apache Cordova\cite{cordova} je odprtokodni projekt, ki omogoča objavo spletnih aplikacij kot domorodne \cite{web-vs-native}. V času pisanja diplomske naloge ogrodje podpira iOS, Android, Windows Phone, Blackberry, Palm WebOS, Bada in Symbian. Na vseh omenjenih platformah nam ogrodje Apache Cordova omogoča dostop do funkcij naprave, ko so naprimer kamera in pospeškomer. Isto aplikacijo je možno zagnati tudi v spletnem brskalniku, a je za to potrebno nekaj dodatnega dela. Ogrodje Cordova je izdano pod odprtokodno licenco Apache 2.0 \cite{apache-licence}.
 
 Projekt PhoneGap\cite{phonegap} je dejansko samo ena od distribucij projekta Apache Cordova, ki poleg vseh obstoječih funkcionalnosti ponuja tudi razne storitve na katerih delajo v podjetju Adobe. Vključuje tudi priročen program za ukazno vrstico, ki nam olajša delo z PhoneGap projektom (primer \ref{code:phonegap})
 
@@ -181,7 +182,7 @@ Namesto prevajanja v jezik JavaScript s pomočjo ogrodja Emscripten, bi lahko ce
 
 Pri vključitvi v svojo aplikacijo moramo biti malce bolj iznajdljivi. iOS je z verzijo 7 dodal knjižnico JavaScriptCore, ki omogoča mešanje domorodne in JavaScript kode.
 
-Android je malce bolj problematičen, saj SDK v času pisanja diplomske naloge ne nudi direktne implementacije. Zaradi tega smo primorani vključiti JavaScript pogon, kot je Rhino, V8 in podobni. V kolikor je pogon napisan v jeziku Java, je integracija preprosta, če pa izberemo pogon v drugem jeziku, mora za Android obstajati paket za uvoz.
+Android je malce bolj problematičen, saj njegov \gls{sdk} v času pisanja diplomske naloge ne nudi direktne implementacije. Zaradi tega smo primorani vključiti JavaScript pogon, kot je Rhino, V8 in podobni. V kolikor je pogon napisan v jeziku Java, je integracija preprosta, če pa izberemo pogon v drugem jeziku, mora za Android obstajati paket za uvoz.
 
 Windows Phone prav tako kot Android ne nudi JavaScript implementacije, ki bi jo lahko uporabljali skupaj z domorodno kodo. Uporabimo lahko pogon V8 in knjižnico JavaScriptNet\cite{javascriptdotnet}.
 
