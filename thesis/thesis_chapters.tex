@@ -63,13 +63,13 @@ Xamarin\cite{xamarin} je ogrodje za sočasen razvoj aplikacij za platforme iOS, 
 
 Ogrodje odlikuje integrirano razvojno okolje (\gls{ide}) Xamarin Studio (slika \ref{fig:xamarin}), ki razvoj aplikacij znatno olajša. Omogoča testiranje tako v emulatorju/simulatorju, kot na samih napravah.
 
-Xamarin je primeren za izdelavo aplikacij za več različnih platform, kjer je ključnega pomena končna grafična skladnost z ostalimi domorodnimi aplikacijami. Kot primer si lahko ogledamo aplikacijo za poslušanje glasbe Rdio\cite{rdio}, ki je na voljo za iOS, Android in Windows Phone.
-
 \begin{figure}
  \includegraphics[width=\linewidth]{xamarin}
- \caption{Zaslonska slika orodja Xamarin IDE.}
+ \caption{Zaslonska slika orodja Xamarin Studio.}
  \label{fig:xamarin}
 \end{figure}
+
+Xamarin je primeren za izdelavo aplikacij za več različnih platform, kjer je ključnega pomena končna grafična skladnost z ostalimi domorodnimi aplikacijami. Kot primer si lahko ogledamo aplikacijo za poslušanje glasbe Rdio\cite{rdio}, ki je na voljo za iOS, Android in Windows Phone.
 
 Glavna slabost ogrodja Xamarin je cena, saj se paketi začnejo šele pri 299\$/mesec za vsakega razvijalca in vsako platformo posebej. Za majhno ekipo je lahko taka začetna cena enostavno previsoka. Vprašljiva je tudi hitrost dodajanja funckionalnosti posameznih platform, ko se te nadgradijo, določen riziko predstavlja tudi muhavost posameznih platform pri omejitvah uporabe tega ogrodja, sploh če nadgradnja povzroči nedelovanje takih aplikacij.
 
@@ -131,6 +131,13 @@ Lua\cite{lua} je preprost vgradni skriptni jezik, ki ga odlikuje hitrost izvajan
 
 Ker gre za skriptni jezik, se znajdemo v zanimiv situaciji kjer združujemo prevajane jezike z interpretiranimi jeziki. Velika prednost tega je hitro odzivanje na napake pri razvoju, saj razvijalcu ni potrebno čakati na prevod kode. Odpira tudi možnost posodobitve vgrajene knjižnice brez posodobitve celotne aplikacije.
 
+\begin{lstlisting}[caption={Primer metode v skriptnem jeziku Lua, ki datum iz oblike 2014-07-14 razbije v leto, mesec in dan.}, label=code:lua, language=LUA]
+function get_date_parts(date_str)
+  _,_,y,m,d=string.find(date_str, "(%d+)-(%d+)-(%d+)")
+  return tonumber(y),tonumber(m),tonumber(d)
+end
+\end{lstlisting}
+
 Čeprav je jezik Lua preprost za uporabo, se izkaže da za kompleksnejše knjižnice ni primeren. Manjka Unicode\footnote{Standard za poenoteno textovno enkodiranje.} podpora, boljša podpora rokovanju z napakami, boljša podpora starejšim verzijam in vgrajen razhroščevalnik (\eng{debugger}).
 
 \subsection{Haxe}
@@ -187,6 +194,13 @@ Težji del je vgraditev pogona JavaScript na vsako od platform. Dokler ne bo na 
 \label{chap:development}
 
 %-----
+\section{Uvod}
+
+Izbor primerne metode si bomo pogledali na primeru razvoja koledarske aplikacije, ki bo tekla na platformah iOS, Android, Windows Phone in tudi v spletni aplikaciji. V aplikaciji bo uporabik lahko dodal koledarski dogodek, kateremu bo možno nastaviti različne frekvence ponavljanj, intervale in izjeme. Aplikacija bo nato za določen datumski interval prikazala vnešeni dogodek v preprostem seznamu.
+
+Vnešeni dogodek bo uporabnik aplikacije lahko delil z ostalimi preko e-mail sporočila, ki bo vseboval format iCalendar, opisan v specifikaciji RFC 5545\cite{rfc5545}, ki si ga bomo podrobneje ogledali v naslednjem poglavju.
+
+%-----
 \section{Predstavitev specifikacije RFC 5545}
 
 Specifikacija RFC 5545\cite{rfc5545} opisuje format iCalendar, ki se uporablja za dogovarjanje o urnikih sestankov in umeščanju na koledar. Gre za tekstovni format, katerega prepoznavna končnica datotek je \texttt{.ics}, in je dandanes v uporabi v vseh večjih koledarskih aplikacijah, kot so Google Calendar, Apple Calendar in ostali. Omogoča vse kar potrebujemo za opisovanje dogodkov, med drugim:
@@ -199,7 +213,7 @@ Specifikacija RFC 5545\cite{rfc5545} opisuje format iCalendar, ki se uporablja z
   \item Pravila za ponavaljanje dogodka
 \end{itemize}
 
-Zaradi obsežnosti specifikacije, se bomo v diplomski nalogi osredotočili zgolj na pravila za ponavljanje dogodkov \cite{rrule}. Za predstavo si najprej poglejmo primer \ref{code:rrule}. Če primer prevedemo v človeku prijazno obliko, bi to pomenilo ``vsako nedeljo v januarju, ob 8:30 zjutraj in 9:30 zjutraj, vsako drugo leto''.
+Zaradi obsežnosti specifikacije, se bomo v diplomski nalogi osredotočili zgolj na pravila za ponavljanje dogodkov \cite{rrule}. Za predstavo si najprej poglejmo primer \ref{code:rrule}. Če ga prevedemo v človeku prijazno obliko, bi to pomenilo ``vsako nedeljo v januarju, ob 8:30 zjutraj in 9:30 zjutraj, vsako drugo leto''.
 
 \begin{lstlisting}[caption=Primer uporabe pravila RRULE spefikiacije RFC 5545., label=code:rrule]
 FREQ=YEARLY;INTERVAL=2;BYMONTH=1;BYDAY=SU;BYHOUR=8,9;BYMINUTE=30
@@ -251,10 +265,6 @@ Začetni datum ponavljanja dogodka je definiran izven omenjenih pravil, in sicer
 
 Opisana pravila z predpono \texttt{BY}, vedno na nek način spremenijo ponavljanje dogodka. Število dni lahko ta pravila omejijo, kot v primeru \texttt{FREQ=DAILY;BYMONTH=1}, kjer je dnevno ponavljanje omeji samo na mesec januar. Lahko pa jih tudi razširijo, kot v primeru \texttt{FREQ=YEARLY;BYMONTH=1,2}, kjer je enkratno letno ponavljanje razširjeno na ponovitev vsak januar in februar, vsako leto.
 
-Če je v pravilu ponavljanja uporabljenih več pravil z predpono \texttt{BY}, se ta obravnavajo v vrstnem redu \texttt{FREQ}, \texttt{INTERVAL}, \texttt{BYMONTH}, \texttt{BYWEEKNO}, \texttt{BYYEARDAY}, \texttt{BYMONTHDAY}, \texttt{BYDAY}, \texttt{BYHOUR}, \texttt{BYMINUTE}, \texttt{BYSECOND}, \texttt{BYSETPOS}, \texttt{COUNT} in \texttt{UNTIL}.
-
-Tabela \ref{table:rrule-behavior} opisuje vse izjeme, ki jih lahko povzročijo pravila z predpono \texttt{BY}.
-
 \begin{table}
 \footnotesize
 \scalebox{0.85}{
@@ -277,6 +287,10 @@ Tabela \ref{table:rrule-behavior} opisuje vse izjeme, ki jih lahko povzročijo p
 \label{table:rrule-behavior}
 \end{table}
 
+Če je v pravilu ponavljanja uporabljenih več pravil z predpono \texttt{BY}, se ta obravnavajo v vrstnem redu \texttt{FREQ}, \texttt{INTERVAL}, \texttt{BYMONTH}, \texttt{BYWEEKNO}, \texttt{BYYEARDAY}, \texttt{BYMONTHDAY}, \texttt{BYDAY}, \texttt{BYHOUR}, \texttt{BYMINUTE}, \texttt{BYSECOND}, \texttt{BYSETPOS}, \texttt{COUNT} in \texttt{UNTIL}.
+
+Tabela \ref{table:rrule-behavior} opisuje vse izjeme, ki jih lahko povzročijo pravila z predpono \texttt{BY}.
+
 %-----
 \section{Omejitve}
 
@@ -289,12 +303,6 @@ Predno se lotimo izbora primerne metode postavimo nekaj omejitev:
   \item Mora biti odporna na spremembe pri nadgradnjah platforme.
   \item Biti cenovno ugodna.
 \end{enumerate}
-
-Izbrano rešitev želimo prikazati na primeru aplikacije, ki prikazuje ponavaljajoče dogodke s pomočjo standarda iCalendar \cite{rfc5545}. Kot omenjeno, se bomo zaradi poenostavitve osredotočili zgolj na del RRULE, ki definira pravila za ponavljanje dogodka.
-
-Ponavljajoče dogodke bo aplikacija prikazala v preprostem seznamu, ki bo prilagojen za vsako od izbranih platform.
-
-// TODO slika iOS seznama z vsemi podatki ki bodo prikazani
 
 %-----
 \section{Izbor primerne metode}
@@ -309,7 +317,7 @@ Izbor primerne metode lahko začnemo s pregledom popularnih vprašanj na spletni
 
 Vse omejitve omenjene v prejšnjem poglavju so predstavljene v tabeli \ref{table:omejitve}. Prazne vrstice pri ``grafični skladnosti'' za Lua, Haxe, C++ in JavaScript so posledica nezmožnosti zadoščanja te omejitve, niso pa ovira, saj mora v tem primeru za grafično skladnost poskrbeti domorodna koda, ki ni napisana v omenjenih jezikih.
 
-Iz tabele \ref{table:omejitve} je lepo razvidno, da le rešitev C++ zadošča vsem naštetim omejitvam. Poglejmo si torej kako lahko izbrano rešitev pripravimo s pomočjo jezika C++, ter kako lahko nato isto rešitev uporabimo tudi v aplikaciji, ki teče spletnem brskalniku, s pomočjo ogrodja Emscripten.
+Iz tabele \ref{table:omejitve} je lepo razvidno, da le rešitev C++ zadošča vsem naštetim omejitvam. Namesto razvoja medplatformne aplikacije, se bomo rajši odločili za razvoj medplatformne knjižnice, ki jo bomo nato vključili v domorodne aplikacije s pomočjo jezikovnih ovojev.
 
 \begin{table}
 \footnotesize
@@ -358,15 +366,13 @@ Pri vseh naštetih načinih je potrebna dodatna ovojna koda (\eng{wrapper}), ki 
 
 Celotna izvorna koda knjižnice (skupaj z jezikovnimi oviji) je na voljo na spletni strani \href{https://github.com/mihahribar/thesis}{github.com/mihahribar/thesis}. Zaradi zagotavljanja kakovosti (\eng{quality assurance}) sem se pri razvoju knjižnice držal praks testno usmerjenega razvoja \gls{tdd} \cite{tdd-cpp}. Za implementacijo testov sem uporabil izvrstni knjižnici \texttt{googletest}\cite{googletest} in \texttt{googlemock}\cite{googlemock}, s testi pa mi je uspelo pokriti več kot 90\% vse kode (\eng{code coverage}), kar sem preveril s pomočjo programa \texttt{gcov}.
 
-Za potrebe zvezne integracije (\eng{continuous integration}) sem uporabil Travis \gls{ci} \cite{travisci}, ki je za odprtokodne projekte na voljo brezplačno. Vse kar je bilo potrebno storiti, da je Travis CI lahko uspešno testiral izvorno kodo naše knjižnice, je bilo dodati datoteko \texttt{.travis.yml} z vsebino \texttt{script:make tests}. To na strežniku za zvezno integracijo sproži prenos in pripravo knjižnic \texttt{googletest} in \texttt{googlemock}, prevede vse potrebne datoteke, ki vsebujejo izvorno kodo, ter zgradi testni program, ki zažene vse naše testne primere.
-
 \begin{figure}
  \includegraphics[width=\linewidth]{cpp-tests}
  \caption{Zaslonska slika testov C++ knjižnice.}
  \label{fig:cpp-tests}
 \end{figure}
 
-Primer uporabe knjižnjice RRULE RFC 5545 lahko vidimo v primeru \ref{code:cpp-primer}. Razred \texttt{Date} vsebuje vso potrebno logiko za delo z datumi, kot so naprimer prištevanje, odštevanje ter primerjanje datumov. Razred \texttt{Recurrence} vsebuje logiko za ponavljanje dogodkov. Tip dogodka, ki se ponavlja, je poljuben in ni del knjižnjice.
+Za potrebe zvezne integracije (\eng{continuous integration}) sem uporabil Travis \gls{ci} \cite{travisci}, ki je za odprtokodne projekte na voljo brezplačno. Vse kar je bilo potrebno storiti, da je Travis CI lahko uspešno testiral izvorno kodo naše knjižnice, je bilo dodati datoteko \texttt{.travis.yml} z vsebino \texttt{script:make tests}. To na strežniku za zvezno integracijo sproži prenos in pripravo knjižnic \texttt{googletest} in \texttt{googlemock}, prevede vse potrebne datoteke, ki vsebujejo izvorno kodo, ter zgradi testni program, ki zažene vse naše testne primere.
 
 \begin{lstlisting}[caption={Primer uporabe C++ knjižnjice RRULE standarda RFC 5545. Izbrani dogodek bi se s tem pravilom ponavljal tedensko, vsak ponedeljek, od 1. januarja 2014 naprej.}, label=code:cpp-primer, language=C++]
 Recurrence rec = Recurrence(Weekly, Date(2014, 1, 1));
@@ -379,6 +385,8 @@ map<int, Date> days = rec.daysInRange(Date(2014, 2, 1), Date(2014, 2, 28));
 // result[8] = Date(2014, 2, 24);
 \end{lstlisting}
 
+Primer uporabe knjižnjice RRULE RFC 5545 lahko vidimo v primeru \ref{code:cpp-primer}. Razred \texttt{Date} vsebuje vso potrebno logiko za delo z datumi, kot so naprimer prištevanje, odštevanje ter primerjanje datumov. Razred \texttt{Recurrence} vsebuje logiko za ponavljanje dogodkov. Tip dogodka, ki se ponavlja, je poljuben in ni del knjižnjice.
+
 %==============================
 \chapter[Vključitev knjižnice v različne platforme]{Vključitev knjižnice v \\ različne platforme}
 \label{chap:cross-platform}
@@ -386,7 +394,7 @@ map<int, Date> days = rec.daysInRange(Date(2014, 2, 1), Date(2014, 2, 28));
 %-----
 \section{iOS}
 
-Platforma iOS primarno uporablja jezik Objective-C, ki je, kot ime namiguje, objektna razširitev jezika C. Na srečo obstaja tudi variacija Objective-C++, ki nam omogoča souporabo jezikov Objective-C in C++ v istem projektu. Datoteki, v kateri želimo uporabljati C++, namesto končnice \texttt{.m} pripnemo končnico \texttt{.mm}.
+Platforma iOS primarno uporablja jezik Objective-C, ki je objektna razširitev jezika C. Na srečo obstaja tudi variacija Objective-C++, ki nam omogoča souporabo jezikov Objective-C in C++ v istem projektu. Datoteki, v kateri želimo uporabljati C++, namesto končnice \texttt{.m} pripnemo končnico \texttt{.mm}.
 
 iOS ne podpira uporabe deljene knjižnice (\eng{shared library}), omogoča pa uporabo statične knjižnice (\eng{static library}) ali izvorne kode. Za prvi primer izberimo uvoz izvorne kode.
 
@@ -608,11 +616,15 @@ date.addMonths(1);
 console.log(date.toString());
 \end{lstlisting}
 
+
+%==============================
+\chapter{Evaluacija}
+\label{chap:evaluation}
+
 %-----
 \section{Pregled prednosti, slabosti, priložnosti in nevarnosti}
 
 Pred zaključnimi ugotovitvami, si poglejmo prednosti, slabosti, priložnosti in nevarnosti (t.i \gls{swot} analiza) izbrane metode.
-
 
 \subsection{Prednosti}
 
@@ -631,6 +643,8 @@ Pred zaključnimi ugotovitvami, si poglejmo prednosti, slabosti, priložnosti in
   \item Uporabniški vmesnik je potrebno razviti za vsako platformo posebej.
   \item V aplikacije se lahko še vedno prikradejo napake v uporabniškem vmesniku, ki jih moramo vseeno reševati za vsako platformo posebej.
   \item Potrebno predhodno znanje več različnih jezikov (C++, Java, C\#, Objective-C in JavaScript).
+  \item Za razvoj iOS aplikacije je potrebno kupiti Apple računalnik.
+  \item Za razvoj Windows Phone aplikacije je potrebno kupiti licenčno kopijo operacijskega sistema Windows 8.1, ki je pogoj za uporabo brezplačnega orodja Visual Studio Express for Windows\cite{visual-studio-express}.
 \end{itemize}
 
 \subsection{Priložnosti}
@@ -646,3 +660,6 @@ Pred zaključnimi ugotovitvami, si poglejmo prednosti, slabosti, priložnosti in
   \item Dolgotrajen razvoj, predvsem na začetku, dokler nimamo pripravljenih osnovnih jezikovnih ovojev.
   \item Težko spreminjanje knjižnice, možno le dodajanje novih metod zaradi združljivosti s starejšimi verzijami.
 \end{itemize}
+
+%-----
+\section{Performančna analiza}

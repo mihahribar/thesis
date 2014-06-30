@@ -42,6 +42,25 @@
   morestring=[b]"
 }
 
+% Lua listing
+\definecolor{darkgreen}{rgb}{0.3,0.5,0.3}
+\definecolor{darkblue}{rgb}{0.3,0.3,0.5}
+\definecolor{darkred}{rgb}{0.5,0.3,0.3}
+\lstdefinelanguage{LUA}{%
+  sensitive=true,%
+  columns=fixed,%
+  keywordstyle=[1]{\color{darkblue}\bfseries},%
+  keywordstyle=[2]{\color{darkgreen}\bfseries},%
+  morekeywords=[1]{local,if,then,else,end,while,do, coroutine,yield},% Official LUA keywords
+  morekeywords=[2]{SMA_Handle, Controller, handle, Output, FindFile},% Your private keywords
+  otherkeywords={.,=,~,*,>,:},%
+  morestring=[b]",%
+  stringstyle={\color{darkred}\itshape},%
+  breaklines=true,%
+  linewidth=\textwidth,%
+  comment=[l]{--}%
+ }
+
 \usepackage{amssymb}% http://ctan.org/pkg/amssymb
 \usepackage{pifont}% http://ctan.org/pkg/pifont
 \newcommand{\cmark}{\ding{51}}%
@@ -64,8 +83,8 @@
 \title[LaTeX predloga][LaTeX thesis class]
       {Razvoj medplatformne knjižnice za uporabo v mobilnih in spletnih aplikacijah}{Developing a cross platform library for use in mobile and web applications}
 \author{Miha Hribar}{63010042}
-\advisor{Dejan Lavbič}
-        {Dejana Lavbiča}
+\advisor{doc. dr. Dejan Lavbič}
+        {doc. dr. Dejana Lavbiča}
 \keywords{medplatformna knjižnica, iOS, Android, Windows Phone, JavaScript, Emscripten, LLVM}
          {cross platform library, iOS, Android, Windows Phone, JavaScript, Emscripten, LLVM}
 
