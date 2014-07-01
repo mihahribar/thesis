@@ -197,7 +197,13 @@ Težji del je vgraditev pogona JavaScript na vsako od platform. Dokler ne bo na 
 %-----
 \section{Uvod}
 
-Izbor primerne metode si bomo pogledali na primeru razvoja koledarske aplikacije, ki bo tekla na platformah iOS, Android, Windows Phone in tudi v spletni aplikaciji. V aplikaciji bo uporabik lahko dodal koledarski dogodek, kateremu bo možno nastaviti različne frekvence ponavljanj, intervale in izjeme. Aplikacija bo nato za določen datumski interval prikazala vnešeni dogodek v preprostem seznamu.
+Izbor primerne metode si bomo pogledali na primeru razvoja koledarske aplikacije, ki bo tekla na platformah iOS, Android, Windows Phone in tudi v spletni aplikaciji. V aplikaciji bo uporabik lahko dodal koledarski dogodek, kateremu bo možno nastaviti različne frekvence ponavljanj, intervale in izjeme. Aplikacija bo nato za določen datumski interval prikazala vnešeni dogodek v preprostem seznamu (slika \ref{fig:app-ios}).
+
+\begin{figure}
+ \includegraphics[width=\linewidth]{app-ios}
+ \caption{Zaslonska slika dveh delov preproste koledarske aplikacije.}
+ \label{fig:app-ios}
+\end{figure}
 
 Vnešeni dogodek bo uporabnik aplikacije lahko delil z ostalimi preko e-mail sporočila, ki bo vseboval format iCalendar, opisan v specifikaciji RFC 5545\cite{rfc5545}, ki si ga bomo podrobneje ogledali v naslednjem poglavju.
 
@@ -214,7 +220,7 @@ Specifikacija RFC 5545\cite{rfc5545} opisuje format iCalendar, ki se uporablja z
   \item Pravila za ponavaljanje dogodka
 \end{itemize}
 
-Zaradi obsežnosti specifikacije, se bomo v diplomski nalogi osredotočili zgolj na pravila za ponavljanje dogodkov \cite{rrule}. Za predstavo si najprej poglejmo primer \ref{code:rrule}. Če ga prevedemo v človeku prijazno obliko, bi to pomenilo ``vsako nedeljo v januarju, ob 8:30 zjutraj in 9:30 zjutraj, vsako drugo leto''.
+Zaradi obsežnosti specifikacije, se bomo v diplomski nalogi osredotočili zgolj na pravila za ponavljanje dogodkov \cite{rrule}. Če primer \ref{code:rrule} prevedemo v človeku prijazno obliko, bi to pomenilo ``vsako nedeljo v januarju, ob 8:30 zjutraj in 9:30 zjutraj, vsako drugo leto''.
 
 \begin{lstlisting}[caption=Primer uporabe pravila RRULE spefikiacije RFC 5545., label=code:rrule]
 FREQ=YEARLY;INTERVAL=2;BYMONTH=1;BYDAY=SU;BYHOUR=8,9;BYMINUTE=30

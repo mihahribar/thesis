@@ -12,6 +12,7 @@
 		11406EBD18C777B50046CAF2 /* ThesisRecurrence.mm in Sources */ = {isa = PBXBuildFile; fileRef = 11406EBC18C777B50046CAF2 /* ThesisRecurrence.mm */; };
 		11406EBE18C777B50046CAF2 /* ThesisRecurrence.mm in Sources */ = {isa = PBXBuildFile; fileRef = 11406EBC18C777B50046CAF2 /* ThesisRecurrence.mm */; };
 		11406EC018C77E290046CAF2 /* RecurrenceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 11406EBF18C77E290046CAF2 /* RecurrenceTests.m */; };
+		114AB391196318F400D2BB5C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114AB390196318F400D2BB5C /* MessageUI.framework */; };
 		1168094C18CE72D60097807A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11FD1CF518606ED900CFB531 /* Main.storyboard */; };
 		1169BB6D186086920079B329 /* Date.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1169BB69186086920079B329 /* Date.cpp */; };
 		1169BB73186087A20079B329 /* ThesisDate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1169BB72186087A20079B329 /* ThesisDate.mm */; };
@@ -48,6 +49,7 @@
 		11406EB818C776620046CAF2 /* ThesisRecurrence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThesisRecurrence.h; sourceTree = "<group>"; };
 		11406EBC18C777B50046CAF2 /* ThesisRecurrence.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ThesisRecurrence.mm; sourceTree = "<group>"; };
 		11406EBF18C77E290046CAF2 /* RecurrenceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecurrenceTests.m; sourceTree = "<group>"; };
+		114AB390196318F400D2BB5C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		1169BB69186086920079B329 /* Date.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Date.cpp; path = ../../../src/Date.cpp; sourceTree = "<group>"; };
 		1169BB6A186086920079B329 /* Date.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Date.hpp; path = ../../../src/Date.hpp; sourceTree = "<group>"; };
 		1169BB6F186086C80079B329 /* ThesisDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThesisDate.h; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				114AB391196318F400D2BB5C /* MessageUI.framework in Frameworks */,
 				11FD1CE618606ED900CFB531 /* CoreGraphics.framework in Frameworks */,
 				11FD1CE818606ED900CFB531 /* UIKit.framework in Frameworks */,
 				11FD1CE418606ED900CFB531 /* Foundation.framework in Frameworks */,
@@ -119,6 +122,7 @@
 		11FD1CE218606ED900CFB531 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				114AB390196318F400D2BB5C /* MessageUI.framework */,
 				11FD1CE318606ED900CFB531 /* Foundation.framework */,
 				11FD1CE518606ED900CFB531 /* CoreGraphics.framework */,
 				11FD1CE718606ED900CFB531 /* UIKit.framework */,

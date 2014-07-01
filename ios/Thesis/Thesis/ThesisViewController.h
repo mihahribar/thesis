@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
 
-@interface ThesisViewController : UIViewController
+@interface ThesisViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate>
 
 - (IBAction)checkForMemoryLeaks;
+
+@property (nonatomic, retain) NSDictionary *dates;
+@property (nonatomic, retain) NSArray *iterations;
 
 @end
