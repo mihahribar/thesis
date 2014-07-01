@@ -270,7 +270,7 @@ Pravila lahko v nekaterih situacijah povzročijo ponovitev dogodka na neobstoje�
 
 Začetni datum ponavljanja dogodka je definiran izven omenjenih pravil, in sicer v delu \texttt{DTSTART}. Datum prve ponovitve dogodka je vedno isti začetnemu datumu, ne glede na to, če je ta dan smiselen glede na opisana pravila ponavljanja.
 
-Opisana pravila z predpono \texttt{BY}, vedno na nek način spremenijo ponavljanje dogodka. Število dni lahko ta pravila omejijo, kot v primeru \texttt{FREQ=DAILY;BYMONTH=1}, kjer je dnevno ponavljanje omeji samo na mesec januar. Lahko pa jih tudi razširijo, kot v primeru \texttt{FREQ=YEARLY;BYMONTH=1,2}, kjer je enkratno letno ponavljanje razširjeno na ponovitev vsak januar in februar, vsako leto.
+Opisana pravila s predpono \texttt{BY}, vedno na nek način spremenijo ponavljanje dogodka. Število dni lahko ta pravila omejijo, kot v primeru \texttt{FREQ=DAILY;BYMONTH=1}, kjer je dnevno ponavljanje omeji samo na mesec januar. Lahko pa jih tudi razširijo, kot v primeru \texttt{FREQ=YEARLY;BYMONTH=1,2}, kjer je enkratno letno ponavljanje razširjeno na ponovitev vsak januar in februar, vsako leto.
 
 \begin{table}
 \footnotesize
@@ -294,9 +294,9 @@ Opisana pravila z predpono \texttt{BY}, vedno na nek način spremenijo ponavljan
 \label{table:rrule-behavior}
 \end{table}
 
-Če je v pravilu ponavljanja uporabljenih več pravil z predpono \texttt{BY}, se ta obravnavajo v vrstnem redu \texttt{FREQ}, \texttt{INTERVAL}, \texttt{BYMONTH}, \texttt{BYWEEKNO}, \texttt{BYYEARDAY}, \texttt{BYMONTHDAY}, \texttt{BYDAY}, \texttt{BYHOUR}, \texttt{BYMINUTE}, \texttt{BYSECOND}, \texttt{BYSETPOS}, \texttt{COUNT} in \texttt{UNTIL}.
+Če je v pravilu ponavljanja uporabljenih več pravil s predpono \texttt{BY}, se ta obravnavajo v vrstnem redu \texttt{FREQ}, \texttt{INTERVAL}, \texttt{BYMONTH}, \texttt{BYWEEKNO}, \texttt{BYYEARDAY}, \texttt{BYMONTHDAY}, \texttt{BYDAY}, \texttt{BYHOUR}, \texttt{BYMINUTE}, \texttt{BYSECOND}, \texttt{BYSETPOS}, \texttt{COUNT} in \texttt{UNTIL}.
 
-Tabela \ref{table:rrule-behavior} opisuje vse izjeme, ki jih lahko povzročijo pravila z predpono \texttt{BY}.
+Tabela \ref{table:rrule-behavior} opisuje vse izjeme, ki jih lahko povzročijo pravila s predpono \texttt{BY}.
 
 %-----
 \section{Omejitve}
@@ -371,7 +371,7 @@ Razvito knjižnico lahko v platformske aplikacije vključimo na več različnih 
 
 Pri vseh naštetih načinih je potrebna dodatna ovojna koda (\eng{wrapper}), ki je različna za vsako destinacijsko platformo. Detajle teh ovojev si bomo ogledali v poglavju \ref{chap:cross-platform}.
 
-Celotna izvorna koda knjižnice (skupaj z jezikovnimi oviji) je na voljo na spletni strani \href{https://github.com/mihahribar/thesis}{github.com/mihahribar/thesis}. Zaradi zagotavljanja kakovosti (\eng{quality assurance}) sem se pri razvoju knjižnice držal praks testno usmerjenega razvoja \gls{tdd} \cite{tdd-cpp}. Za implementacijo testov sem uporabil izvrstni knjižnici \texttt{googletest}\cite{googletest} in \texttt{googlemock}\cite{googlemock}, s testi pa mi je uspelo pokriti več kot 90\% vse kode (\eng{code coverage}), kar sem preveril s pomočjo programa \texttt{gcov}.
+Celotna izvorna koda knjižnice (skupaj z jezikovnimi oviji) je na voljo na spletni strani \href{https://github.com/mihahribar/thesis}{github.com/mihahribar/thesis}. Zaradi zagotavljanja kakovosti (\eng{quality assurance}) je bila knjižnica razvita s testno usmerjenim razvojem \gls{tdd} \cite{tdd-cpp}. Za implementacijo testov sta bili uporabljeni izvrstni knjižnici \texttt{googletest}\cite{googletest} in \texttt{googlemock}\cite{googlemock}, knjižnica pa se lahko pohvali z več kot 90\% testno pokritostjo kode (\eng{code coverage}), kar je moč preveriti s pomočjo programa \texttt{gcov}.
 
 \begin{figure}
  \includegraphics[width=\linewidth]{cpp-tests}
@@ -379,7 +379,7 @@ Celotna izvorna koda knjižnice (skupaj z jezikovnimi oviji) je na voljo na sple
  \label{fig:cpp-tests}
 \end{figure}
 
-Za potrebe zvezne integracije (\eng{continuous integration}) sem uporabil Travis \gls{ci} \cite{travisci}, ki je za odprtokodne projekte na voljo brezplačno. Vse kar je bilo potrebno storiti, da je Travis CI lahko uspešno testiral izvorno kodo naše knjižnice, je bilo dodati datoteko \texttt{.travis.yml} z vsebino \texttt{script:make tests}. To na strežniku za zvezno integracijo sproži prenos in pripravo knjižnic \texttt{googletest} in \texttt{googlemock}, prevede vse potrebne datoteke, ki vsebujejo izvorno kodo, ter zgradi testni program, ki zažene vse naše testne primere.
+Za potrebe zvezne integracije (\eng{continuous integration}) projekt uporablja storitev Travis \gls{ci} \cite{travisci}, ki za odprtokodne projekte nudi brezplačno avtomatizirano testiranje. Vse kar je potrebno storiti, da Travis CI lahko testira izvorno kodo knjižnice, je zapisano v datoteki \texttt{.travis.yml}. Ta vsebuje ukaz za zagon testov knjižnice (v našem primeru \texttt{make tests}), kar na strežniku za zvezno integracijo sproži prenos in pripravo knjižnic \texttt{googletest} in \texttt{googlemock}, prevede vse potrebne datoteke z izvorno izvorno kodo, ter zgradi testni program, ki zažene vse naše testne primere.
 
 \begin{lstlisting}[caption={Primer uporabe C++ knjižnjice RRULE standarda RFC 5545. Izbrani dogodek bi se s tem pravilom ponavljal tedensko, vsak ponedeljek, od 1. januarja 2014 naprej.}, label=code:cpp-primer, language=C++]
 Recurrence rec = Recurrence(Weekly, Date(2014, 1, 1));
