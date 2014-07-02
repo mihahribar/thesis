@@ -25,6 +25,7 @@
 \newglossaryentry{ci}{name=CI, description={\eng{Continuous integration}; zvezna integracija}}
 \newglossaryentry{swot}{name=SWOT, description={\eng{Strengths, Weaknesses, Opportunities, and Threats}; analiza prednosti, slabosti, priložnosti in nevarnosti}}
 \newglossaryentry{sdk}{name=SDK, description={\eng{Software development kit}; paket za razvoj programske opreme}}
+\newglossaryentry{jit}{name=JIT, description={\eng{Just-in-time compilation}; tehnika, znana tudi pod imenom dinamično prevajanje, kjer se prevod ne zgodi pred zagonom programa, ampak ravno pred}}
 
 
 %==============================
@@ -459,7 +460,7 @@ Za izdelavo ovoja C++ kode moramo uporabiti dve ogrodji:
   \item \gls{ndk} (\eng{Native Development Kit}), ki poskrbi za pravilno prevajanje C++ kode za vsako od ciljnih arhitektur Android platforme (armeabi, armeabi-v7a, x86 in mips).
 \end{enumerate}
 
-Uporaba orodja JNI je za razvijalca kar časovno potratna. Ovoj je potrebno napisati v dveh delih:
+Uporaba ogrodja \gls{jni}\cite{jni-docs} je za razvijalca časovno kar potratna. Ovoj je potrebno napisati v dveh delih:
 
 \begin{enumerate}
   \item Java ovoj, ki izpostavi C++ razrede in metode s pomočjo direktive \texttt{native} (glej primer \ref{code:android-java-wrapper}).
@@ -670,3 +671,25 @@ Pred zaključnimi ugotovitvami, si poglejmo prednosti, slabosti, priložnosti in
 
 %-----
 \section{Performančna analiza}
+
+Poglejmo si performančno analizo vsakega od ovojev. Zaradi kompleksnosti knjižnice, bomo za testiranje performanc uporabili domorodno in C++ implementacijo algoritma za računanje Fibonaccijevega zaporedja. Testiranje posameznih ovojev smo opravili na mobilnih napravh, saj smo le tako lahko prepričani v rezultate testiranj.
+
+\begin{equation}
+\label{eq:fibonacci}
+    f(n) = \begin{cases}
+               0               & n = 0\\
+               1               & n = 1\\
+               f(n-1) + f(n-2) & \text{drugače}
+           \end{cases}
+\end{equation}
+
+\subsection{Objective-C ovoj}
+
+Testiranje Objective-C ovoja smo opravili na napravi iPhone 5S.
+
+\subsection{Java ovoj}
+
+Za Java ovoj smo uporabili ogrodje \gls{jni}, ki nam omogoča premoščanje razlik v jezikih C++ in Java.
+
+
+
