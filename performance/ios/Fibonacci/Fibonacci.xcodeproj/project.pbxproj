@@ -21,6 +21,8 @@
 		11A5EFAB1964070E00884A0E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11A5EF8D1964070E00884A0E /* UIKit.framework */; };
 		11A5EFB31964070E00884A0E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 11A5EFB11964070E00884A0E /* InfoPlist.strings */; };
 		11A5EFB51964070E00884A0E /* FibonacciTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 11A5EFB41964070E00884A0E /* FibonacciTests.m */; };
+		11A5EFC219640FE500884A0E /* fibonacci.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 11A5EFBE19640FE500884A0E /* fibonacci.cpp */; };
+		11A5EFC319640FE500884A0E /* fibonacci.mm in Sources */ = {isa = PBXBuildFile; fileRef = 11A5EFC119640FE500884A0E /* fibonacci.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,10 @@
 		11A5EFB01964070E00884A0E /* FibonacciTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FibonacciTests-Info.plist"; sourceTree = "<group>"; };
 		11A5EFB21964070E00884A0E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		11A5EFB41964070E00884A0E /* FibonacciTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FibonacciTests.m; sourceTree = "<group>"; };
+		11A5EFBE19640FE500884A0E /* fibonacci.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = fibonacci.cpp; sourceTree = "<group>"; };
+		11A5EFBF19640FE500884A0E /* fibonacci.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fibonacci.h; sourceTree = "<group>"; };
+		11A5EFC019640FE500884A0E /* fibonacci.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = fibonacci.hpp; sourceTree = "<group>"; };
+		11A5EFC119640FE500884A0E /* fibonacci.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = fibonacci.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +118,10 @@
 		11A5EF8F1964070E00884A0E /* Fibonacci */ = {
 			isa = PBXGroup;
 			children = (
+				11A5EFBE19640FE500884A0E /* fibonacci.cpp */,
+				11A5EFBF19640FE500884A0E /* fibonacci.h */,
+				11A5EFC019640FE500884A0E /* fibonacci.hpp */,
+				11A5EFC119640FE500884A0E /* fibonacci.mm */,
 				11A5EF981964070E00884A0E /* ThesisAppDelegate.h */,
 				11A5EF991964070E00884A0E /* ThesisAppDelegate.m */,
 				11A5EF9B1964070E00884A0E /* Main.storyboard */,
@@ -250,9 +260,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11A5EFC219640FE500884A0E /* fibonacci.cpp in Sources */,
 				11A5EFA01964070E00884A0E /* ThesisViewController.m in Sources */,
 				11A5EF9A1964070E00884A0E /* ThesisAppDelegate.m in Sources */,
 				11A5EF961964070E00884A0E /* main.m in Sources */,
+				11A5EFC319640FE500884A0E /* fibonacci.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

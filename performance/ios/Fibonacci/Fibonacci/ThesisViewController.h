@@ -10,4 +10,7 @@
 
 @interface ThesisViewController : UIViewController
 
+- (IBAction)runNative;
+- (IBAction)runWrapper;
+
 @end
