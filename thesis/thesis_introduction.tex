@@ -2,7 +2,7 @@
 \graphicspath{{img/}}
 
 
-\newglossaryentry{rfc}{name=RFC, description={\eng{Request For Comment}; publikacija IEFT (Internet Engineering Task Force) v kateri so predstavljeni standardi}}
+\newglossaryentry{rfc}{name=RFC, description={\eng{Request For Comment}; publikacija IEFT (Internet Engineering Task Force), v kateri so predstavljeni standardi}}
 
 
 
@@ -14,9 +14,9 @@
 %-----
 Dandanes uporabljamo več različnih naprav sočasno. V lasti imamo najverjetneje prenosni računalnik, pametni telefon in po možnosti še tablični računalnik. Ko najdemo aplikacijo, ki nam je všeč, od te pričakujemo brezhibno delovanje na vseh naših napravah.
 
-To je seveda zelo težko doseči, sploh z majhno ekipo. Dodatno se stvari zakomplicirajo, če so vse te naprave na različnih operacijskih sistemih. Tako imamo lahko Windows prenosnik, Android\footnote{Operacijski sistem, razvit pri podjetju Google, namenjen uporabi na mobilnih napravah.} telefon in Apple tablico. Zahteven uporabnik na tem mestu pričakuje, da je izbrana aplikacija na voljo na vse naštetih platformah in da na vseh platformah deluje identično.
+Z razvijalskega vidika je taka pričakovanja uporabnikov zelo težko uresničiti, še posebej če pri razvoju sodeluje zelo malo ljudi. Dodatno se stvari zapletejo, če vse te naprave uporabljajo različne operacijske sisteme. Tako imamo lahko Windows prenosnik, Android\footnote{Operacijski sistem, razvit pri podjetju Google, namenjen uporabi na mobilnih napravah.} telefon in Apple tablico. Zahteven uporabnik na tem mestu pričakuje, da je izbrana aplikacija na voljo na vse naštetih platformah in da na vseh platformah deluje identično.
 
-Za razvijalca smo ravnokar opisali nočno moro. Da zadovolji potrebe uporabnikov, je primoran razviti isto aplikacijo za vsako od platform. Četudi omejimo razvoj na najbolj razširjene platforme iOS\footnote{Mobilni opracijski sistem razvit pri podjetju Apple. Najdemo ga na napravah iPhone, iPad in iPod.}, Android in Windows Phone\footnote{Mobilni operacijski sistem razvit pri podjetju Microsoft.} (s čimer pokrijemo več kot 98\% vseh mobilnih naprav, kot je razvidno iz tabele \ref{table:prodaja-mobilnih-naprav}), smo ravnokar našteli tri povsem različne tehnologije, tri različne jezike in s tem tri priložnosti za povsem različne težave pri implementaciji naše aplikacije. Veliko truda in energije je potrebno, da so te aplikacije poenotene in da skladno sledijo razvoju novih funckionalnosti.
+Za razvijalca smo ravnokar opisali nočno moro. Da zadovolji potrebe uporabnikov, je primoran razviti isto aplikacijo za vsako platformo posebej. Četudi omejimo razvoj na najbolj razširjene platforme (iOS\footnote{Mobilni operacijski sistem, razvit pri podjetju Apple. Najdemo ga na napravah iPhone, iPad in iPod.}, Android in Windows Phone\footnote{Mobilni operacijski sistem, razvit pri podjetju Microsoft.}), s čimer pokrijemo več kot 98\% vseh mobilnih naprav, kot je razvidno iz tabele \ref{table:prodaja-mobilnih-naprav}, smo ravnokar našteli tri povsem različne tehnologije, tri različne jezike in s tem tri priložnosti za povsem različne težave pri implementaciji naše aplikacije. Veliko truda in energije je potrebno, da so te aplikacije poenotene in da skladno sledijo razvoju novih funkcionalnosti.
 
 \begin{table}
 \begin{tabular}{ l | r | r | r | r }
@@ -32,14 +32,14 @@ Za razvijalca smo ravnokar opisali nočno moro. Da zadovolji potrebe uporabnikov
   Skupaj		& 967.775,8 & 100  & 680.108,2 & 100  \\
   \hline
 \end{tabular}
-\caption{Razpredelnica svetovne prodaje pametnih telefonov v letih 2013 in 2012 glede na mobilni operacijski sistem (v tisočih). Opazimo lahko hud padec prodaje BlackBerry naprav. \cite{gartner-mobile-numbers}.}
+\caption{Razpredelnica svetovne prodaje pametnih telefonov v letih 2013 in 2012 glede na mobilni operacijski sistem (v tisočih). Opazimo lahko hud padec prodaje naprav BlackBerry. \cite{gartner-mobile-numbers}.}
 \label{table:prodaja-mobilnih-naprav}
 \end{table}
 
-Izkušen razvijalec bo pri predstavitvi problema takoj pomislil na medplatformni razvoj, ki si ga bomo ogledali v drugem poglavju. Omenili bomo tako imenovane ``celotive'' metode, kot so Qt\cite{qt} in Xamarin\cite{xamarin}, ``hibridne'' kot sta recimo PhoneGap\cite{phonegap} in Appcelerator Titanium\cite{titanium}, ter ``deljene'' metode npr. Lua\cite{lua}, Haxe\cite{haxe} in C++\cite{cpp}. Vsaka od omenjenih metod ima svoje prednosti in slabosti, izbor primerne pa je povsem odvisen od problema, ki ga želimo rešiti.
+Izkušen razvijalec bo pri predstavitvi problema takoj pomislil na medplatformni razvoj, ki si ga bomo ogledali v drugem poglavju. Omenili bomo tako imenovane ``celovite'' metode, kot so Qt\cite{qt} in Xamarin\cite{xamarin}, ``hibridne'', kot sta recimo PhoneGap\cite{phonegap} in Appcelerator Titanium\cite{titanium}, ter ``deljene'' metode npr. Lua\cite{lua}, Haxe\cite{haxe} in C++\cite{cpp}. Vsaka izmed omenjenih metod ima svoje prednosti in slabosti, izbor primerne pa je povsem odvisen od problema, ki ga želimo rešiti.
 
-Tretje poglavje bomo začeli s pregledom standarda \gls{rfc} 5545\cite{rfc5545}, zakaj ga sploh potrebujemo in katere probleme nam pomaga reševati. Nato bomo pregledali predhodno opisane metode, si ogledali zakaj smo se odločili za razvoj knjižnice s pomočjo jezika C++, ter jo tudi zgradili. Predstavili bomo glavne razrede in metode naše knjižnice, ter predstavili nekaj primerov uporabe.
+Tretje poglavje bomo začeli s pregledom standarda \gls{rfc} 5545\cite{rfc5545}, zakaj ga sploh potrebujemo in katere probleme nam pomaga reševati. Nato bomo pregledali predhodno opisane metode, si ogledali, zakaj smo se odločili za razvoj knjižnice s pomočjo jezika C++, ter jo tudi zgradili. Predstavili bomo glavne razrede in metode naše knjižnice ter predstavili nekaj primerov uporabe.
 
-V četrtem poglavju bomo pokazali, kako lahko knjižnjico s pomočjo jezikovnih ovojev (\eng{wrapper}) uspešno uporabimo v jezikih Objective-C (iOS), Java (Android) in C\# (Windows Phone). Predstavili bomo tudi način, kako lahko C++ knjižnico prevedemo v jezik JavaScript s pomočjo orodja Emscripten\cite{emscripten}, in knjižnico uporabili tudi v spletni aplikaciji.
+V četrtem poglavju bomo pokazali, kako lahko knjižnico s pomočjo jezikovnih ovojev (\eng{wrapper}) uspešno uporabimo v jezikih Objective-C (iOS), Java (Android) in C\# (Windows Phone). Predstavili bomo tudi način, kako lahko C++ knjižnico prevedemo v jezik JavaScript s pomočjo orodja Emscripten\cite{emscripten}, in knjižnico uporabili tudi v spletni aplikaciji.
 
-V zaključku bomo pretehtali, kako primeren je razvoj medplatformne knjižnice na predstavljen način, in če se morda obetajo novi načini, ki bi razvijalce rešili iz podobnih zagat.
+V zaključku bomo pretehtali, kako primeren je razvoj medplatformne knjižnice na predstavljen način in če se morda obetajo novi načini, ki bi razvijalce rešili iz podobnih zagat.
