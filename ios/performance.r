@@ -1,0 +1,18 @@
+daily <- c(0.000756, 0.003835, 0.007499, 0.014779, 0.022687)
+dailyp <- c(365, 1827, 3653, 7306, 10958)
+daily2 <- c(0.000399, 0.001897, 0.003579, 0.007074, 0.010961, 0.018644)
+daily2p <- c(183, 914, 1827, 3653, 5479, 9132)
+weekly <- c(0.000323, 0.001344, 0.002537, 0.005300, 0.007814, 0.023584)
+weeklyp <- c(105, 523, 1044, 2087, 3131, 9393)
+
+
+xrange <- range(0, 0.025)
+yrange <- range(0, 11000)
+plot(xrange, yrange, type="n", xlab="Čas izvajanja (s)", ylab="Število ponovitev")
+colors <- rainbow(3)
+linetype <- c(1,2,3)
+plotchar <- seq(18, 20, 1)
+lines(daily, dailyp, type="b", lwd=1.5, lty=linetype[1], col=colors[1], pch=plotchar[1])
+lines(daily2, daily2p, type="b", lwd=1.5, lty=linetype[2], col=colors[2], pch=plotchar[2])
+lines(weekly, weeklyp, type="b", lwd=1.5, lty=linetype[3], col=colors[3], pch=plotchar[3])
+legend(xrange[1], yrange[2], c("dnevno", "dnevno, interval", "pon, tor"), cex=0.8, col=colors, pch=plotchar, lty=linetype)
