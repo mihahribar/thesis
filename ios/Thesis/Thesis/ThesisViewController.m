@@ -128,4 +128,33 @@
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
+- (IBAction)runForPerformance
+{
+    NSMutableArray *durations = [[NSMutableArray alloc] init];
+    int count = 0;
+    for (int i = 0; i < 100; i++) {
+        NSTimeInterval start = [NSDate timeIntervalSinceReferenceDate];
+        // create a bunch of intermediary object for performance analysis
+        ThesisDate *date = [[ThesisDate alloc] initWithYear:2014 month:1 andDay:1];
+        ThesisRecurrence *recurrence = [[ThesisRecurrence alloc] initWithFrequency:kThesisFrequencyDaily andStartDay:date];
+        [recurrence setInterval:2];
+        ThesisDate *end = [[ThesisDate alloc] initWithYear:2064 month:1 andDay:1];
+        NSDictionary *results = [recurrence daysInRangeFrom:date to:end];
+        count = [results count];
+        NSTimeInterval duration = [NSDate timeIntervalSinceReferenceDate] - start;
+        [durations addObject:[NSNumber numberWithDouble:duration]];
+    }
+    NSLog(@"average %d %f", count, [self average:durations]);
+}
+
+- (double)average:(NSArray *)numbers
+{
+    // loop through an array of numbers and return the average
+    double sum = 0;
+    for (NSNumber *num in numbers) {
+        sum += [num doubleValue];
+    }
+    return sum/[numbers count];
+}
+
 @end

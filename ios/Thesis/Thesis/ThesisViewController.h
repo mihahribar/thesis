@@ -13,6 +13,7 @@
 @interface ThesisViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, MFMailComposeViewControllerDelegate>
 
 - (IBAction)checkForMemoryLeaks;
+- (IBAction)runForPerformance;
 
 @property (nonatomic, retain) NSDictionary *dates;
 @property (nonatomic, retain) NSArray *iterations;
