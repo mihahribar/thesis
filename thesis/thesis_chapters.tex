@@ -673,15 +673,21 @@ Pred zaključnimi ugotovitvami si poglejmo prednosti, slabosti, priložnosti in 
 %-----
 \section{Performančna analiza}
 
-\subsection{Objective-C in C++}
-
-Razlika v hitrosti izvajanja med kodo, napisano v jeziku C++, in Objective-C kodo je zanemarljiva, saj je Objective-C za platformo iOS domoroden jezik (\eng{native programming language}). To lahko preverimo z implementacijo algoritma za generiranje Fibonaccijevega zaporedja v jeziku C++ in Objective-C (slika \ref{fig:ios-performance}).
+Performančno knjižnica ni zahtevna, kar smo lahko preverili na izračunu približno 10000 ponovitev dogodkov z različnimi pravili ponavljanj. Rezultati so vidni na sliki \ref{fig:performance}, iz njih pa lahko sklepamo, da ima naša knjižnica zahtevnost \BigO{n}.
 
 \begin{figure}
- \includegraphics[width=\linewidth]{ios-performance}
- \caption{Primerjava hitrosti izvajanja C++ in Objective-C kode na napravi iPhone 5S.}
- \label{fig:ios-performance}
+ \includegraphics[width=\linewidth]{performance}
+ \caption{Rezultati performančne analize C++ knjižnice.}
+ \label{fig:performance}
 \end{figure}
+
+Kljub računski nezahtevnosti naše knjižnice si vseeno poglejmo kakšne posledice ima lahko vključitev C++ knjižnice v različne jezike, ki so v uporabi na izbranih platformah.
+
+\subsection{Objective-C in C++}
+
+Razlika v hitrosti izvajanja med kodo, napisano v jeziku C++, in Objective-C kodo je zanemarljiva, saj je Objective-C za platformo iOS domoroden jezik (\eng{native programming language}). Pri vključitvi C++ knjižnice v našo aplikacijo je moč zaznati malenkost višjo porabo pomnilnika (zaradi podvojenih objektov v C++ knjižnici), vendar za vse to poskrbimo v metodi \texttt{dealloc}, v kateri sprostimo pomnilnik.
+
+Z zagotovostjo lahko trdimo, da vključitev C++ knjižnice v Objective-C projekt ne bo imel večjega vpliva na hitrost izvajanja aplikacije.
 
 \subsection{Java in C++}
 
