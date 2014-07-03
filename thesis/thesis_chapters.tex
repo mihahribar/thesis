@@ -30,7 +30,7 @@
 
 
 %==============================
-\chapter[Pregled metod medplaformnega razvoja]{Pregled metod \\ medplaformnega razvoja}
+\chapter[Pregled metod medplatformnega razvoja]{Pregled metod \\ medplatformnega razvoja}
 \label{chap:overview}
 
 Preden postavimo omejitve razvoja naše aplikacije, si poglejmo različne metode medplatformnega razvoja in v katerih primerih jih je pametno uporabiti. Kot je pričakovati, jih je kar nekaj. Razdelili jih bomo v skupine celovitih, hibridnih in deljenih metod.
@@ -46,7 +46,7 @@ Qt\cite{qt} je ogrodje za grafično programiranje za več platform s pomočjo je
 
 Projekt Qt je povsem odprtokoden in dovoljuje uporabo v skladu z licencama \gls{gpl} v3\cite{gpl} in LGPL v2.1\cite{lgpl}, a če želite orodje uporabiti za razvoj mobilne aplikacije, boste morali za to odšteti 149\$ mesečno.
 
-Projekt so vrsto let uspešno razvijali v podjetju Nokia, kjer so ga uporabili kot glavno orodje za razvoj aplikacij na platformi Symbian. Ko je pred časom Microsoft kupil podjetje Nokia, je projekt prevzela novonastala organizacija Qt Project, ki projekt vodi še danes.
+Projekt so vrsto let uspešno razvijali v podjetju Nokia, kjer so ga uporabili kot glavno orodje za razvoj aplikacij na platformi Symbian. Ko je Nokio pred časom kupil Microsoft, je projekt prevzela novonastala organizacija Qt Project, ki projekt vodi še danes.
 
 Qt je še posebej privlačen zaradi podpore namiznih platform, kot so Windows, Mac OSX in Linux. Odlikuje ga tudi zagreta skupnost razvijalcev.
 
@@ -78,20 +78,20 @@ Glavna slabost ogrodja Xamarin je cena, saj se paketi začnejo šele pri 299\$/m
 
 \subsection{Adobe Air}
 
-Adobe Air\cite{adobeair} je brezplačno ogrodje, ki omogoča zagon iste aplikacije na platformah iOS, Android, Mac, Windows in Linux, zagon aplikacije pa je možen tudi iz spletnega brskalnika. Čeprav za razvoj namiznih aplikacij omogoča uporabo HTML in Javascript, je za razvoj mobilnih aplikacij omejen na uporabo jezika ActionScript. V času pisanja diplomske naloge ogrodje ne omogoča zagona na platformi Windows Phone, vendar so razvijalci podporo že napovedali.
+Adobe Air\cite{adobeair} je brezplačno ogrodje, ki omogoča zagon iste aplikacije na platformah iOS, Android, Mac, Windows in Linux, zagon aplikacije pa je možen tudi iz spletnega brskalnika. Čeprav za razvoj namiznih aplikacij omogoča uporabo HTML in Javascript, je razvoj mobilnih aplikacij omejen na uporabo jezika ActionScript. V času pisanja diplomske naloge ogrodje ne omogoča zagona na platformi Windows Phone, vendar so razvijalci podporo že napovedali.
 
 Izbor orodja je še posebej uporaben za aplikacije, v katerih uporabniški vmesnik ni potrebno prilagajati posamezni platformi. Ravno zaradi tega je orodje priljubljeno med razvijalci iger, ko je na primer Angry Birds\cite{angrybirds}.
 
-Kot glavno slabost ogrodja Adobe Air bi navedel upadanje zanimanja za orodje Flash. Špekuliramo lahko tudi o planih podjetja Adobe, saj so pred kratkim kupili podjetje Nitobi, ki je avtor ogrodja PhoneGap (katerega si bomo ogledali v nadaljevanju). Uporaba tudi ni primerna za razvoj klasičnih mobilinih aplikacij, saj je prilagajanje domorodnim aplikacijam precej zahtevno še posebej, kadar na platformi pride do posodobitve izgleda.
+Kot glavno slabost ogrodja Adobe Air bi navedel upadanje zanimanja za orodje Flash. Špekuliramo lahko tudi o planih podjetja Adobe, saj so pred kratkim kupili podjetje Nitobi, ki je avtor ogrodja PhoneGap (katerega si bomo ogledali v nadaljevanju). Uporaba tudi ni primerna za razvoj klasičnih mobilnih aplikacij, saj je prilagajanje domorodnim aplikacijam precej zahtevno še posebej, kadar na platformi pride do posodobitve izgleda.
 
 %-----
 \section{Hibridne metode}
 
-Hibridna metoda za razvoj aplikacij uporablja spletne tehnologije v sožitju z domorodno kodo za posamezno platformo (t.i. premostitvena tehnika), ki omogoča dostop do glavnih funkcij naprav (kot so kamera, pospeškomer in podobno). Tako kot pri celovitih metodah, je tudi tu rezultat domorodna aplikacija, ki jo je možno objaviti v trgovinah posameznih platform.
+Hibridna metoda za razvoj aplikacij uporablja spletne tehnologije v sožitju z domorodno kodo za posamezno platformo (t.i. premostitvena tehnika), ki omogoča dostop do glavnih funkcij naprav (kot so kamera, pospeškomer in podobno). Tako kot pri celovitih metodah je tudi tu rezultat domorodna aplikacija, ki jo je možno objaviti v trgovinah posameznih platform.
 
 \subsection{Apache Cordova / PhoneGap}
 
-Ogrodje Apache Cordova\cite{cordova} je odprtokodni projekt, ki omogoča objavo spletnih aplikacij kot domorodne\cite{web-vs-native}. V času pisanja diplomske naloge ogrodje podpira iOS, Android, Windows Phone, Blackberry, Palm WebOS, Bada in Symbian. Na vseh omenjenih platformah nam ogrodje Apache Cordova omogoča dostop do funkcij naprave, ko so na primer kamera in pospeškomer. Isto aplikacijo je možno zagnati tudi v spletnem brskalniku, a je za to potrebno nekaj dodatnega dela. Ogrodje Cordova je izdano pod odprtokodno licenco Apache 2.0\cite{apache-licence}.
+Ogrodje Apache Cordova\cite{cordova} je odprtokodni projekt, ki omogoča objavo spletnih aplikacij kot domorodne\cite{web-vs-native}. V času pisanja diplomske naloge ogrodje podpira iOS, Android, Windows Phone, Blackberry, Palm WebOS, Bada in Symbian. Na vseh omenjenih platformah nam ogrodje Apache Cordova omogoča dostop do funkcij naprave, ko so naprimer kamera in pospeškomer. Isto aplikacijo je možno zagnati tudi v spletnem brskalniku, a je za to potrebno nekaj dodatnega dela. Ogrodje Cordova je izdano pod odprtokodno licenco Apache 2.0\cite{apache-licence}.
 
 Projekt PhoneGap\cite{phonegap} je dejansko samo ena od distribucij projekta Apache Cordova, ki poleg vseh obstoječih funkcionalnosti ponuja tudi razne storitve, na katerih delajo v podjetju Adobe. Vključuje tudi priročen program za ukazno vrstico, ki nam olajša delo s PhoneGap projektom (primer \ref{code:phonegap})
 
@@ -105,7 +105,7 @@ Za razvoj aplikacij razvijalci lahko uporabljajo spletne tehnologije HTML, \gls{
 
 Glavna prednost ogrodja Apache Cordova in predvsem distribucije PhoneGap je izredno velika nezahtevnost ogrodja. Priporoča se predvsem za izdelavo prototipnih aplikacij, saj nam omogoča hiter razvoj in iteracijo.
 
-Glavna slabost tega pristopa tiči v performanci in odzivnosti aplikacije, saj ta za prikazovanje izkorišča vgrajeno spletno okno. Trenutno je težko izdelati aplikacije, ki so grafično zahtevnejše, kar pomeni še toliko bolj pereč problem na napravah s slabšimi karakteristikami. Da se aplikacija po izgledu ne bi ločila od domorodnih aplikacij, je potrebno vložiti kar nekaj dela, na koncu pa bo izurjen uporabnik najbrž vseeno opazil, da je aplikacija malce drugačna. Problem predstavlja tudi zamik podpore novim stilom grafičnih elementov, tako kot se je to zgodilo pri prehodu z iOS6 na iOS7.
+Glavna slabost tega pristopa tiči v performanci in odzivnosti aplikacije, saj le-ta za prikazovanje izkorišča vgrajeno spletno okno. Trenutno je težko izdelati aplikacije, ki so grafično zahtevnejše, kar predstavlja še toliko bolj pereč problem na napravah s slabšimi karakteristikami. Da se aplikacija po izgledu ne bi ločila od domorodnih aplikacij, je potrebno vložiti kar nekaj dela, na koncu pa bo izurjen uporabnik najbrž vseeno opazil, da je aplikacija malce drugačna. Problem predstavlja tudi zamik podpore novim stilom grafičnih elementov, tako kot se je to zgodilo pri prehodu z iOS6 na iOS7.
 
 \subsection{Appcelerator Titanium}
 
@@ -147,13 +147,13 @@ end
 
 Haxe\cite{haxe} zase pravi, da je večplatformski programski jezik. Razvijalec lahko svojo aplikacijo napiše v jeziku Haxe, nato pa jo s pomočjo prevajalnika prevede v izvorno kodo jezikov \gls{php}, ActionScript, Neko, JavaScript, C++, C\# in Java. Nudi tudi dodatne vmesnike za dostop do specifičnih metod ciljnega jezika. Haxe prevajalnik je na voljo pod licenco \gls{gpl}, haxe knjižnice, ki jih potrebujemo za razvoj aplikacij, pa so na voljo pod licenco MIT.
 
-Jezik se uporablja predvsem pri razvoju iger, kjer naj bi dolgoročno zamenjal jezik ActionScript, ki ga uporablja orodje Flash.
+Jezik se uporablja predvsem pri razvoju iger, kjer naj bi v prihodnosti zamenjal jezik ActionScript, ki ga uporablja orodje Flash.
 
 Glavna slabost uporaba rešitve Haxe je majhna razvijalska skupnost. V primerjavi z ostalimi rešitvami je ta kar v manjšini. V zadnjem času sicer pridobiva nekaj zagona, a je trenutno vse premalo knjižnic, ki bi bile razvite za to platformo.
 
 \subsection{XMLVM}
 
-XMLVM\cite{xmlvm} spada v isti razred kot Haxe - tako imenovanih prevajalcev iz enega jezika v drugega (ang. cross-compilers), a se XMLVM tega loti na drugačen način. Medtem ko Haxe prevaja na nivoju izvorne kode, XMLVM to počne na nivoju zlogovne kode (ang. byte code). Izvorna koda je lahko napisana za navidezne stroje (ang. virtual machine) \gls{jvm}, .NET \gls{cli} ali Ruby \gls{yarv}, medtem ko je rezultat delujoč program za JVM, .NET CLI, Javascript, Python, Objective-C in C++. Ogrodje je na voljo pod odprtokodno licenco \gls{lgpl}.
+XMLVM\cite{xmlvm} spada v isti razred kot Haxe - tako imenovanih prevajalcev iz enega jezika v drugega (ang. cross-compilers) - a se XMLVM tega loti na drugačen način. Medtem ko Haxe prevaja na nivoju izvorne kode, XMLVM to počne na nivoju zlogovne kode (ang. byte code). Izvorna koda je lahko napisana za navidezne stroje (ang. virtual machine) \gls{jvm}, .NET \gls{cli} ali Ruby \gls{yarv}, medtem ko je rezultat delujoč program za JVM, .NET CLI, Javascript, Python, Objective-C in C++. Ogrodje je na voljo pod odprtokodno licenco \gls{lgpl}.
 
 Projekt je bil zastavljen zelo ambiciozno, a vse kaže, da je šlo le za akademsko raziskavo. Od zadnje posodobitve izvorne kode je namreč minilo že več kot leto dni. Kljub temu se mi je projekt zdel zanimiv in ga je bilo vredno izpostaviti.
 
@@ -161,7 +161,7 @@ Projekt je bil zastavljen zelo ambiciozno, a vse kaže, da je šlo le za akadems
 
 V kolikor nobena od naštetih možnosti ne zadošča našim potrebam, vseeno pa bi želeli imeti deljeno knjižnico, obstaja še ena možnost: uporaba jezika C++\cite{cpp} in projekta Emscripten\cite{emscripten}.
 
-C++ je eden izmed najbolj razširjenih programskih jezikov. V času pisanja diplomske naloge zaseda četrto mesto na lestvici najbolj popularnih jezikov \ref{fig:tiobe-index}, pred njim so samo jeziki C, Java in Objecitve-C. Uporablja se ga v raznolikih projektih - od prevajalnikov, strežnikov do video igric.
+C++ je eden izmed najbolj razširjenih programskih jezikov. V času pisanja diplomske naloge zaseda četrto mesto na lestvici najbolj popularnih jezikov \ref{fig:tiobe-index}, pred njim so samo jeziki C, Java in Objective-C. Uporablja se ga v raznolikih projektih - od prevajalnikov, strežnikov do video igric.
 
 \begin{figure}
  \includegraphics[width=\linewidth]{tiobe-index}
@@ -169,7 +169,7 @@ C++ je eden izmed najbolj razširjenih programskih jezikov. V času pisanja dipl
  \label{fig:tiobe-index}
 \end{figure}
 
-Emscripten je projekt Mozillinih laboratorijev, ki omogoča prevajanje iz \gls{llvm} zlogovne kode v skriptni jezik JavaScript. LLVM si lahko predstavljamo kot vmesni sloj med izvorno (C, C++, Objective-C, Java, C\#) in strojno kodo, ki poskrbi za visoko optimizacijo vmesne kode, to pa lahko potem prevedemo v ustrezen nabor ukazov za posamezne procesorje (\gls{arm}, x86 itd.). Emscripten tako predstavlja zadnjo fazo prevajalnika, le da vmesne kode iz LLVM ne prevede v ukaze specifičnega procesorja, ampak nazaj v jezik JavaScript. To pomeni, da lahko prevedemo skoraj vsak program (z določenimi omejitvami) v JavaScript in ga zaženemo v brskalniku. Celo grafično zahtevne aplikacije\footnote{Skupina Mozillinih inženirjev je grafično ogrodje Unreal v štirih dneh posodobilo do te mere, da je lahko s pomočjo orodja Emscripten grafično zahtevna aplikacija brezhibno delovala v brskalniku\cite{epic-citadel}.} niso problematične, saj Emscripten za prevod v JavaScript uporablja asm.js\cite{asmjs}, kar je podmnožica jezika JavaScript, ki jo JavaScript pogoni znajo izredno dobro optimizirati\footnote{S pomočjo asm.js so v podjetju Mozilla uspeli doseči le enkrat počasnejše izvajanje od domorodne kode, kar je izjemen dosežek.\cite{mozilla-asmjs}}.
+Emscripten je projekt Mozillinih laboratorijev, ki omogoča prevajanje iz \gls{llvm} zlogovne kode v skriptni jezik JavaScript. LLVM si lahko predstavljamo kot vmesni sloj med izvorno (C, C++, Objective-C, Java, C\#) in strojno kodo, ki poskrbi za visoko optimizacijo vmesne kode, to pa lahko potem prevedemo v ustrezen nabor ukazov za posamezne procesorje (\gls{arm}, x86 itd.). Emscripten tako predstavlja zadnjo fazo prevajalnika, le da vmesne kode iz LLVM ne prevede v ukaze specifičnega procesorja, ampak nazaj v jezik JavaScript. To pomeni, da lahko (z določenimi omejitvami) prevedemo skoraj vsak program v JavaScript in ga zaženemo v brskalniku. Celo grafično zahtevne aplikacije\footnote{Skupina Mozillinih inženirjev je grafično ogrodje Unreal v štirih dneh posodobilo do te mere, da je lahko s pomočjo orodja Emscripten grafično zahtevna aplikacija brezhibno delovala v brskalniku\cite{epic-citadel}.} niso problematične, saj Emscripten za prevod v JavaScript uporablja asm.js\cite{asmjs}, kar je podmnožica jezika JavaScript, ki jo JavaScript pogoni znajo izredno dobro optimizirati\footnote{S pomočjo asm.js so v podjetju Mozilla uspeli doseči le enkrat počasnejše izvajanje od domorodne kode, kar je izjemen dosežek.\cite{mozilla-asmjs}}.
 
 \subsection{JavaScript}
 \label{chap:javascript}
@@ -184,13 +184,13 @@ Namesto prevajanja v jezik JavaScript s pomočjo ogrodja Emscripten bi lahko cel
 
 Pri vključitvi v svojo aplikacijo moramo biti malce bolj iznajdljivi. iOS je z verzijo 7 dodal knjižnico JavaScriptCore\cite{javascriptcore-docs}, ki omogoča mešanje domorodne in JavaScript kode.
 
-Android je malce bolj problematičen, saj njegov \gls{sdk} v času pisanja diplomske naloge ne nudi direktne implementacije. Zaradi tega smo primorani vključiti JavaScript pogon, kot je Rhino, V8 in podobni. V kolikor je pogon napisan v jeziku Java, je integracija preprosta, če pa izberemo pogon v drugem jeziku, mora za Android obstajati paket za uvoz.
+Android je malce bolj problematičen, saj njegov \gls{sdk} v času pisanja diplomske naloge ne nudi direktne implementacije. Zaradi tega smo primorani vključiti JavaScript pogon, kot so Rhino, V8 in podobni. V kolikor je pogon napisan v jeziku Java, je integracija preprosta, če pa izberemo pogon v drugem jeziku, mora za Android obstajati paket za uvoz.
 
 Windows Phone prav tako kot Android ne nudi JavaScript implementacije, ki bi jo lahko uporabljali skupaj z domorodno kodo. Uporabimo lahko pogon V8 in knjižnico JavaScriptNet\cite{javascriptdotnet}.
 
 Ker je knjižnica napisana v jeziku JavaScript, jo je možno preprosto vgraditi v spletno aplikacijo. Pri tem se moramo držati le delov JavaScripta, ki so enotni na vseh platformah (ECMAScript specifikacija\cite{ecmascript}).
 
-Težji del je vgraditev pogona JavaScript na posamezno platformo. Dokler ne bo na voljo domorodnih integracij, se bomo težko zanesli na brezhibno delovanje pri nadgradnji operacijskega sistema. Navkljub temu je ideja zelo zanimiva in vredna nadaljnje raziskave.
+Težji del je vgraditev pogona JavaScript na posamezno platformo. Dokler ne bo na voljo domorodnih integracij, se bomo težko zanesli na brezhibno delovanje pri nadgradnji operacijskega sistema. Kljub temu je ideja zelo zanimiva in vredna nadaljnje raziskave.
 
 %==============================
 \chapter{Razvoj knjižnice}
@@ -199,7 +199,7 @@ Težji del je vgraditev pogona JavaScript na posamezno platformo. Dokler ne bo n
 %-----
 \section{Uvod}
 
-Izbor primerne metode si bomo pogledali na primeru razvoja koledarske aplikacije, ki bo tekla na platformah iOS, Android, Windows Phone in tudi v spletni aplikaciji. V aplikaciji bo uporabnik lahko dodal koledarski dogodek, kateremu bo možno nastaviti različne frekvence ponavljanj, intervale in izjeme. Aplikacija bo nato za določen datumski interval prikazala vnešeni dogodek v preprostem seznamu (slika \ref{fig:app-ios}).
+Izbor primerne metode si bomo pogledali na primeru razvoja koledarske aplikacije, ki bo tekla na platformah iOS, Android, Windows Phone in tudi v spletni aplikaciji. V aplikaciji bo uporabnik lahko dodal koledarski dogodek, ki mu bo možno nastaviti različne frekvence ponavljanj, intervale in izjeme. Aplikacija bo nato za določen datumski interval prikazala vnešeni dogodek v preprostem seznamu (slika \ref{fig:app-ios}).
 
 \begin{figure}
  \includegraphics[width=\linewidth]{app-ios}
@@ -244,7 +244,7 @@ Pravilo \texttt{FREQ} predstavlja frekvenco ponavljanja dogodka. Možne vrednost
 
 Pravilo \texttt{INTERVAL} vsebuje pozitivno celo število, ki predstavlja interval ponavljanja frekvence. Če je frekvenca nastavljena na dnevno, interval pa na 8, pomeni, da se dogodek ponovi vsak 8. dan.
 
-Pravilo \texttt{UNTIL} definira končni datum ponavljanja dogodka (vključno z končnim datumom). Definiramo ga lahko samo z datumom ali pa z datumom in uro.
+Pravilo \texttt{UNTIL} definira končni datum ponavljanja dogodka (vključno s končnim datumom). Definiramo ga lahko samo z datumom ali pa z datumom in uro.
 
 Pravilo \texttt{COUNT} vsebuje pozitivno celo število, ki predstavlja število ponovitev dogodka. V kolikor ima pravilo nastavljeno tako \texttt{UNTIL} kot \texttt{COUNT}, obvelja tisto pravilo, ki ponavljanje dogodka prej konča.
 
@@ -252,7 +252,7 @@ Pravila \texttt{BYSECOND}, \texttt{BYMINUTE} in \texttt{BYHOUR} vsebujejo z veji
 
 Pravilo \texttt{BYDAY} vsebuje z vejico ločen seznam dnevov v tednu, kjer je \texttt{MO} ponedeljek, \texttt{TU} torek, \texttt{WE} sreda, \texttt{TH} četrtek, \texttt{FR} petek, \texttt{SA} sobota in \texttt{SU} nedelja. Pred oznako za posamezen dan lahko postavimo pozitivno ali negativno celo število, ki predstavlja N-to ponovitev v mesečnem ali letnem ponavljanju dogodka. Za mesečno ponavljanje dogodka vrednost \texttt{+1MO} pomeni vsak prvi ponedeljek v mesecu, \texttt{-1MO} vsak zadnji ponedeljek v mesecu, \texttt{MO} pa preprosto vsak ponedeljek v mesecu.
 
-Pravilo \texttt{BYMONTHDAY} vsebuje z vejico ločen seznam celih števil z možnimi vrednostmi od -31 do -1 in 1 do 31, ki prestavljajo dneve v mesecu. Vrednost \texttt{-10} predstavlja 10 dan od konca meseca. Pravilo \texttt{BYMONTHDAY} ne sme biti nastavljeno, če je frekvenca ponavljanja nastavljena na tedensko.
+Pravilo \texttt{BYMONTHDAY} vsebuje z vejico ločen seznam celih števil z možnimi vrednostmi od -31 do -1 in 1 do 31, ki prestavljajo dneve v mesecu. Vrednost \texttt{-10} predstavlja 10. dan od konca meseca. Pravilo \texttt{BYMONTHDAY} ne sme biti nastavljeno, če je frekvenca ponavljanja nastavljena na tedensko.
 
 Pravilo \texttt{BYYEARDAY} vsebuje z vejico ločen seznam celih števil z možnimi vrednostmi od -366 do -1 in 1 do 366, ki predstavljajo dneve v letu. Vrednost \texttt{-1} predstavlja zadnji dan v letu (31. december), \texttt{-306} pa 306. dan od konca leta (1. marec). Pravilo \texttt{BYYEARDAY} ne sme biti uporabljeno, če je v uporabi dnevna, tedenska ali mesečna frekvenca ponavljanja dogodka.
 
@@ -292,7 +292,7 @@ Opisana pravila s predpono \texttt{BY} vedno na nek način spremenijo ponavljanj
   BYSETPOS 		& omeji 	& omeji 	& omeji 	& omeji 	& omeji 	& omeji 	& omeji 	\\
   \hline
 \end{tabular}}
-\caption{Razpredelnica izjem pri uporabi pravil za ponavljanje dogodkov. \textbf{Izjema 1:} omeji če je prisotno pravilo \texttt{BYMONTHDAY}, drugače razširi. \textbf{Izjema 2:} omeji za pravili \texttt{BYYEARDAY} in \texttt{BYMONTHDAY}, drugače razširi. }
+\caption{Razpredelnica izjem pri uporabi pravil za ponavljanje dogodkov. \textbf{Izjema 1:} omeji, če je prisotno pravilo \texttt{BYMONTHDAY}, drugače razširi. \textbf{Izjema 2:} omeji za pravili \texttt{BYYEARDAY} in \texttt{BYMONTHDAY}, drugače razširi. }
 \label{table:rrule-behavior}
 \end{table}
 
@@ -324,7 +324,7 @@ Izbor primerne metode lahko začnemo s pregledom popularnih vprašanj na spletni
  \label{fig:stackoverflow-trends}
 \end{figure}
 
-Vse omejitve, omenjene v prejšnjem poglavju, so predstavljene v tabeli \ref{table:omejitve}. Prazne vrstice pri ``grafični skladnosti'' za Lua, Haxe, C++ in JavaScript so posledica nezmožnosti zadoščanja te omejitve, niso pa ovira, saj mora v tem primeru za grafično skladnost poskrbeti domorodna koda, ki ni napisana v omenjenih jezikih.
+Vse omejitve, omenjene v prejšnjem poglavju, so predstavljene v tabeli \ref{table:omejitve}. Prazne vrstice pri ``grafični skladnosti'' za Lua, Haxe, C++ in JavaScript so posledica nezmožnosti zadostitvi tem omejitvam, niso pa ovira, saj mora v tem primeru za grafično skladnost poskrbeti domorodna koda, ki ni napisana v omenjenih jezikih.
 
 Iz tabele \ref{table:omejitve} je lepo razvidno, da le rešitev C++ zadošča vsem naštetim omejitvam. Namesto razvoja medplatformne aplikacije se bomo rajši odločili za razvoj medplatformne knjižnice, ki jo bomo nato vključili v domorodne aplikacije s pomočjo jezikovnih ovojev.
 
@@ -358,12 +358,12 @@ Izbrani del RRULE specifikacije RFC 5545 je na srečo dovolj preprost, da za raz
 
 \begin{enumerate}
   \item V našo rešitev bi vključili dodatno knjižnico \texttt{libcurl}. To bi povzročilo kar nekaj problemov pri vključevanju knjižnice na različnih platformah, saj bi morali knjižnico \texttt{libcurl} pripraviti za vsako platformo posebej.
-  \item Nalogo vzpostavitve in prenosa podatkov iz oddaljene lokacije bi lahko delegirali v domorodno kodo, ki bi po prenosu rezultat vrnila v našo knjižnico.
+  \item Nalogo vzpostavitve in prenosa podatkov iz oddaljene lokacije bi lahko delegirali v domorodno kodo, ki bi po končanju prenosa rezultat vrnila v našo knjižnico.
 \end{enumerate}
 
 Če izberemo prvi način, bo naša knjižnica podvajala funkcionalnost, ki že obstaja v domorodni kodi. Veliko lepša rešitev je uporaba delegiranja v domorodno kodo, saj lahko ta bolje izkorišča vse sposobnosti naprave. To sicer pomeni nekaj več kode v ovojih naše knjižnice (kar si bomo ogledali v poglavju \ref{chap:cross-platform}), a omogoča boljšo odpornost na nadgradnje operacijskega sistema ciljne platforme.
 
-Razvito knjižnico lahko v aplikacije za različne platforme vključimo na več različnih načinov:
+Razvito knjižnico lahko v aplikacije za različne platforme vključimo na več načinov:
 
 \begin{enumerate}
   \item Z izvorno kodo C++, ki jo ciljni program vključi v svoj paket.
@@ -407,7 +407,7 @@ Platforma iOS primarno uporablja jezik Objective-C, ki je objektna razširitev j
 
 iOS ne podpira uporabe deljene knjižnice (\eng{shared library}), omogoča pa uporabo statične knjižnice (\eng{static library}) ali izvorne kode. Za prvi primer izberimo uvoz izvorne kode.
 
-iOS v svojem arzenalu ne vključuje orodja za avtomatično sproščanje pomnilnika (\eng{garbage collection}). Od razvijalca se pričakuje, da za seboj počisti pomnilnik z uravnoteženimi ukazi \texttt{retain} in \texttt{release}, ko je koda opravila svoje delo. V ta namen je v integriranem razvijalskem okolju (\eng{Integrated Development Environment}) XCode na voljo kar nekaj orodij, ki nam omogočajo lažjo detekcijo puščanja pomnilnika (\eng{memory leak}). Kar rado se zgodi, da se pri štetju referenc razvijalec zmoti. Na srečo je v iOS5 Apple predstavil \gls{arc} (avtomatično štetje referenc - \eng{Automatic Reference Counting}), s čimer so razvijalcem znatno olajšali delo, saj prevajalnik sedaj zna sam vnesti ukaze za sproščanje pomnilnika.
+iOS v svojem arzenalu ne vključuje orodja za avtomatično sproščanje pomnilnika (\eng{garbage collection}). Od razvijalca se pričakuje, da za seboj počisti pomnilnik z uravnoteženimi ukazi \texttt{retain} in \texttt{release}, ko je koda opravila svoje delo. V ta namen je v integriranem razvijalskem okolju (\eng{Integrated Development Environment}) XCode na voljo kar nekaj orodij, ki nam omogočajo lažjo detekcijo puščanja pomnilnika (\eng{memory leak}). Kar rado se zgodi, da se pri štetju referenc razvijalec zmoti. Na srečo je v iOS5 Apple predstavil \gls{arc} (avtomatično štetje referenc - \eng{Automatic Reference Counting}), s čimer so razvijalcem znatno olajšali delo, saj prevajalnik sedaj sam zna vnesti ukaze za sproščanje pomnilnika.
 
 Implementacija iOS ovoja je dokaj preprosta (glej primer \ref{code:ios-wrapper}). Za vsakega C++ od razredov naredimo zrcalne Objective-C++ ovojne razrede, ki v inicializacijski metodi \texttt{init} poskrbijo za pravilno dodeljevanje in hranjenje C++ objekta (vrstica 14). Ko na določen objekt ne kaže več noben kazalec, se pred sprostitvijo pomnilnika pokliče metoda \texttt{dealloc}, v kateri poskrbimo za ustrezno sprostitev C++ objekta, preden pride do puščanja pomnilnika (vrstica 21). Klic v ovoj nato preprosto posreduje klic v C++ objekt (vrstica 25) in poskrbi za transformacije med C++ in Objective-C podatkovnimi tipi.
 
@@ -452,7 +452,7 @@ Razvojno okolje XCode vsebuje testno ogrodje \texttt{XCTest}, ki nam omogoča za
 %-----
 \section{Android}
 
-Java, ki jo srečamo na platformi Android, se od odprtokodne Jave kar precej razlikuje. Android ne uporablja Java virtualnega pogona (\eng{Java Virtual Machine}), ampak svoj pogon Dalvik, ki je prilagojen za uporabo na mobilnih napravah. Pred kratkim je Google napovedal nov virtualen pogon, Android Runtime (\gls{art}), ki bo v prihodnosti zamenjal Dalvik in vsebuje veliko izboljšav v hitrosti in stabilnosti aplikacij.
+Java, ki jo srečamo na platformi Android, se od odprtokodne Jave kar precej razlikuje. Android ne uporablja Java virtualnega pogona (\eng{Java Virtual Machine}), ampak svoj pogon Dalvik, ki je prilagojen za uporabo na mobilnih napravah. Pred kratkim je Google napovedal nov virtualen pogon, Android Runtime (\gls{art}), ki bo v prihodnosti zamenjal Dalvik in vsebuje veliko izboljšav v hitrosti in stabilnosti izvajanja aplikacij.
 
 Za izdelavo ovoja C++ kode moramo uporabiti dve ogrodji:
 
@@ -552,9 +552,9 @@ void setHandle(JNIEnv *env, jobject obj, T *t)
 }
 \end{lstlisting}
 
-Bralca morda zanima, čemu služi metoda \texttt{dispose} (vrstice 16-19). Java nam nudi avtomatično sproščanje pomnilnika (\eng{garbage collection}), medtem ko C++ od razvijalca zahteva samostojno čiščenje pomnilniških naslovov, ki niso več v uporabi. Ko v Javi pride do sproščanja pomnilnika, se pokliče metoda \texttt{finalize}, a kot lahko preberemo v dokumentaciji\cite{android-object}, do klica ne prihaja prav pogosto in se za tako uporabo ne priporoča. Poleg tega je vsak razred, ki implementira metodo \texttt{finalize}, deležen malce večje obdelave s strani operacijskega sistema, kar botruje počasnejšemu izvajanju. Ker želimo biti malce bolj prijazni do platforme, na kateri gostujemo, se držimo pravila: ko objekta ne potrebuje več, ga sprostimo s pomočjo klica \texttt{dispose} (naprimer v \texttt{finally} \texttt{try catch finally} konstruktu).
+Bralca morda zanima, čemu služi metoda \texttt{dispose} (vrstice 16-19). Java nam nudi avtomatično sproščanje pomnilnika (\eng{garbage collection}), medtem ko C++ od razvijalca zahteva samostojno čiščenje pomnilniških naslovov, ki niso več v uporabi. Ko v Javi pride do sproščanja pomnilnika, se pokliče metoda \texttt{finalize}, a kot lahko preberemo v dokumentaciji\cite{android-object}, do klica ne prihaja prav pogosto in se za tako uporabo ne priporoča. Poleg tega je vsak razred, ki implementira metodo \texttt{finalize}, deležen malce večje obdelave s strani operacijskega sistema, kar botruje počasnejšemu izvajanju. Ker želimo biti malce bolj prijazni do platforme, na kateri gostujemo, se držimo pravila: ko objekta ne potrebujemo več, ga sprostimo s pomočjo klica \texttt{dispose} (naprimer v \texttt{finally} \texttt{try catch finally} konstruktu).
 
-Za testiranje Java ovoja smo uporabili ogrodji JUnit\cite{junit} in Maven\cite{maven}. Tako kot v primeru iOS ovoja, se na tem mestu ne testira dejanske knjižnice, ampak zgolj povezavo iz C++ knjižnice v Java kodo. Teste lahko zaženemo z ukazom \texttt{mvn test}, ki s pomočjo orodja Maven poskrbi za prenos vseh potrebnih knjižnic in za zagon testov Java ovoja.
+Za testiranje Java ovoja smo uporabili ogrodji JUnit\cite{junit} in Maven\cite{maven}. Tako kot v primeru iOS ovoja se na tem mestu ne testira dejanske knjižnice, ampak zgolj povezavo iz C++ knjižnice v Java kodo. Teste lahko zaženemo z ukazom \texttt{mvn test}, ki s pomočjo orodja Maven poskrbi za prenos vseh potrebnih knjižnic in za zagon testov Java ovoja.
 
 \begin{figure}
  \includegraphics[width=\linewidth]{java-tests}
@@ -640,7 +640,7 @@ Pred zaključnimi ugotovitvami si poglejmo prednosti, slabosti, priložnosti in 
 \begin{itemize}
   \item Metoda nam omogoča poenoten razvoj knjižnice za vse želene platforme.
   \item Možnost večje pokritosti z napisanimi testi (\eng{code coverage}), saj knjižnico zaradi poenotenega razvoja testiramo le na C++ nivoju.
-  \item Manjše število napak pri razvoj aplikacij na posameznih platformah.
+  \item Manjše število napak pri razvoju aplikacij na posameznih platformah.
   \item Odpornost na nadgradnje gostujočega operacijskega sistema.
   \item Hitrost izvajanja.
   \item Vsa uporabljena orodja so brezplačna.
@@ -660,7 +660,7 @@ Pred zaključnimi ugotovitvami si poglejmo prednosti, slabosti, priložnosti in 
 
 \begin{itemize}
   \item Podpora za nove platforme, ki podpirajo C++ (recimo Windows Desktop, Mac OSX itd.).
-  \item Učenje novih programskih jezikov je za razvijalce priporočljivo zaradi razvoja razmišljanja pri reševanju problemov\cite{pragprog}.
+  \item Učenje novih programskih jezikov je za razvijalce priporočljivo, ker pri reševanju problemov razvijajo razmišljanje\cite{pragprog}.
 \end{itemize}
 
 \subsection{Nevarnosti}
@@ -691,7 +691,7 @@ Avtorji na koncu navedejo, da vključevanje C++ kode v Android aplikacije ne bi 
 
 \subsection{C\# in C++}
 
-Za večino primerov je hitrost izvajanja C\# kode primerljiva izvajanju C++ kode. Razlike se začnejo kazati pri procesorsko zahtevnejših algoritmih, kjer se pokaže prednost C++ kode predvsem zaradi boljše izrabe pomnilnika\cite{windows-phone-dev}. Zavedati se moramo, da pri prevelikem prehajanju iz domorodne kode v C\# kodo lahko pride do izničenja kakršnekoli prednosti C++ kode, saj v vmesnem delu pride do pretvarjanja podatkovnih tipov iz C++ sveta v C\# svet (in obratno).
+Za večino primerov je hitrost izvajanja C\# kode primerljiva izvajanju C++ kode. Razlike se začnejo kazati pri procesorsko zahtevnejših algoritmih, kjer se pokaže prednost C++ kode predvsem zaradi boljše izrabe pomnilnika\cite{windows-phone-dev}. Zavedati se moramo, da pri prevelikem prehajanju iz domorodne kode v C\# kodo lahko pride do izničenja vseh prednosti C++ kode, saj v vmesnem delu pride do pretvarjanja podatkovnih tipov iz C++ sveta v C\# svet (in obratno).
 
 Po vsem tem lahko pridemo do istega zaključka kot v primeru Jave - vključitev C++ knjižnice v našo Windows Phone aplikacijo v večini primerov ne bo imelo prevelikega vpliva na hitrost.
 
@@ -699,7 +699,7 @@ Po vsem tem lahko pridemo do istega zaključka kot v primeru Jave - vključitev 
 
 Na področju JavaScripta je bil v zadnjih nekaj letih videti velik napredek. S pomočjo asm.js\cite{asmjs}, ki je podmnožica jezika JavaScript, je spletnim brskalnikom v letu 2014 uspelo doseči le 2-kratno upočasnitev v primerjavi z domorodno kodo. Ista raziskava iz leta 2011 je pokazala kar 12-kratno upočasnitev\cite{html5-gamedev}.
 
-Neposredno pisanje v asm.js je dokaj nerealno, saj razvijalca sili v pisanje kode na način, ki ga najbrž ni vajen (glej primer \ref{code:asm.js}). Namesto tega je asm.js še posebej primeren kot končni jezik za prevajanje med jeziki z ogrodjem kot je Emscripten. Koda, prevedena iz jezika C++, bo zaradi tega v večini primerov hitrejša kot tista, ki jo razvijalec sam napiše v jeziku JavaScript.
+Neposredno pisanje v asm.js je dokaj nerealno, saj razvijalca sili v pisanje kode na način, ki ga najbrž ni vajen (glej primer \ref{code:asm.js}). Namesto tega je asm.js še posebej primeren kot končni jezik za prevajanje med jeziki z ogrodjem, kot je Emscripten. Koda, prevedena iz jezika C++, bo zaradi tega v večini primerov hitrejša kot tista, ki jo razvijalec sam napiše v jeziku JavaScript.
 
 \begin{lstlisting}[caption={Primer prevoda C kode v asm.js kodo.}, label=code:asm.js, language=JavaScript]
 // C koda
