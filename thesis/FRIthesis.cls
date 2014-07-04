@@ -419,9 +419,11 @@ intelektualno lastnino, Streliška 1, 1000 Ljubljana.%
     \thispagestyle{plain}
     \vspace*{\fill}
     \begin{quote}
-		{\itshape
-     Namesto te strani se \emph{vstavi} original izdane teme diplomskega dela s podpisom mentorja in dekana ter žigom fakultete, ki ga diplomant dvigne v študentskem referatu,  preden odda izdelek v vezavo!
-    }
+		Fakulteta za računalništvo in informatiko izdaja naslednjo nalogo:
+
+    Tematika naloge:
+
+    S prisotnostjo velikega števila različnih platform in izvajalnih okolij je razvoj in testiranje današnjih aplikacij zelo otežen. Če želimo izdelati, med uporabniki, široko sprejeto aplikacijo, mora le ta biti prisotna na vseh večjih mobilnih platformah in na namiznih računalnikih. Zaradi tega se pojavlja potreba po sočasnem razvoju, ki pa seveda prinaša tudi številne težave. V okviru diplomske naloge naj študent pregleda metode za medplatformni razvoj, ki bi omogočal čim večjo prenosljvost aplikacije, skladnost z ostalimi domorodnimi aplikacijami, hkrati pa naj bo stroškovno čim bolj učinkovita. V okviru diplomske naloge je najprej potrebno raziskati možne pristope k medplatformnem razvoju, poiskati metodo, ki ustreza naštetim omejitvam in prikazati postopek za uspešno uporabo na platformah iOS, Android, Windows Phone in v spletni aplikaciji.
     \end{quote}
     \vspace*{\fill}
 		\thispagestyle{empty}
