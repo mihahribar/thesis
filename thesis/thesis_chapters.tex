@@ -25,7 +25,7 @@
 \newglossaryentry{ci}{name=CI, description={\eng{Continuous integration}; zvezna integracija}}
 \newglossaryentry{swot}{name=SWOT, description={\eng{Strengths, Weaknesses, Opportunities, and Threats}; analiza prednosti, slabosti, priložnosti in nevarnosti}}
 \newglossaryentry{sdk}{name=SDK, description={\eng{Software development kit}; paket za razvoj programske opreme}}
-\newglossaryentry{jit}{name=JIT, description={\eng{Just-in-time compilation}; tehnika, znana tudi pod imenom dinamično prevajanje, kjer se prevod ne zgodi pred zagonom programa, ampak tik pred}}
+\newglossaryentry{jit}{name=JIT, description={\eng{Just-in-time compilation}; tehnika, znana tudi pod imenom dinamično prevajanje, kjer se prevod ne zgodi pred zagonom programa, ampak ob}}
 \newglossaryentry{xml}{name=XML, description={\eng{Extensible Markup Language}; razširljivi označevalni jezik; format podatkov za izmenjavo strukturiranih dokumentov v spletu}}
 
 
@@ -74,7 +74,7 @@ Ogrodje odlikuje integrirano razvojno okolje (\gls{ide}) Xamarin Studio (slika \
 
 Xamarin je primeren za izdelavo aplikacij za platforme, kjer je ključnega pomena končna grafična skladnost z ostalimi domorodnimi aplikacijami. Kot primer si lahko ogledamo aplikacijo za poslušanje glasbe Rdio\cite{rdio}, ki je na voljo za iOS, Android in Windows Phone.
 
-Glavna slabost ogrodja Xamarin je cena, saj se paketi začnejo šele pri 299\$/mesec za vsakega razvijalca in vsako platformo posebej. Za majhno ekipo je lahko taka začetna cena enostavno previsoka. Vprašljiva je tudi hitrost dodajanja funkcionalnosti posameznih platform, ko se te nadgradijo, določeno tveganje predstavlja tudi muhavost posameznih platform pri omejitvah uporabe tega ogrodja, sploh če nadgradnja povzroči nedelovanje takih aplikacij.
+Glavna slabost ogrodja Xamarin je cena, saj se paketi začnejo šele pri 299\$/mesec za vsakega razvijalca in vsako platformo posebej. Za majhno ekipo je lahko taka začetna cena enostavno previsoka. Vprašljiva je tudi hitrost dodajanja funkcionalnosti posameznih platform, ko se te nadgradijo. Določeno tveganje predstavlja tudi muhavost posameznih platform pri omejitvah uporabe tega ogrodja, sploh če nadgradnja povzroči nedelovanje takih aplikacij.
 
 \subsection{Adobe Air}
 
@@ -441,7 +441,7 @@ Implementacija iOS ovoja je dokaj preprosta (glej primer \ref{code:ios-wrapper})
 }
 \end{lstlisting}
 
-Razvojno okolje XCode vsebuje testno ogrodje \texttt{XCTest}, ki nam omogoča zagotavljanje kakovosti. Testi iOS ovoja testirajo samo klice v in povratne vrednosti, ne testirajo pa dejanske funkcionalnosti knjižnice, saj bi to pomenilo podvajanje že obstoječih testov C++ knjižnice. Teste zaženemo iz menija Product $\rightarrow$ Test.
+Razvojno okolje XCode vsebuje testno ogrodje \texttt{XCTest}, ki nam omogoča zagotavljanje kakovosti. Testi iOS ovoja testirajo samo klice v knjižnico, ne testirajo pa dejanske funkcionalnosti, saj bi to pomenilo podvajanje že obstoječih testov C++. Teste zaženemo iz menija Product $\rightarrow$ Test.
 
 \begin{figure}
  \includegraphics[width=\linewidth]{xcode-tests}
@@ -589,7 +589,7 @@ namespace ThesisWINRT {
 
 C++ knjižnico moramo za uporabo v spletni aplikaciji prevesti v JavaScript. To lahko storimo s pomočjo ogrodja Emscripten, ki vzame LLVM zlogovno kodo in namesto prevoda v nabor ukazov za podprte procesorje prevede to kodo v JavaScript. Rezultat je knjižnica, ki jo lahko brez težav uvozimo v obstoječo spletno aplikacijo.
 
-Primarno Emscripten prevaja celotne programe, ki imajo jasno definirane vhode in izhode. Te lahko v JavaScriptu sprožimo, kot bi jih v uporabniški vrstici (\eng{terminal}). V našem primeru gre vendarle za prevod C++ knjižnice, za kar Emscripten potrebuje dodatna navodila za izvoz funkcionalnosti (glej primer \ref{code:emscripten-bindings}). Za te namene projekt Emscripten vsebuje \texttt{embind}\cite{emscripten-embind}, s pomočjo katerega lahko izvozimo dostop do razredov, podatkovnih tipov, pomnilniškim upravljanje in podobne jezikovne konstrukte.
+Primarno Emscripten prevaja celotne programe, ki imajo jasno definirane vhode in izhode. Te lahko v JavaScriptu sprožimo, kot bi jih v uporabniški vrstici (\eng{terminal}). V našem primeru gre vendarle za prevod C++ knjižnice, za kar Emscripten potrebuje dodatna navodila za izvoz funkcionalnosti (glej primer \ref{code:emscripten-bindings}). Za te namene projekt Emscripten vsebuje \texttt{embind}\cite{emscripten-embind}, s pomočjo katerega lahko izvozimo dostop do razredov, podatkovnih tipov, pomnilniškega upravljanja in podobnih jezikovnih konstruktov.
 
 \begin{lstlisting}[caption={C++ koda za izvoz funckionalnosti knjižnice v JavaScript razreda \texttt{Date}.}, label=code:emscripten-bindings, language=c++]
 #include "emscripten/bind.h"
@@ -660,7 +660,7 @@ Pred zaključnimi ugotovitvami si poglejmo prednosti, slabosti, priložnosti in 
 
 \begin{itemize}
   \item Podpora za nove platforme, ki podpirajo C++ (recimo Windows Desktop, Mac OSX itd.).
-  \item Učenje novih programskih jezikov je za razvijalce priporočljivo, ker pri reševanju problemov razvijajo razmišljanje\cite{pragprog}.
+  \item Učenje novih programskih jezikov je za razvijalce priporočljivo, saj so pri tem primorani razmišljati o problemih na drugačen način\cite{pragprog}.
 \end{itemize}
 
 \subsection{Nevarnosti}
