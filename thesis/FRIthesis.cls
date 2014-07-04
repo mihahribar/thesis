@@ -1,14 +1,14 @@
-%% 
+%%
 %% This is file `FRIreport.cls'
-%% 
+%%
 %% Originaly based on 'book.cls' 2005/09/16 v1.4f Standard LaTeX document class
 %% generated from file(s) of the LaTeX base system.
 %% --------------------------------------------------------------
-%% 
+%%
 %% It may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3b
 %% of this license or (at your option) any later version.
-%% 
+%%
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -29,7 +29,7 @@
 %
 % TODO:
 % - translate copyright + metadata
-% 
+%
 
 \newif\if@restonecol \@twocolumnfalse
 \newif\if@titlepage \@titlepagetrue
@@ -198,32 +198,32 @@
 \newcommand\maketitle{
  \begin{titlepage}%
 	\begin{centering}
-   {\Large \setsinglelinespacing 
- 		\if@slovene 
+   {\Large \setsinglelinespacing
+ 		\if@slovene
  		 Univerza v Ljubljani
- 		\else 
+ 		\else
  		 Univesity of Ljubljana
  		\fi
 	  \par}
-	 {\large \setsinglelinespacing 
-		\if@slovene 
+	 {\large \setsinglelinespacing
+		\if@slovene
 		 Fakulteta za računalništvo in informatiko
-		\else 
+		\else
 		 Faculty of Computer and Information Science
 		\fi
     \par}
 	 \vfill
    {\Large \@author} \\
    \vspace{5mm}
-   {\LARGE\bfseries\setsinglelinespacing 
+   {\LARGE\bfseries\setsinglelinespacing
     \begingroup
     \color{P1797}
     \@title
     \endgroup
     \par}
    \vspace*{10mm}
-   {\scshape 
-    \setsinglelinespacing 
+   {\scshape
+    \setsinglelinespacing
     \if@slovene
      \if@BVSRI diplomsko delo \\ visokošolski strokovni študijski program prve stopnje \\ računalništvo in informatika\fi
      \if@BUNRI diplomsko delo \\ univerzitetni študijski program prve stopnje \\ računalništvo in informatika\fi
@@ -241,12 +241,12 @@
     \fi
     \par}
    \vfill
-   {\setsinglelinespacing 
+   {\setsinglelinespacing
     \ifx\@advisor\empty
      \relax
     \else
      \@advisor\\
-    	{\small \sc 
+    	{\small \sc
     	 \if@slovene
   			mentor
  			 \else
@@ -260,7 +260,7 @@
     \else
      \vspace{3mm}
      \@coadvisor\\
-    	{\small \sc 
+    	{\small \sc
     	 \if@slovene
   			somentor
  			 \else
@@ -271,7 +271,7 @@
  		\fi
  		}
    \vspace*{10mm}
-   {\setsinglelinespacing 
+   {\setsinglelinespacing
     \@place, \oldstylenums{\number\year}
     \par}
    \end{centering}
@@ -306,14 +306,14 @@
   \newpage
   \begin{center}%
     \let \footnote \thanks
-    {\normalsize \setsinglelinespacing 
+    {\normalsize \setsinglelinespacing
 		  \if@slovene
        Univerza v Ljubljani
       \else
        University of Ljubljana
       \fi
 		  \par}
-		 {\small \setsinglelinespacing 
+		 {\small \setsinglelinespacing
        \if@slovene
         Fakulteta za računalništvo in informatiko
        \else
@@ -325,24 +325,24 @@
 		  \large \@author
 		  \par}
      \vspace{5mm}
-     {\large\sffamily\bfseries    
-        \setsinglelinespacing 
+     {\large\sffamily\bfseries
+        \setsinglelinespacing
          \color{P1797}\@title\normalcolor
         \par}
      \vspace{3mm}
-%     {\large\sffamily%\itshape    
- %       \setsinglelinespacing 
+%     {\large\sffamily%\itshape
+ %       \setsinglelinespacing
  %        %\color{P1797}\@titleA\normalcolor
 %        \@titleA
 %        \par}
 %     \vspace{4mm}
      \if@slovene
-      {\scshape\setsinglelinespacing 
-       predlog teme doktorske disertacije 
+      {\scshape\setsinglelinespacing
+       predlog teme doktorske disertacije
        \par}
      \else
-      {\scshape\setsinglelinespacing 
-       a dissertation proposal submitted in partial fulfilment of the requirements for the degree of Doctor of Philosophy 
+      {\scshape\setsinglelinespacing
+       a dissertation proposal submitted in partial fulfilment of the requirements for the degree of Doctor of Philosophy
        \par}
      \fi
      \vspace{3mm}
@@ -359,17 +359,17 @@
     \thispagestyle{plain}%
 		\vspace*{\fill}
     \ifnum\pdf@strcmp{#1}{-}=\z@
-     {\small 
+     {\small
       \noindent \copyright~\sffamily \number\year, Univerza v Ljubljani, Fakulteta za računalništvo in informatiko
-      
+
       Rezultati diplomskega dela so intelektualna lastnina Fakultete za računalništvo in informatiko Univerze v Ljubljani. Za objavljanje ali izkoriščanje rezultatov diplomskega dela je potrebno pisno soglasje Fakultete za računalništvo in informatiko ter mentorja.%
      \footnote{V dogovorju z mentorjem lahko kandidat diplomsko delo s pripadajočo izvorno kodo izda tudi pod katero izmed alternativnih licenc, ki ponuja določen del pravic vsem: npr. Creative Commons, GNU GPL.}
      }
     \fi
     \ifnum\pdf@strcmp{#1}{FRI}=\z@
-     {\small 
+     {\small
       \noindent \copyright~\sffamily \number\year, Univerza v Ljubljani, Fakulteta za računalništvo in informatiko
-      
+
       Rezultati diplomskega dela so intelektualna lastnina Fakultete za računalništvo in informatiko Univerze v Ljubljani. Za objavljanje ali izkoriščanje rezultatov diplomskega dela je potrebno pisno soglasje Fakultete za računalništvo in informatiko ter mentorja.
      }
      \hypersetup{
@@ -383,8 +383,8 @@
       \includegraphics*{cc/by}
       \includegraphics*{cc/sa}
      \end{center}
-     
-     {\small \sffamily 
+
+     {\small \sffamily
       \noindent Delo je ponujeno pod licenco Creative Commons Priznanje avtorstva--Deljenje pod enakimi pogoji 2.5 Slovenija (ali novejšo različico).
       To pomeni, da se tako besedilo, slike, grafi in druge sestavine dela kot tudi rezultati dela lahko prosto distribuirajo,
 reproducirajo, uporabljajo, priobčujejo javnosti in predelujejo, pod pogojem, da se jasno in vidno navede avtorja in naslov tega
@@ -399,7 +399,7 @@ intelektualno lastnino, Streliška 1, 1000 Ljubljana.%
      }
     \fi
     \ifnum\pdf@strcmp{#1}{GNU}=0
-     {\small \sffamily 
+     {\small \sffamily
       \noindent Izvorna koda dela, njeni rezultati in v ta namen razvita programska oprema je ponujena pod licenco GNU General Public License, različica 3 (ali novejša). To pomeni, da se lahko prosto distribuira in/ali predeluje pod njenimi pogoji.
       Podrobnosti licence so dostopne na spletni strani \href{http://www.gnu.org/licenses}{gnu.org/licenses}.
      }
@@ -437,9 +437,9 @@ intelektualno lastnino, Streliška 1, 1000 Ljubljana.%
   \vspace{20pt}
   \noindent
 	\begin{minipage}{\textwidth}
-  \if@slovene   
+  \if@slovene
     Spodaj podpisani izjavljam, da sem avtor dela, da slednje ne vsebuje materiala, ki bi ga kdorkoli predhodno že objavil ali oddal v obravnavo za pridobitev naziva na univerzi ali drugem visokošolskem zavodu, razen v primerih kjer so navedeni viri.
-    
+
     S svojim podpisom zagotavljam, da:
     \begin{itemize}
     \item sem delo izdelal samostojno pod mentorstvom \@advisorA{}\ifx\@coadvisorA\empty\relax\else{} in somentorstvom \@coadvisorA\fi,
@@ -456,22 +456,22 @@ acknowledgement has been made in the text.
     With my signature I confirm that:
     \begin{itemize}
     \item the work was done wholly or mainly while in candidature for a degree at this University under the advisorship of \@advisor{}\ifx\@coadvisor\empty\relax\else{} and coadvisorship of \@coadvisor\fi,
-    \item the electronic and printed version of the work, the title (eng., slov.), the abstract (eng., slov.) and key words (eng., slov.) are identical and 
+    \item the electronic and printed version of the work, the title (eng., slov.), the abstract (eng., slov.) and key words (eng., slov.) are identical and
 	  \item I agree with the publication of the electronic version of the thesis in the ``Dela FRI'' collection.
 	  \end{itemize}
   \fi
-	\end{minipage} 
-  \par \null \hfill  --- \@author, \@place, 
+	\end{minipage}
+  \par \null \hfill  --- \@author, \@place,
   \if@slovene
    \ifcase\month\or januar\or februar\or marec\or april\or maj\or junij\or julij\or avgust\or september\or oktober\or november\or december\fi
   \else
    \ifcase\month\or January\or February\or March\or April\or May\or June\or July\or August\or September\or October\or November\or December\fi
-  \fi 
+  \fi
   ~\number\year.
 	\par
   \thispagestyle{empty}
   }
-  
+
 \if@PhD
  \renewcommand\makecopyright[1][-]{\empty}
  \renewcommand\thesistopic{\empty}
@@ -628,7 +628,7 @@ acknowledgement has been made in the text.
  \def\@author{#1}
  \def\@enrolmentId{#2}
  \hypersetup{
-  pdfinfo={   
+  pdfinfo={
    Author={#1}
   }
  }
@@ -636,7 +636,7 @@ acknowledgement has been made in the text.
 \newcommand{\advisor}[2]
 {
  \hypersetup{
-  pdfinfo={   
+  pdfinfo={
    Advisor={#1}
   }
  }
@@ -646,7 +646,7 @@ acknowledgement has been made in the text.
 \newcommand{\coadvisor}[2]
 {
  \hypersetup{
-  pdfinfo={   
+  pdfinfo={
    Coadvisor={#1}
   }
  }
@@ -657,7 +657,7 @@ acknowledgement has been made in the text.
 \def\@titleopt[#1][#2]#3#4%
 {%
  \hypersetup{
-  pdfinfo={   
+  pdfinfo={
    Title={\if@slovene#2\else#1\fi}
   }
  }
@@ -674,7 +674,7 @@ acknowledgement has been made in the text.
 \def\@titlenopt#1#2%
 {%
  \hypersetup{
-  pdfinfo={   
+  pdfinfo={
    Title={\if@slovene#2\else#1\fi}
   }
  }
@@ -692,7 +692,7 @@ acknowledgement has been made in the text.
 {
  \def\@subject{#1}
  \hypersetup{
-  pdfinfo={   
+  pdfinfo={
    Subject={#1}
   }
  }
@@ -702,25 +702,25 @@ acknowledgement has been made in the text.
 {
  \def\@keywords{#1}\def\@keywordsA{#2}
  \hypersetup{
-  pdfinfo={   
+  pdfinfo={
    Keywords={\if@slovene#2\else#1\fi}
   }
  }
 }
 
 \newenvironment{Abstract}{\setbox0=\hbox{\begin{minipage}{\textwidth}{\begin{center}
-		 {\normalsize \setsinglelinespacing 
+		 {\normalsize \setsinglelinespacing
 		  University of Ljubljana
 		  \par}
-		 {\small \setsinglelinespacing 
+		 {\small \setsinglelinespacing
 		  Faculty of Computer and Information Science
 		  \par}
 		 \vspace{1mm}
 		 {\setsinglelinespacing
 		  \normalsize \@author
 		  \par}
-		 {\large\bfseries    
-		  \setsinglelinespacing 
+		 {\large\bfseries
+		  \setsinglelinespacing
 		  \if@slovene
 		   \@titleA
 		  \else
@@ -745,21 +745,21 @@ acknowledgement has been made in the text.
 	  {{\bfseries \noindent Key words:}\hskip3.4pt\if@slovene\@keywordsA\else\@keywords\fi \par}
 	  \if@slovene
 	  	\hyphenrules{slovene}
-	 	\fi} 
+	 	\fi}
 
 \newenvironment{Povzetek}{\setbox0=\hbox{\begin{minipage}{\textwidth}{\begin{center}
-		 {\normalsize \setsinglelinespacing 
+		 {\normalsize \setsinglelinespacing
 		  Univerza v Ljubljani
 		  \par}
-		 {\small \setsinglelinespacing 
+		 {\small \setsinglelinespacing
 		  Fakulteta za računalništvo in informatiko
 		  \par}
 		 \vspace{1mm}
 		 {\setsinglelinespacing
 		  \normalsize \@author
 		  \par}
-		 {\large\bfseries    
-		  \setsinglelinespacing 
+		 {\large\bfseries
+		  \setsinglelinespacing
 		  \if@slovene
 		   \@title
 		  \else
@@ -786,7 +786,7 @@ acknowledgement has been made in the text.
 	  \if@slovene
 		\else
 	    \hyphenrules{english}
-	  \fi} 
+	  \fi}
 
 \newenvironment{Acknowledgements}
  {\if@slovene
@@ -803,17 +803,17 @@ acknowledgement has been made in the text.
 	\begin{minipage}{\textwidth}
 	\itshape
 	}
- {\end{minipage} 
-  \par \null \hfill  --- \@author, \@place, 
+ {\end{minipage}
+  \par \null \hfill  --- \@author, \@place,
   \if@slovene
    \ifcase\month\or januar\or februar\or marec\or april\or maj\or junij\or julij\or avgust\or september\or oktober\or november\or december\fi
   \else
    \ifcase\month\or January\or February\or March\or April\or May\or June\or July\or August\or September\or October\or November\or December\fi
-  \fi 
+  \fi
   ~\number\year.
 	\par
   }
-	
+
 \newenvironment{Statement}
  {\cleardoublepage
   \thispagestyle{plain}
@@ -825,12 +825,12 @@ acknowledgement has been made in the text.
   }
  {
 	\end{minipage}
-	\par \null \hfill  --- \@author, \@place, 
+	\par \null \hfill  --- \@author, \@place,
 	\if@slovene
    \ifcase\month\or januar\or februar\or marec\or april\or maj\or junij\or julij\or avgust\or september\or oktober\or november\or december\fi
   \else
    \ifcase\month\or January\or February\or March\or April\or May\or June\or July\or August\or September\or October\or November\or December\fi
-  \fi 
+  \fi
   ~\number\year.
   \par
   }
@@ -869,7 +869,7 @@ acknowledgement has been made in the text.
       \begingroup\color{P1797}\expandafter\kernchapno{\thechapter}{\empty}\normalcolor\endgroup
       \kern 3pt
      }
-   \vglue 0pt 
+   \vglue 0pt
    \leftline{%
 %      \ifback\else
          \vtop{%
@@ -1112,7 +1112,7 @@ acknowledgement has been made in the text.
 \newcommand\tableofcontents{%
 	\@xp\chapter\@xp*\@xp{\contentsname \@mkboth{\contentsname}{\contentsname}}%
 	\@starttoc{toc}%
-	}    
+	}
 \newcommand*\l@part[2]{%
   \ifnum \c@tocdepth >-2\relax
     \addpenalty{-\@highpenalty}%
@@ -1299,9 +1299,9 @@ acknowledgement has been made in the text.
 \fi
 \RequirePackage{hyperxmp}
 \ifpdf
-\RequirePackage[colorlinks,colorlinks,citecolor=P1797,linkcolor=P1797,urlcolor=P1797,plainpages=false,linktocpage=true,hyperfigures=true,unicode=true,pdfdisplaydoctitle=true]{hyperref}
+\RequirePackage[colorlinks,colorlinks,citecolor=P1797,linkcolor=P1797,urlcolor=P1797,plainpages=false,linktocpage=true,hyperfigures=true,unicode=true,pdfdisplaydoctitle=true,breaklinks=true]{hyperref}
 \else
-  \RequirePackage[dvipdfm,colorlinks,colorlinks,citecolor=P1797,linkcolor=P1797,urlcolor=P1797,plainpages=false,linktocpage=true,hyperfigures=true,unicode=true,pdfdisplaydoctitle=true]{hyperref}
+  \RequirePackage[dvipdfm,colorlinks,colorlinks,citecolor=P1797,linkcolor=P1797,urlcolor=P1797,plainpages=false,linktocpage=true,hyperfigures=true,unicode=true,pdfdisplaydoctitle=true,breaklinks=true]{hyperref}
 \fi
 
 \paperheight 297mm \paperwidth 210mm \textheight 54.5pc

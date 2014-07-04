@@ -15,7 +15,7 @@
 %% ----------------------------------------
 %% *** Numerical reference style for elsart ***
 %% $Id: elsart-num.bst,v 1.1 2004/03/18 15:18:53 iowen Exp $
-%% 
+%%
 %% Copyright 1994-1999 Patrick W Daly
  % ===============================================================
  % IMPORTANT NOTICE:
@@ -244,32 +244,32 @@ FUNCTION {bbl.edition}
 { "Edition" }
 
 FUNCTION {bbl.volume}
-{ "Vol." }
+{ "zv." }
 
 FUNCTION {bbl.of}
-{ "of" }
+{ "od" }
 
 FUNCTION {bbl.number}
-{ "no." }
+{ "št." }
 
 FUNCTION {bbl.nr}
-{ "no." }
+{ "št." }
 
 FUNCTION {bbl.in}
-{ "in" }
+{ "v" }
 
 FUNCTION {bbl.pages}
-{ "pp." }
+{ "str." }
 
 FUNCTION {bbl.page}
-{ "p." }
+{ "str." }
 
 FUNCTION {bbl.chapter}
-{ "Ch." }
+{ "pogl." }
 
 % ILB[30.03.2006] added for url support
-FUNCTION {bbl.url} 
-{ "url:" }
+FUNCTION {bbl.url}
+{ "Dostopno na:" }
 
 FUNCTION {bbl.techrep}
 { "Tech. Rep." }
@@ -307,29 +307,29 @@ FUNCTION {bbl.rd}
 FUNCTION {bbl.th}
 { "th" }
 
-MACRO {jan} {"Jan."}
+MACRO {jan} {"jan."}
 
-MACRO {feb} {"Feb."}
+MACRO {feb} {"feb."}
 
-MACRO {mar} {"Mar."}
+MACRO {mar} {"mar."}
 
-MACRO {apr} {"Apr."}
+MACRO {apr} {"apr."}
 
-MACRO {may} {"May"}
+MACRO {may} {"maj"}
 
-MACRO {jun} {"Jun."}
+MACRO {jun} {"jun."}
 
-MACRO {jul} {"Jul."}
+MACRO {jul} {"jul."}
 
-MACRO {aug} {"Aug."}
+MACRO {aug} {"avg."}
 
-MACRO {sep} {"Sep."}
+MACRO {sep} {"sep."}
 
-MACRO {oct} {"Oct."}
+MACRO {oct} {"okt."}
 
-MACRO {nov} {"Nov."}
+MACRO {nov} {"nov."}
 
-MACRO {dec} {"Dec."}
+MACRO {dec} {"dec."}
 
 FUNCTION {eng.ord}
 { duplicate$ "1" swap$ *
@@ -712,7 +712,7 @@ FUNCTION {format.pages}
   if$
 }
 
-FUNCTION {format.journal.pages}
+FUNCTION {frmat.journal.pages}
 { pages empty$
     'skip$
     { duplicate$ empty$
@@ -731,8 +731,8 @@ FUNCTION {format.journal.pages}
 FUNCTION {write.url}
 { url empty$
     { skip$ }
-    { "\newline " bbl.url * 
-      " \href{" url * *
+    { " " bbl.url *
+      "\newline  \href{" url * *
       "}{" url * *
       "}" *
       write$ newline$ }
@@ -752,8 +752,8 @@ FUNCTION {write.comment}
         }
       if$
       comment #2 global.max$ substring$ *
-		  add.period$ 
-		  * "}" *  
+		  add.period$
+		  * "}" *
 		  write$ newline$
     }
   if$
@@ -792,7 +792,7 @@ FUNCTION {format.journal}
 %SP 2001/01/23
 % Only used in articles
 FUNCTION {format.vol.num.pages}
-{ 
+{
 %SP 2001/01/23
 % Add the leading space only if there is a volume
   % volume field.or.null
@@ -877,7 +877,7 @@ FUNCTION {format.article.crossref}
         { word.in journal emphasize * }
       if$
     }
-    { word.in key * " " * } 
+    { word.in key * " " * }
   if$
   " \cite{" * crossref * "}" * format.doi.start * % ILB[30.03.2006] changed for doi support
 }
@@ -1015,7 +1015,7 @@ FUNCTION {article}
   format.authors "author" output.check
   format.title "title" output.check
   crossref missing$
-    { 
+    {
       format.journal "journal" output.check % ILB[30.03.2006] changed for doi support
 %SP 2001/01/23
 % Add the space in format.vol.num.pages
@@ -1027,7 +1027,7 @@ FUNCTION {article}
       format.pages output
     }
   if$
-  format.journal.pages 
+  format.journal.pages
   format.doi.end % ILB[30.03.2006] added for doi support
   format.note output
   fin.entry
@@ -1358,7 +1358,7 @@ FUNCTION {begin.bib}
     { preamble$ write$ newline$ }
   if$
   "\begin{thebibliography}{"  longest.label  * "}" *
-  write$ newline$  
+  write$ newline$
 % ILB[30.03.2006] removed and changed for href support
 %  "\expandafter\ifx\csname url\endcsname\relax"
 %  write$ newline$
@@ -1374,7 +1374,7 @@ EXECUTE {init.state.consts}
 
 ITERATE {call.type$}
 
-SORT 
+SORT
 
 FUNCTION {end.bib}
 { newline$
