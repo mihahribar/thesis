@@ -10,7 +10,7 @@ Cilj diplomske naloge je razvoj knjižnice za specifikacijo [RFC 5545](https://t
 
 # Developing a cross platform library for use in mobile and web applications
 
-Developing applications for different platforms is complicated. It opens a lot of avenues for mistakes, complicates testing and bugfixing, while almost completely destroys any chance of simultaneous application upgrade. The result of this are prolonged development cycles and slow feature creep, which in todays ``startup'' world is not an option.
+Developing applications for different platforms is complicated. It opens a lot of avenues for mistakes, complicates testing and bugfixing, while almost completely destroys any chance of simultaneous application upgrade. The result of this are prolonged development cycles and slow feature creep, which in todays "startup" world is not an option.
 
 Despite the differences between platforms, they most likely share a lot of functionality which has to be developed for each platform. The solution to this problem is to develop a cross-platform library.
 
