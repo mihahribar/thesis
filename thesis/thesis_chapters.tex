@@ -272,11 +272,11 @@ Pravila lahko v nekaterih situacijah povzročijo ponovitev dogodka na neobstoje�
 
 Začetni datum ponavljanja dogodka je definiran izven omenjenih pravil, in sicer v delu \texttt{DTSTART}. Datum prve ponovitve dogodka je vedno isti začetnemu datumu, ne glede na to, če je ta dan smiseln glede na opisana pravila ponavljanja.
 
-Opisana pravila s predpono \texttt{BY} vedno na nek način spremenijo ponavljanje dogodka. Število dni lahko ta pravila omejijo kot v primeru \texttt{FREQ=DAILY;BYMONTH=1}, kjer dnevno ponavljanje omeji samo na mesec januar. Lahko pa jih tudi razširijo, kot v primeru \texttt{FREQ=YEARLY;BYMONTH=1,2}, kjer je enkratno letno ponavljanje razširjeno na ponovitev vsak januar in februar, vsako leto.
+Opisana pravila s predpono \texttt{BY} vedno na nek način spremenijo ponavljanje dogodka. Število dni lahko ta pravila omejijo kot v primeru \texttt{FREQ=DAILY;BYMONTH=1}, kjer dnevno ponavljanje omeji samo na mesec januar. Lahko pa jih tudi razširijo, kot naprimer v primeru \texttt{FREQ=YEARLY;BYMONTH=1,2}, kjer je enkratno letno ponavljanje razširjeno na ponovitev vsak januar in februar, vsako leto.
 
 \begin{table}
 \footnotesize
-\scalebox{0.85}{
+\scalebox{0.9}{
 \begin{tabular}{ l | l | l | l | l | l | l | l }
   \hline
   				& SECONDLY	& MINUTELY	& HOURLY	& DAILY		& WEEKLY 	& MONTHLY 	& YEARLY	\\
@@ -330,7 +330,7 @@ Iz tabele \ref{table:omejitve} je lepo razvidno, da le rešitev C++ zadošča vs
 
 \begin{table}
 \footnotesize
-\scalebox{0.85}{
+\scalebox{0.9}{
 \begin{tabular}{ l | c | c | c | c | c | c | c | c | c }
   \hline
   							& Qt & Xamarin & Air & Cordova & Titanium & Lua & Haxe & C++ & JavaScript \\
@@ -422,7 +422,6 @@ Implementacija iOS ovoja je dokaj preprosta (glej primer \ref{code:ios-wrapper})
 @end
 
 @implementation ThesisDate
-
 - (ThesisDate *)initWithYear:(NSInteger)year month:(NSInteger)month andDay:(NSInteger)day {
     self = [super init];
     if (self) {
@@ -477,11 +476,9 @@ public class Date
 	public native void init(int year, int month, int day);
 	public native boolean isBefore(Date date);
 	public native void dispose();
-
 	public Date(int year, int month, int day) {
 		init(year, month, day);
 	}
-
 	static {
 		System.loadLibrary("thesis");
 	}
@@ -555,12 +552,6 @@ void setHandle(JNIEnv *env, jobject obj, T *t)
 Bralca morda zanima, čemu služi metoda \texttt{dispose} (vrstice 16-19). Java nam nudi avtomatično sproščanje pomnilnika (\eng{garbage collection}), medtem ko C++ od razvijalca zahteva samostojno čiščenje pomnilniških naslovov, ki niso več v uporabi. Ko v Javi pride do sproščanja pomnilnika, se pokliče metoda \texttt{finalize}, a kot lahko preberemo v dokumentaciji\cite{android-object}, do klica ne prihaja prav pogosto in se za tako uporabo ne priporoča. Poleg tega je vsak razred, ki implementira metodo \texttt{finalize}, deležen malce večje obdelave s strani operacijskega sistema, kar botruje počasnejšemu izvajanju. Ker želimo biti malce bolj prijazni do platforme, na kateri gostujemo, se držimo pravila: ko objekta ne potrebujemo več, ga sprostimo s pomočjo klica \texttt{dispose} (naprimer v \texttt{finally} \texttt{try catch finally} konstruktu).
 
 Za testiranje Java ovoja smo uporabili ogrodji JUnit\cite{junit} in Maven\cite{maven}. Tako kot v primeru iOS ovoja se na tem mestu ne testira dejanske knjižnice, ampak zgolj povezavo iz C++ knjižnice v Java kodo. Teste lahko zaženemo z ukazom \texttt{mvn test}, ki s pomočjo orodja Maven poskrbi za prenos vseh potrebnih knjižnic in za zagon testov Java ovoja.
-
-\begin{figure}
- \includegraphics[width=\linewidth]{java-tests}
- \caption{Zaslonska slika, ki prikazuje teste razreda \texttt{Date} Java ovoja.}
- \label{fig:java-tests}
-\end{figure}
 
 %-----
 \section{Windows Phone}
@@ -705,8 +696,6 @@ Po vsem tem lahko pridemo do istega zaključka kot v primeru Jave - vključitev 
 
 Na področju JavaScripta je bil v zadnjih nekaj letih videti velik napredek. S pomočjo asm.js\cite{asmjs}, ki je podmnožica jezika JavaScript, je spletnim brskalnikom v letu 2014 uspelo doseči le 2-kratno upočasnitev v primerjavi z domorodno kodo. Ista raziskava iz leta 2011 je pokazala kar 12-kratno upočasnitev\cite{html5-gamedev}.
 
-Neposredno pisanje v asm.js je dokaj nerealno, saj razvijalca sili v pisanje kode na način, ki ga najbrž ni vajen (glej primer \ref{code:asm.js}). Namesto tega je asm.js še posebej primeren kot končni jezik za prevajanje med jeziki z ogrodjem, kot je Emscripten. Koda, prevedena iz jezika C++, bo zaradi tega v večini primerov hitrejša kot tista, ki jo razvijalec sam napiše v jeziku JavaScript.
-
 \begin{lstlisting}[caption={Primer prevoda C kode v asm.js kodo.}, label=code:asm.js, language=JavaScript]
 // C koda
 int f(int i) {
@@ -719,4 +708,6 @@ function f(i) {
   return (i + 1)|0;
 }
 \end{lstlisting}
+
+Neposredno pisanje v asm.js je dokaj nerealno, saj razvijalca sili v pisanje kode na način, ki ga najbrž ni vajen (glej primer \ref{code:asm.js}). Namesto tega je asm.js še posebej primeren kot končni jezik za prevajanje med jeziki z ogrodjem, kot je Emscripten. Koda, prevedena iz jezika C++, bo zaradi tega v večini primerov hitrejša kot tista, ki jo razvijalec sam napiše v jeziku JavaScript.
 
